@@ -1,0 +1,124 @@
+﻿header {
+    background-color: $color-dark-2;
+
+    @include lg {
+        background: $color-white;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 1.5rem 2rem;
+
+        @include lg {
+        }
+
+        @include xl {
+        }
+    }
+
+    .logo {
+        font-weight: $font-weight-bold;
+        font-size: 1.3rem;
+        color: $color-light;
+
+        img {
+            margin-right: 0.5rem;
+        }
+    }
+
+    .menu-links {
+        display: none;
+
+
+        @include lg {
+            color: $color-dark-2;
+        }
+
+        @include xl {
+        }
+
+        .link {
+            font-family: $font-poppins;
+            font-weight: $font-weight-medium;
+
+            &:hover {
+            }
+
+            @include lg {
+
+
+                &:hover {
+                }
+            }
+        }
+    }
+
+    .open-menu {
+        background: red;
+        z-index: 5;
+        border-radius: 0.5rem;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+
+    .menu-icons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        background-color: $color-dark-2;
+        width: 100%;
+
+
+        @include xl {
+            position: relative;
+        }
+
+        .link {
+            font-family: $font-poppins;
+
+
+            &:hover {
+            }
+
+            @include xl {
+
+                &:hover {
+                }
+            }
+        }
+    }
+
+    .toggle {
+        grid-area: toggle;
+
+        @include lg {
+            display: none;
+        }
+
+        .toggle-btn {
+            border: 1px solid $color-light;
+            color: $color-white;
+            border-radius: 5px;
+            width: 2rem;
+            height: 2rem;
+            background-color: transparent;
+
+            &:hover {
+                background-color: $color-light;
+                color: $color-dark-0;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    }
+}

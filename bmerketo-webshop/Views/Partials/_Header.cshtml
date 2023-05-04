@@ -1,0 +1,31 @@
+﻿<header>
+    <div class="container">
+        <div class="logo"><img src="images/logo.svg" alt="">bmerketo</div>
+
+        <div class="nav-container">
+            <nav id="menu" class="menu-links">
+                <a asp-controller="index" asp-action="index" class="link">HOME</a>
+                <a asp-controller="products" asp-action="index" class="link">PRODUCTS</a>
+                <a asp-controller="contact" asp-action="index" class="link">CONTACT</a>
+            </nav>
+
+            <nav class="menu-icons">
+                <!-- Add search funtionality -->
+                <a class="link" href="#"><i class="bi bi-search"></i></i></a>
+
+                <!-- Add condition for signout instead -->
+                <a asp-action="auth" asp-action="login" class="link">Login</a>
+
+                <!-- Turn into button that pops up modal with cart info -->
+                <a href="#"><i class="bi bi-cart"></i></a>
+            </nav>
+        </div>
+
+        <div class="toggle">
+            <button onclick="toggleMobileMenu()" class="toggle-btn closed">
+                <i class="bi bi-list open-icon"></i>
+                <i class="bi bi-x-lg hidden close-icon"></i>
+            </button>
+        </div>
+    </div>
+</header>
