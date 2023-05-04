@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Helpers\Repositories\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
