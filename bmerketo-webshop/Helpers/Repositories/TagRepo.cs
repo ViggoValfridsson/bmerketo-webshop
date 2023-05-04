@@ -18,7 +18,7 @@ public class TagRepo : GenericRepo<TagEntity>
     {
         try
         {
-            return await _context.Tags.Include(x => x.Products).FirstOrDefaultAsync(predicate);
+            return await _context.Tags.Include(x => x.Products).ThenInclude(x => x.Product).FirstOrDefaultAsync(predicate);
         }
         catch { return null; }
     }

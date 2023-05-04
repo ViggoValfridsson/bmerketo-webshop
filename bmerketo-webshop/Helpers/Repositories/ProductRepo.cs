@@ -19,7 +19,7 @@ public class ProductRepo : GenericRepo<ProductEntity>
     {
         try
         {
-            return await _context.Products.Include(x => x.Tags).Include(x => x.Category).FirstOrDefaultAsync(predicate);
+            return await _context.Products.Include(x => x.Tags).ThenInclude(x => x.Tag).Include(x => x.Category).FirstOrDefaultAsync(predicate);
         }
         catch { return null!; }
     }
@@ -28,7 +28,7 @@ public class ProductRepo : GenericRepo<ProductEntity>
     {
         try
         {
-            return await _context.Products.Include(x => x.Tags).Include(x => x.Category).ToListAsync();
+            return await _context.Products.Include(x => x.Tags).ThenInclude(x => x.Tag).Include(x => x.Category).ToListAsync();
         }
         catch { return null!; }
     }
@@ -37,7 +37,7 @@ public class ProductRepo : GenericRepo<ProductEntity>
     {
         try
         {
-            return await _context.Products.Include(x => x.Tags).Include(x => x.Category).Where(predicate).ToListAsync();
+            return await _context.Products.Include(x => x.Tags).ThenInclude(x => x.Tag).Include(x => x.Category).Where(predicate).ToListAsync();
         }
         catch { return null!; }
     }
