@@ -1,25 +1,33 @@
 ﻿<header>
     <div class="container">
-        <div class="logo"><img src="images/logo.svg" alt="">bmerketo</div>
+        <div class="logo logo-dark"><img src="images/logo.svg" alt="">bmerketo</div>
+        <div class="logo logo-light"><img src="images/logo_light.svg" alt="">bmerketo</div>
 
-        <div class="nav-container">
-            <nav id="menu" class="menu-links">
-                <a asp-controller="index" asp-action="index" class="link">HOME</a>
-                <a asp-controller="products" asp-action="index" class="link">PRODUCTS</a>
-                <a asp-controller="contact" asp-action="index" class="link">CONTACT</a>
-            </nav>
+        <nav id="menu" class="menu-links mobile-closed-menu">
+            <ul>
+                <li class="link">
+                    <a asp-controller="index" asp-action="index">HOME</a>
+                </li>
+                <li class="link">
+                    <a asp-controller="products" asp-action="index">PRODUCTS</a>
+                </li>
+                <li class="link">
+                    <a asp-controller="contact" asp-action="index">CONTACT</a>
+                </li>
+            </ul>
 
-            <nav class="menu-icons">
-                <!-- Add search funtionality -->
-                <a class="link" href="#"><i class="bi bi-search"></i></i></a>
+        </nav>
 
-                <!-- Add condition for signout instead -->
-                <a asp-action="auth" asp-action="login" class="link">Login</a>
+        <nav class="menu-icons">
+            <!-- Add search funtionality -->
+            <a class="link" href="#"><i class="bi bi-search"></i></i></a>
 
-                <!-- Turn into button that pops up modal with cart info -->
-                <a href="#"><i class="bi bi-cart"></i></a>
-            </nav>
-        </div>
+            <!-- Add condition for signout instead -->
+            <a asp-action="auth" asp-action="login" class="link">Login</a>
+
+            <!-- Turn into button that pops up modal with cart info -->
+            <a href="#"><i class="bi bi-cart"></i></a>
+        </nav>
 
         <div class="toggle">
             <button onclick="toggleMobileMenu()" class="toggle-btn closed">

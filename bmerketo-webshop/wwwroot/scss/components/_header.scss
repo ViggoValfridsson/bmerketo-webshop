@@ -1,11 +1,17 @@
 ﻿header {
-    background-color: $color-dark-2;
+    background-color: $color-dark-1;
+
+    a {
+        color: $color-light;
+        text-decoration: none;
+    }
 
     @include lg {
         background: $color-white;
     }
 
     .container {
+        position: relative;
         display: flex;
         justify-content: space-between;
         padding: 1.5rem 2rem;
@@ -27,9 +33,33 @@
         }
     }
 
-    .menu-links {
+    .logo-dark {
         display: none;
 
+        @include lg {
+            display: block;
+        }
+    }
+
+    .logo-light{
+        display: block;
+
+        @include lg {
+            display: none;
+        }
+    }
+
+    .menu-links {
+        background: $color-dark-2;
+        position: absolute;
+        bottom: -7.5rem;
+        z-index: 999;
+        width: 100%;
+        overflow: hidden;
+        margin-left: -2rem;
+        display: grid;
+        border-top: 1px solid $color-dark-3;
+        border-top: 1px solid $color-dark-3;
 
         @include lg {
             color: $color-dark-2;
@@ -38,29 +68,28 @@
         @include xl {
         }
 
+        ul {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
         .link {
+            display: flex;
+            align-items: center;
+            height: 2.5rem;
             font-family: $font-poppins;
             font-weight: $font-weight-medium;
+            width: 100%;
 
-            &:hover {
-            }
-
-            @include lg {
-
-
-                &:hover {
-                }
+            a {
+                width: 100%;
             }
         }
     }
 
-    .open-menu {
-        background: red;
-        z-index: 5;
-        border-radius: 0.5rem;
-        position: relative;
-        width: 100%;
-        overflow: hidden;
+    .mobile-closed-menu {
+        display: none;
     }
 
 
@@ -73,8 +102,9 @@
         display: flex;
         justify-content: center;
         gap: 2rem;
-        background-color: $color-dark-2;
+        background-color: $color-dark-1;
         width: 100%;
+        font-size: 1.1rem;
 
 
         @include xl {
