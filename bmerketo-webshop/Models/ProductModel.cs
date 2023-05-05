@@ -13,6 +13,6 @@ public class ProductModel
     public decimal? Price { get; set; }
     public string? ImageUrl { get; set; }
     public string CategoryName { get; set; } = null!;
-    public ICollection<TagModel> Tags { get; set; } = new HashSet<TagModel>();
+    public ICollection<string> Tags { get; set; } = new HashSet<string>();
 
 }

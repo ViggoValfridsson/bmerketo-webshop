@@ -10,10 +10,12 @@ namespace bmerketo_webshop.Helpers.Services;
 public class ProductService
 {
     private readonly ProductRepo _repo;
+    private readonly TagService _tagService;
 
-    public ProductService(ProductRepo repo)
+    public ProductService(ProductRepo repo, TagService tagService)
     {
         _repo = repo;
+        _tagService = tagService;
     }
     // create
 
@@ -22,12 +24,35 @@ public class ProductService
     {
         var entity = await _repo.GetAsync(predicate);
 
-        return entity;
+        return entity!;
     }
+
+    // Gets random product with featured tag
+    public async Task<ProductModel?> GetFeaturedAsync()
+    {
+        var tag = await _tagService.GetAsync(x => x.TagName == "Featured");
+
+        if (tag == null)
+            return null;
+
+        var products = tag.Products.ToList();
+
+        if (products.Count < 1) 
+            return null;
+
+        var random = new Random();
+        var randomNumber = random.Next(0, products.Count);
+
+        return products[randomNumber];
+    }
+
+
 
     // get all
 
     // get all filtered
+
+    //get all by tag kolla featured tag funktionen för hur man gör
 
     // update
 

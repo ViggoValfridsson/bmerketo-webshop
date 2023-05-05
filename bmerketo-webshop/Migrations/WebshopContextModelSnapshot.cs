@@ -234,7 +234,7 @@ namespace bmerketo_webshop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("bmerketo_webshop.Models.Entities.ProductEntity", b =>
@@ -262,7 +262,7 @@ namespace bmerketo_webshop.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("bmerketo_webshop.Models.Entities.ProductsTagsEntity", b =>
@@ -277,7 +277,7 @@ namespace bmerketo_webshop.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("ProductsTags");
+                    b.ToTable("ProductsTags", (string)null);
                 });
 
             modelBuilder.Entity("bmerketo_webshop.Models.Entities.TagEntity", b =>
@@ -294,7 +294,7 @@ namespace bmerketo_webshop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

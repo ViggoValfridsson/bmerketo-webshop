@@ -1,10 +1,19 @@
-﻿<div class ="container">
+﻿@{
+    var product = await _productService.GetFeaturedAsync();
+}
+
+<div class="container">
     <div>
+        <h1></h1>
+
         <h2>WELCOME TO BMKERKETO SHOP</h2>
-            <h1>Exclusive Chair Gold Collection</h1>
+        <h1>@product?.Name</h1>
         <button>SHOP NOW</button>
     </div>
     <div>
-        <img src="~/images/placeholders/625x647.svg" alt="Exclusive chair gold collection" />
+        <img src="@product?.ImageUrl" alt="@product?.Name" />
     </div>
 </div>
+
+<!--~/images/placeholders/625x647.svg-->
+<!--~/images/placeholders/625x647.svg-->

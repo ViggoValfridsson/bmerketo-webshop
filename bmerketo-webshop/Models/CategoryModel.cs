@@ -1,6 +1,4 @@
-﻿using bmerketo_webshop.Models.Entities;
-
-namespace bmerketo_webshop.Models;
+﻿namespace bmerketo_webshop.Models;
 
 public class CategoryModel
 {

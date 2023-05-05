@@ -30,16 +30,18 @@ public class ProductEntity
         var model = new ProductModel
         {
             Name = entity.Name,
-            CategoryName = entity.Category.CategoryName,
             Description = entity.Description,
             Price = entity.Price,
             ImageUrl = entity.ImageUrl,
         };
 
-        var tags = new List<TagModel>();
+        if (entity.Category != null)
+            model.CategoryName = entity.Category.CategoryName;
+
+        var tags = new List<string>();
 
         foreach (var productsTag in entity.Tags)
-            tags.Add(productsTag.Tag);
+            tags.Add(productsTag.Tag.TagName);
 
         model.Tags = tags;
 
