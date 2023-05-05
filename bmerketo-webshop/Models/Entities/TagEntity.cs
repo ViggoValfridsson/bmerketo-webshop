@@ -9,4 +9,12 @@ public class TagEntity
     [Column(TypeName = "nvarchar(100)")]
     public string TagName { get; set; } = null!;
     public ICollection<ProductsTagsEntity> Products = new HashSet<ProductsTagsEntity>();
+
+    public static implicit operator TagModel(TagEntity entity)
+    {
+        return new TagModel
+        {
+            Name = entity.TagName ?? ""
+        };
+    }
 }

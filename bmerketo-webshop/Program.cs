@@ -1,5 +1,6 @@
 using bmerketo_webshop.Data;
 using bmerketo_webshop.Helpers.Repositories;
+using bmerketo_webshop.Helpers.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,7 @@ builder.Services.AddScoped<TagRepo>();
 builder.Services.AddScoped<ProductsTagsRepo>();
 
 // Services
+builder.Services.AddScoped<ProductService>();
 
 // Identity
 

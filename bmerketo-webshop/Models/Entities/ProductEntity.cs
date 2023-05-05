@@ -21,4 +21,28 @@ public class ProductEntity
     public int CategoryId { get; set; }
     public CategoryEntity Category { get; set; } = null!;
     public ICollection<ProductsTagsEntity> Tags { get; set; } = new HashSet<ProductsTagsEntity>();
+
+    public static implicit operator ProductModel? (ProductEntity entity)
+    {
+        if (entity == null)
+            return null;
+
+        var model = new ProductModel
+        {
+            Name = entity.Name,
+            CategoryName = entity.Category.CategoryName,
+            Description = entity.Description,
+            Price = entity.Price,
+            ImageUrl = entity.ImageUrl,
+        };
+
+        var tags = new List<TagModel>();
+
+        foreach (var productsTag in entity.Tags)
+            tags.Add(productsTag.Tag);
+
+        model.Tags = tags;
+
+        return model;
+    }
 }

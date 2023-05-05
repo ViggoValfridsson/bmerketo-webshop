@@ -41,7 +41,4 @@ public class ProductRepo : GenericRepo<ProductEntity>
         }
         catch { return null!; }
     }
-
-
-
 }
