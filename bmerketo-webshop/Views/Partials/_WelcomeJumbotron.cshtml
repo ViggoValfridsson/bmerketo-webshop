@@ -2,18 +2,18 @@
     var product = await _productService.GetFeaturedAsync();
 }
 
-<div class="container">
-    <div>
-        <h1></h1>
+<div class="welcome-jumbotron">
+    <div class="container">
+        <div class="text-container">
+            <h2 class="heading">WELCOME TO BMERKETO SHOP</h2>
+            <h1 class="heading">@product?.Name</h1>
+        </div>
+        <div class="img-container">
+            <img src="@product?.ImageUrl" alt="@product?.Name" />
+        </div>
 
-        <h2>WELCOME TO BMKERKETO SHOP</h2>
-        <h1>@product?.Name</h1>
-        <button>SHOP NOW</button>
-    </div>
-    <div>
-        <img src="@product?.ImageUrl" alt="@product?.Name" />
+        <div class="button-container">
+            <button>SHOP NOW</button>
+        </div>
     </div>
 </div>
-
-<!--~/images/placeholders/625x647.svg-->
-<!--~/images/placeholders/625x647.svg-->

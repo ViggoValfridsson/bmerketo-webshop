@@ -46,8 +46,6 @@ public class ProductService
         return products[randomNumber];
     }
 
-
-
     // get all
 
     // get all filtered
