@@ -3,6 +3,7 @@ using bmerketo_webshop.Helpers.Repositories;
 using bmerketo_webshop.Models;
 using bmerketo_webshop.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System.Linq.Expressions;
 
 namespace bmerketo_webshop.Helpers.Services;
@@ -17,9 +18,11 @@ public class ProductService
         _repo = repo;
         _tagService = tagService;
     }
+
     // create
 
-    // get
+
+    //get
     public async Task<ProductModel?> GetAsync(Expression<Func<ProductEntity, bool>> predicate)
     {
         var entity = await _repo.GetAsync(predicate);
@@ -37,7 +40,7 @@ public class ProductService
 
         var products = tag.Products.ToList();
 
-        if (products.Count < 1) 
+        if (products.Count < 1)
             return null;
 
         var random = new Random();
@@ -47,6 +50,22 @@ public class ProductService
     }
 
     // get all
+    public async Task<IEnumerable<ProductModel>> GetAllAsync(Expression<Func<ProductEntity, bool>> predicate = null!)
+    {
+        var products = new List<ProductModel>();
+        IEnumerable<ProductEntity> entities;
+
+        if (predicate == null)
+            entities = await _repo.GetAllAsync();
+        else
+            entities = await _repo.GetAllAsync(predicate);
+
+        foreach (var entity in entities)
+            products.Add(entity!);
+
+        return products;
+    }
+
 
     // get all filtered
 

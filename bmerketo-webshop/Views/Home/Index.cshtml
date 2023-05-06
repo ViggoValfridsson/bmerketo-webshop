@@ -1,9 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Home";
+
+    var bestCollectionViewModel = new CollectionViewmodel
+            {
+                CollectionName = "Best Collection",
+        };
 }
 
 <partial name="/Views/Partials/_WelcomeJumbotron.cshtml" />
 
 <main>
-    @*put best collection and stuff here*@
+    <partial name="/Views/Partials/_ProductCollection.cshtml" model=@bestCollectionViewModel />
 </main>
