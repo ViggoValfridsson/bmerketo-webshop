@@ -50,7 +50,7 @@ public class ProductService
     }
 
     // get all
-    public async Task<IEnumerable<ProductModel>> GetAllAsync(Expression<Func<ProductEntity, bool>> predicate = null!)
+    public async Task<List<ProductModel>> GetAllAsync(Expression<Func<ProductEntity, bool>> predicate = null!)
     {
         var products = new List<ProductModel>();
         IEnumerable<ProductEntity> entities;

@@ -9,4 +9,5 @@ public class CollectionViewmodel
 
     // By default this will not perform any filtering
     public Expression<Func<ProductEntity, bool>> Filter { get; set; } = null!;
+    public decimal ProductAmount { get; set; } = 8;
 }

@@ -26,7 +26,7 @@ public class CategoryService
     }
 
     // get all
-    public async Task<IEnumerable<CategoryModel>> GetAllAsync(Expression<Func<CategoryEntity, bool>> predicate = null!)
+    public async Task<List<CategoryModel>> GetAllAsync(Expression<Func<CategoryEntity, bool>> predicate = null!)
     {
         var products = new List<CategoryModel>();
         IEnumerable<CategoryEntity> entities;

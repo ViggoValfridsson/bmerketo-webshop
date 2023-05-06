@@ -1,12 +1,13 @@
-﻿@model ProductModel
+﻿@using System.Globalization;
+@model ProductModel
 
-@if (Model != null)
+@if (!string.IsNullOrWhiteSpace(Model.Name) && !string.IsNullOrWhiteSpace(Model.ImageUrl) && Model.Price != 0)
 {
     <div>
         <div class="image-container">
-            <img src="@Model?.ImageUrl" alt="@Model?.Name" />
-            <h4>@Model?.Name</h4>
-            <p>@Model!.Price</p>
+            <img src="@Model.ImageUrl" alt="@Model.Name" />
+            <h4>@Model.Name</h4>
+            <p>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Price)</p>
         </div>
     </div>
 }

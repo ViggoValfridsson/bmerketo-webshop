@@ -9,9 +9,9 @@
         <h2>@Model.CollectionName</h2>
         
         <div class="product-container">
-            @foreach(var product in products)
+            @for (int i = 0; i < products.Count && i < Model.ProductAmount; i++)
             {
-                <partial name="/Views/Partials/CollectionItem.cshtml" model=@product />
+                <partial name="/Views/Partials/CollectionItem.cshtml" model=@products[i] />
             }
         </div>
     </div>
