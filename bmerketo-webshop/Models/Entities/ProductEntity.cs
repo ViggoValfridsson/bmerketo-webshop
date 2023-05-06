@@ -17,7 +17,7 @@ public class ProductEntity
 
     // 2048 is the de facto url lenght limit
     [Column(TypeName = "nvarchar(2048)")]
-    public string? ImageUrl { get; set; }
+    public string ImageUrl { get; set; } = null!;
     public int CategoryId { get; set; }
     public CategoryEntity Category { get; set; } = null!;
     public ICollection<ProductsTagsEntity> Tags { get; set; } = new HashSet<ProductsTagsEntity>();

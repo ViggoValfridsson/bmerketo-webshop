@@ -2,18 +2,17 @@
 
 @{
     var products = await _productService.GetAllAsync(Model.Filter);
-    var a = "";
 }
 
 <div class="container">
     <div class="header-container">
         <h2>@Model.CollectionName</h2>
-        <ul>
-            @foreach (var product in products)
+        
+        <div class="product-container">
+            @foreach(var product in products)
             {
-                <li>@product.Name</li>
+                <partial name="/Views/Partials/CollectionItem.cshtml" model=@product />
             }
-            <!-- tags -->
-        </ul>
+        </div>
     </div>
 </div>

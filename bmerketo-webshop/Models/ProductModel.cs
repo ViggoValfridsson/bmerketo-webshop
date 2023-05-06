@@ -11,7 +11,7 @@ public class ProductModel
     public string? Description { get; set; }
 
     public decimal? Price { get; set; }
-    public string? ImageUrl { get; set; }
+    public string ImageUrl { get; set; } = null;
     public string CategoryName { get; set; } = null!;
     public ICollection<string> Tags { get; set; } = new HashSet<string>();
 

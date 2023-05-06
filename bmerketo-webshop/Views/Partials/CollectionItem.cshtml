@@ -1,0 +1,12 @@
+﻿@model ProductModel
+
+@if (Model != null)
+{
+    <div>
+        <div class="image-container">
+            <img src="@Model?.ImageUrl" alt="@Model?.Name" />
+            <h4>@Model?.Name</h4>
+            <p>@Model!.Price</p>
+        </div>
+    </div>
+}
