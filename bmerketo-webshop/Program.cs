@@ -20,6 +20,7 @@ builder.Services.AddScoped<ProductsTagsRepo>();
 // Services
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<TagService>();
+builder.Services.AddScoped<CategoryService>();
 
 // Identity
 
