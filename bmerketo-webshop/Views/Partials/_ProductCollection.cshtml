@@ -4,15 +4,15 @@
     var products = await _productService.GetAllAsync(Model.Filter);
 }
 
-<div class="container">
+<div class="container product-collection">
     <div class="header-container">
         <h2>@Model.CollectionName</h2>
-        
-        <div class="product-container">
-            @for (int i = 0; i < products.Count && i < Model.ProductAmount; i++)
-            {
+    </div>
+
+    <div class="product-container">
+        @for (int i = 0; i < products.Count && i < Model.ProductAmount; i++)
+        {
                 <partial name="/Views/Partials/CollectionItem.cshtml" model=@products[i] />
-            }
-        </div>
+        }
     </div>
 </div>

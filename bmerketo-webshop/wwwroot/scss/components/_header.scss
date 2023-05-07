@@ -16,7 +16,7 @@
         position: relative;
         display: flex;
         justify-content: space-between;
-        padding: 1.5rem 2rem;
+        padding: 24px 32px;
 
         @include lg {
             width: 960px;
@@ -38,11 +38,11 @@
 
     .logo {
         font-weight: $font-weight-bold;
-        font-size: 1.3rem;
+        font-size: 21px;
         color: $color-light;
 
         img {
-            margin-right: 0.5rem;
+            margin-right: 8px;
         }
 
         @include lg {
@@ -59,7 +59,7 @@
             display: block;
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 24px;
         }
     }
 
@@ -74,10 +74,10 @@
     .menu-links {
         background: $color-dark-2;
         position: absolute;
-        bottom: -7.5rem;
+        bottom: -120px;
         z-index: 999;
         width: 100%;
-        margin-left: -2rem;
+        margin-left: -32px;
         display: grid;
         border-top: 1px solid $color-dark-3;
         border-top: 1px solid $color-dark-3;
@@ -104,7 +104,7 @@
         .link {
             display: flex;
             align-items: center;
-            height: 2.5rem;
+            height: 40px;
             font-family: $font-poppins;
             font-weight: $font-weight-medium;
             width: 100%;
@@ -138,7 +138,7 @@
             @include lg {
                 height: 100%;
                 display: block;
-                width: 0.5rem;
+                width: 8px;
                 width: 33.333%;
             }
         }
@@ -162,7 +162,7 @@
         justify-content: center;
         background-color: $color-dark-1;
         width: 100%;
-        font-size: 1.1rem;
+        font-size: 17.6px;
 
 
         @include lg {
@@ -177,7 +177,7 @@
             font-family: $font-poppins;
             height: 100%;
             width: 20%;
-            padding: 1.5rem;
+            padding: 24px;
 
             &:hover {
                 background-color: $color-dark-3;
@@ -185,7 +185,7 @@
 
 
             @include lg {
-                padding: 1rem;
+                padding: 16px;
                 width: 33.333%;
                 color: $color-dark-3;
                 font-weight: $font-weight-medium;
@@ -210,8 +210,8 @@
             border: 1px solid $color-light;
             color: $color-white;
             border-radius: 5px;
-            width: 2rem;
-            height: 2rem;
+            width: 32px;
+            height: 32px;
             background-color: transparent;
 
             &:hover {
