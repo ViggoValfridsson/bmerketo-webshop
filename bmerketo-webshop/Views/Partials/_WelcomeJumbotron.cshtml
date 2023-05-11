@@ -1,6 +1,5 @@
 ﻿@{
-    var product = await _productService.GetFeaturedAsync();
-    //var categories = 
+    var product = await _productService.GetRandomByTagAsync("Featured");
 }
 
 <div class="welcome-jumbotron">

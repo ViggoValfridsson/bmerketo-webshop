@@ -31,9 +31,9 @@ public class ProductService
     }
 
     // Gets random product with featured tag
-    public async Task<ProductModel?> GetFeaturedAsync()
+    public async Task<ProductModel?> GetRandomByTagAsync(string tagName)
     {
-        var tag = await _tagService.GetAsync(x => x.TagName == "Featured");
+        var tag = await _tagService.GetAsync(x => x.TagName == tagName);
 
         if (tag == null)
             return null;

@@ -7,9 +7,7 @@
         <img src="@Model.ImageUrl" alt="@Model.Name" />
         <div class="text-container">
             <h4>@Model.Name</h4>
-            <div class="price-container">
-                <p>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Price)</p>
-            </div>
+            <p>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Price)</p>
         </div>
     </a>
 }
