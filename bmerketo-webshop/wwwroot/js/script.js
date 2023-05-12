@@ -1,5 +1,4 @@
 ﻿const toggleMobileMenu = () => {
-
     try {
         const menu = document.querySelector("#menu")
         const openIcon = document.querySelector(".open-icon")
@@ -11,7 +10,3 @@
     }
     catch { }
 }
-
-
-
-

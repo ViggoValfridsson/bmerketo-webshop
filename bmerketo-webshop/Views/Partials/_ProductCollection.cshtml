@@ -25,24 +25,24 @@
 </div>
 
 <script>
-    var productAmount = @Model.ProductAmount;
-    var currentIndex = productAmount;
-    var productsCount = @products.Count;
+    let productAmount = @Model.ProductAmount;
+    let currentIndex = productAmount;
+    let productsCount = @products.Count;
 
     document.addEventListener('DOMContentLoaded', function () {
-        var loadMoreButton = document.getElementById('load-more-button');
-        var productContainer = document.querySelector('.product-container');
+        let loadMoreButton = document.getElementById('load-more-button');
+        let productContainer = document.querySelector('.product-container');
 
-        var collectionItems = productContainer.getElementsByClassName('product-item');
+        let collectionItems = productContainer.getElementsByClassName('product-item');
 
-        for (var i = currentIndex; i < collectionItems.length; i++) {
+        for (let i = currentIndex; i < collectionItems.length; i++) {
             collectionItems[i].style.display = 'none';
         }
 
         loadMoreButton.addEventListener('click', function () {
-            var endIndex = currentIndex + productAmount;
+            let endIndex = currentIndex + productAmount;
 
-            for (var i = currentIndex; i < endIndex && i < collectionItems.length; i++) {
+            for (let i = currentIndex; i < endIndex && i < collectionItems.length; i++) {
                 collectionItems[i].style.display = 'block';
             }
 
