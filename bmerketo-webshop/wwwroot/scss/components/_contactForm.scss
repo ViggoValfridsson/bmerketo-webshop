@@ -1,0 +1,88 @@
+﻿.contact-form {
+    padding: 4em 0;
+    background: $color-light-bg;
+
+    .container {
+        flex-wrap: wrap;
+        text-align: center;
+
+        h2 {
+            margin-bottom: 1em;
+            width: 100%;
+        }
+
+        form {
+            @include md {
+                background: $color-white;
+                padding: 1.5em;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            @include lg {
+                padding: 3em 0;
+            }
+        }
+
+        .input-group {
+            justify-content: center;
+
+            @include md {
+                outline: 1px solid $color-dark-4;
+                flex-wrap: nowrap;
+                outline-offset: -1px;
+                height: 3em;
+                border-radius: 30px;
+            }
+
+            @include lg {
+                width: 80%;
+            }
+
+            @include xl {
+                height: 3.5em;
+            }
+        }
+
+        input {
+            width: 90%;
+            border: 1px solid $color-dark-4;
+            border-radius: 5px !important;
+            padding: 0.3em 0;
+            margin-bottom: 1em;
+
+            @include md {
+                border: none;
+                border-radius: 5px 0 0 5px !important;
+                margin: 0;
+                padding: 0.3em 1em;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        button {
+            background: $color-theme-1;
+            color: $color-white;
+            font-size: 1.1em;
+            padding: 0.75em 2em;
+            border: none;
+            border-radius: 5px !important;
+
+            &:hover {
+                background: $color-theme-3;
+                outline: 1px solid $color-dark-4;
+            }
+
+            @include md {
+                border-radius: 30px !important;
+                padding: 0 2em;
+                height: 100%;
+                z-index: 10;
+            }
+        }
+    }
+}

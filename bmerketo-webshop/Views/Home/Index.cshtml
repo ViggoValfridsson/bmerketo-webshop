@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomeViewModel;
+
+@{
     ViewData["Title"] = "Home";
 
     var bestCollectionViewModel = new CollectionViewmodel
@@ -14,3 +16,5 @@
     <partial name="/Views/Partials/_OnSale.cshtml" model=@bestCollectionViewModel />
     <partial name="/Views/Partials/_TopSellers.cshtml" model=@bestCollectionViewModel />
 </main>
+
+<partial name="/Views/Partials/_ContactForm.cshtml" model=@Model />

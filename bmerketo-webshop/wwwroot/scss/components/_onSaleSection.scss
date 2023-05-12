@@ -48,6 +48,8 @@
         text-align: center;
         color: $color-dark-1;
         text-decoration: none;
+        border: 1px solid $color-light;
+        border-radius: 3px;
 
         .sale {
             color: red;
