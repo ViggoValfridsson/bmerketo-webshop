@@ -6,8 +6,20 @@
 {
     <div class="on-sale-section">
         <div class="container">
-            <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[0] />
-            <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[1] />
+            <div class="product-item-1">
+                <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[0] />
+            </div>
+            <a asp-action="on-sale" asp-controller="products" class="sale-information">
+                <h4 class="sale">On Sale!</h4>
+                <h3>Up To 60% Off!</h3>
+                <h4>Get The Best Price</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                <p class="discover">Discover More</p>
+            </a>
+
+            <div class="product-item-2">
+                <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[1] />
+            </div>
         </div>
     </div>
 }

@@ -1,13 +1,19 @@
 ﻿@using System.Globalization;
 @model ProductModel
 
-@if (!string.IsNullOrWhiteSpace(Model.Name) && !string.IsNullOrWhiteSpace(Model.ImageUrl) && Model.Price != 0)
+@if (!string.IsNullOrWhiteSpace(Model.Name) && !string.IsNullOrWhiteSpace(Model.ImageUrl))
 {
     <a href="#" class="product-item">
         <img src="@Model.ImageUrl" alt="@Model.Name" />
         <div class="text-container">
             <h4>@Model.Name</h4>
-            <p>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Price)</p>
+            <div class="price-container">
+                @if (Model.SalePercentage > 0 && Model.OriginalPrice != null)
+                {
+                    <p class="old-price">@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.OriginalPrice)</p>
+                }
+                <p>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.CurrentPrice)</p>
+            </div>
         </div>
     </a>
 }
