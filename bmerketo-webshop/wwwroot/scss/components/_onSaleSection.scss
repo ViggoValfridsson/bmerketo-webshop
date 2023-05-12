@@ -1,0 +1,8 @@
+﻿.on-sale-section {
+    background-color: $color-theme-2;
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

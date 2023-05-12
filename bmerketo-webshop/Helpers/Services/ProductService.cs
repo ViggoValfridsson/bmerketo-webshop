@@ -49,8 +49,23 @@ public class ProductService
         return products[randomNumber];
     }
 
+    public async Task<List<ProductModel>>? GetAllByTag(string tagName)
+    {
+        var tag = await _tagService.GetAsync(x => x.TagName == tagName);
+
+        if (tag == null)
+            return null!;
+
+        var products = tag.Products.ToList();
+
+        if (products.Count < 1)
+            return null!;
+
+        return products;
+    }
+
     // get all
-    public async Task<List<ProductModel>> GetAllAsync(Expression<Func<ProductEntity, bool>> predicate = null!)
+    public async Task<List<ProductModel>> GetAllAsync(Expression<Func<ProductEntity, bool>> predicate = null!, int page = 0, int pageAmount = 32)
     {
         var products = new List<ProductModel>();
         IEnumerable<ProductEntity> entities;
@@ -58,7 +73,7 @@ public class ProductService
         if (predicate == null)
             entities = await _repo.GetAllAsync();
         else
-            entities = await _repo.GetAllAsync(predicate);
+            entities = await _repo.GetAllAsync(predicate, page, pageAmount);
 
         foreach (var entity in entities)
             products.Add(entity!);

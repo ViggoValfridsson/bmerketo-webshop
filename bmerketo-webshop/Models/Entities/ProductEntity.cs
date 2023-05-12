@@ -13,8 +13,11 @@ public class ProductEntity
     public string? Description { get; set; }
 
     [Column(TypeName = "money")]
-    public decimal? Price { get; set;}
+    public decimal? OriginalPrice { get; set;}
 
+    [Column(TypeName = "money")]
+    public decimal CurrentPrice { get; set; }
+    public int SalePercentage { get; set; }
     // 2048 is the de facto url lenght limit
     [Column(TypeName = "nvarchar(2048)")]
     public string ImageUrl { get; set; } = null!;
@@ -31,7 +34,9 @@ public class ProductEntity
         {
             Name = entity.Name,
             Description = entity.Description,
-            Price = entity.Price,
+            OriginalPrice = entity.OriginalPrice,
+            CurrentPrice = entity.CurrentPrice,
+            SalePercentage = entity.SalePercentage,
             ImageUrl = entity.ImageUrl,
         };
 

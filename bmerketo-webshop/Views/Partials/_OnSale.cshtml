@@ -1,8 +1,13 @@
 ﻿@{
-    var products = new List<ProductModel>(); 
-
+    var products = await _productService.GetAllByTag("On Sale")!;
 }
 
-<div class="container">
-
-</div>
+@if (products != null && products.Count >= 2)
+{
+    <div class="on-sale-section">
+        <div class="container">
+            <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[0] />
+            <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[1] />
+        </div>
+    </div>
+}
