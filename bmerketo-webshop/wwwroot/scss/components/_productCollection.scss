@@ -36,7 +36,7 @@
         }
     }
 
-   
+
 
     .button-container {
         margin-top: 32px;
@@ -44,8 +44,13 @@
         justify-content: center;
 
         button {
-            border: 1px solid $color-dark-1;
-            padding: 8px 32px;
+            background-color: $color-white;
+            border: 2px solid $color-dark-3;
+            padding: 12px 32px;
+
+            &:hover {
+                background: $color-light;
+            }
         }
     }
 }

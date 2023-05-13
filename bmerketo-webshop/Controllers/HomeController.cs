@@ -1,4 +1,5 @@
 ﻿using bmerketo_webshop.Helpers.Services;
+using bmerketo_webshop.Views.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bmerketo_webshop.Controllers;
@@ -14,7 +15,18 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var result = await _productService.GetAsync(x => x.ArticleId == "abc1232");
+        return View();
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> Index(ContactFormViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+
+        }
+
         return View();
     }
 }
