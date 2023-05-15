@@ -8,6 +8,10 @@ public class CollectionViewmodel
     public string CollectionName { get; set; } = null!;
 
     // By default this will not perform any filtering
-    public Expression<Func<ProductEntity, bool>> Filter { get; set; } = null!;
-    public decimal ProductAmount { get; set; } = 8;
+    public List<ProductModel> Products { get; set; } = new List<ProductModel>();
+    public decimal AmountOfVisibleProducts { get; set; } = 8;
+
+    // Set to zero in case it is not needed
+    public decimal RowCount { get; set; } = 0;
+    public decimal? Page { get; set;}
 }

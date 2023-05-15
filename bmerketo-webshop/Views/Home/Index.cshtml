@@ -6,15 +6,16 @@
     var bestCollectionViewModel = new CollectionViewmodel
             {
                 CollectionName = "Best Collection",
-        };
+                Products = await _productService.GetAllAsync()
+            };
 }
 
 <partial name="/Views/Partials/_WelcomeJumbotron.cshtml" />
 
-<main>
-    <partial name="/Views/Partials/_ProductCollection.cshtml" model=@bestCollectionViewModel />
-    <partial name="/Views/Partials/_OnSale.cshtml" model=@bestCollectionViewModel />
-    <partial name="/Views/Partials/_TopSellers.cshtml" model=@bestCollectionViewModel />
-</main>
+
+<partial name="/Views/Partials/_ProductCollection.cshtml" model=@bestCollectionViewModel />
+<partial name="/Views/Partials/_OnSale.cshtml" model=@bestCollectionViewModel />
+<partial name="/Views/Partials/_TopSellers.cshtml" model=@bestCollectionViewModel />
+
 
 <partial name="/Views/Partials/_ContactForm.cshtml" model=@Model />

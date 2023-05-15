@@ -1,13 +1,23 @@
-﻿body {
+﻿hmtl, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+body {
     font-size: 16px;
     font-family: $font-poppins;
     font-weight: $font-weight-regular;
     color: $color-dark-3;
-
+    // So header icons don't hide footer
     padding-bottom: 4.5em;
 
     @include lg {
         padding-bottom: 0;
     }
 }
-

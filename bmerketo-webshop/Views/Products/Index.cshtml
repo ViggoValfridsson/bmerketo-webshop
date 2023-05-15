@@ -1,0 +1,78 @@
+﻿@model CollectionViewmodel
+
+@{
+    ViewData["title"] = "Products";
+    var categories = await _categoryService.GetAllAsync();
+    var currentUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}";
+    var amountOfPages = Math.Ceiling(Model.RowCount / 32);
+}
+
+<div>
+    <div class="container">
+        <div>
+            <form id="category-form" method="get" action="">
+                <label for="category-option">Category:</label>
+                <select name="category-option" id="category-dropdown">
+                    <option selected disabled value="">Select an option</option>
+                    @foreach (var category in categories)
+                    {
+                        if (currentUrl.Contains(category.Name))
+                        {
+                            <option selected value="@category.Name">@category.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@category.Name">@category.Name</option>
+                        }
+                    }
+                </select>
+            </form>
+        </div>
+        <div class="filter"></div>
+        @if (Model.Products != null && Model.Products.Count > 0)
+        {
+            <Partial name="/Views/Partials/_ProductCollection.cshtml" />
+
+            @if (amountOfPages > 0)
+            {
+                @for (int i = 1; i <= amountOfPages; i++)
+                {
+                    @if (Model.Page != 1)
+                    {
+                        <a><i class="bi bi-chevron-left"></i></a>
+                    }
+                    <a>@i</a>
+                    @if(Model.Page != amountOfPages)
+                    {
+                        <a><i class="bi bi-chevron-right"></i></a>
+                    }
+                }
+            }
+
+
+        }
+        else
+        {
+            <!--THis need styling!!!!-->
+            <div>Not found</div>
+        }
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.getElementById("category-form");
+            var categoryDropdown = document.getElementById("category-dropdown");
+
+            categoryDropdown.addEventListener("change", function () {
+                getUrl(categoryDropdown.value, "category")
+            });
+
+            function getUrl(selectedOption, type) {
+                var baseUrl = "/products/";
+                var actionUrl = baseUrl + type + "/" + selectedOption;
+                form.action = actionUrl;
+                form.submit();
+            }
+        });
+    </script>
+</div>
