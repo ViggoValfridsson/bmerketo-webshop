@@ -45,8 +45,11 @@
 
         button {
             background-color: $color-white;
-            border: 2px solid $color-dark-3;
+            border: 2px solid $color-dark-2;
+            color: $color-dark-2;
+            font-weight: 500;
             padding: 12px 32px;
+            border-radius: 3px;
 
             &:hover {
                 background: $color-light;
