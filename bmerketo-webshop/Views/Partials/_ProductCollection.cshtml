@@ -4,53 +4,57 @@
     var products = await _productService.GetAllAsync(Model.Filter);
 }
 
-<div class="container product-collection">
-    <div class="header-container">
-        <h2>@Model.CollectionName</h2>
+@if (products != null && products.Count > 0)
+{
+    <div class="container product-collection">
+        <div class="header-container">
+            <h2>@Model.CollectionName</h2>
+        </div>
+
+        <div class="product-container">
+            @for (int i = 0; i < products.Count; i++)
+            {
+                <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[i] />
+            }
+        </div>
+
+        <div class="button-container">
+            <button type="button" id="load-more-button">
+                LOAD MORE
+                <i class="bi bi-arrow-clockwise"></i>
+            </button>
+        </div>
     </div>
 
-    <div class="product-container">
-        @for (int i = 0; i < products.Count; i++)
-        {
-            <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[i] />
-        }
-    </div>
+    <script>
+        let productAmount = @Model.ProductAmount;
+        let currentIndex = productAmount;
+        let productsCount = @products.Count;
 
-    <div class="button-container">
-        <button type="button" id="load-more-button">
-            LOAD MORE
-            <i class="bi bi-arrow-clockwise"></i>
-        </button>
-    </div>
-</div>
+        document.addEventListener('DOMContentLoaded', function () {
+            let loadMoreButton = document.getElementById('load-more-button');
+            let productContainer = document.querySelector('.product-container');
 
-<script>
-    let productAmount = @Model.ProductAmount;
-    let currentIndex = productAmount;
-    let productsCount = @products.Count;
+            let collectionItems = productContainer.getElementsByClassName('product-item');
 
-    document.addEventListener('DOMContentLoaded', function () {
-        let loadMoreButton = document.getElementById('load-more-button');
-        let productContainer = document.querySelector('.product-container');
-
-        let collectionItems = productContainer.getElementsByClassName('product-item');
-
-        for (let i = currentIndex; i < collectionItems.length; i++) {
-            collectionItems[i].style.display = 'none';
-        }
-
-        loadMoreButton.addEventListener('click', function () {
-            let endIndex = currentIndex + productAmount;
-
-            for (let i = currentIndex; i < endIndex && i < collectionItems.length; i++) {
-                collectionItems[i].style.display = 'block';
+            for (let i = currentIndex; i < collectionItems.length; i++) {
+                collectionItems[i].style.display = 'none';
             }
 
-            currentIndex = endIndex;
+            loadMoreButton.addEventListener('click', function () {
+                let endIndex = currentIndex + productAmount;
 
-            if (currentIndex >= productsCount) {
-                loadMoreButton.style.display = 'none';
-            }
+                for (let i = currentIndex; i < endIndex && i < collectionItems.length; i++) {
+                    collectionItems[i].style.display = 'block';
+                }
+
+                currentIndex = endIndex;
+
+                if (currentIndex >= productsCount) {
+                    loadMoreButton.style.display = 'none';
+                }
+            });
         });
-    });
-</script>
+    </script>
+
+}
