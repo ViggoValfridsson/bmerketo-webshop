@@ -1,0 +1,228 @@
+﻿header {
+    background-color: $color-dark-1;
+
+    a {
+        color: $color-light;
+        text-decoration: none;
+    }
+
+    @include lg {
+        background: $color-white;
+    }
+
+    .nav-container {
+        margin: 0;
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        padding: 24px 32px;
+
+        @include lg {
+            width: 960px;
+            margin: auto;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 1.3fr 1.2fr 1.1fr;
+        }
+
+        @include xl {
+            width: 1140px;
+            grid-template-columns: 1.8fr 1.2fr 0.7fr;
+        }
+
+        @include xxl {
+            width: 1320px;
+        }
+    }
+
+    .logo {
+        font-weight: $font-weight-bold;
+        font-size: 21px;
+        color: $color-light;
+
+        img {
+            margin-right: 8px;
+        }
+
+        @include lg {
+            a {
+                color: $color-dark-2;
+            }
+        }
+    }
+
+    .logo-dark {
+        display: none;
+
+        @include lg {
+            display: block;
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+        }
+    }
+
+    .logo-light {
+        display: block;
+
+        @include lg {
+            display: none;
+        }
+    }
+
+    .menu-links {
+        background: $color-dark-2;
+        position: absolute;
+        bottom: -120px;
+        z-index: 999;
+        width: 100%;
+        margin-left: -32px;
+        display: grid;
+        border-top: 1px solid $color-dark-3;
+        border-top: 1px solid $color-dark-3;
+
+        @include lg {
+            background-color: transparent;
+            border: none;
+            position: relative;
+            bottom: 0;
+            margin: 0;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+
+            @include lg {
+                display: flex;
+                height: 100%;
+            }
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            font-family: $font-poppins;
+            font-weight: $font-weight-medium;
+            width: 100%;
+
+
+            &:hover {
+                background-color: $color-dark-3;
+
+                @include lg {
+                    background-color: transparent;
+                }
+            }
+
+            a {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                @include lg {
+                    color: $color-dark-2;
+
+                    &:hover {
+                        color: $color-theme-1;
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            @include lg {
+                height: 100%;
+                display: block;
+                width: 8px;
+                width: 33.333%;
+            }
+        }
+    }
+
+    .mobile-closed-menu {
+        display: none;
+
+        @include lg {
+            display: block;
+        }
+    }
+
+
+    .menu-icons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        background-color: $color-dark-1;
+        width: 100%;
+        font-size: 17.6px;
+        z-index: 999;
+
+
+        @include lg {
+            position: relative;
+            background-color: transparent;
+        }
+
+        .link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: $font-poppins;
+            height: 100%;
+            width: 20%;
+            padding: 24px;
+
+            &:hover {
+                background-color: $color-dark-3;
+            }
+
+
+            @include lg {
+                padding: 16px;
+                width: 33.333%;
+                color: $color-dark-3;
+                font-weight: $font-weight-medium;
+
+                &:hover {
+                    background-color: transparent;
+                    color: $color-theme-1;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .toggle {
+        grid-area: toggle;
+
+        @include lg {
+            display: none;
+        }
+
+        .toggle-btn {
+            border: 1px solid $color-light;
+            color: $color-white;
+            border-radius: 5px;
+            width: 32px;
+            height: 32px;
+            background-color: transparent;
+
+            &:hover {
+                background-color: $color-light;
+                color: $color-dark-0;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    }
+}

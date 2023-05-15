@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using bmerketo_webshop.Data;
 
@@ -11,9 +12,11 @@ using bmerketo_webshop.Data;
 namespace bmerketo_webshop.Migrations
 {
     [DbContext(typeof(WebshopContext))]
-    partial class WebshopContextModelSnapshot : ModelSnapshot
+    [Migration("20230506083754_ProductImageRequired")]
+    partial class ProductImageRequired
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,19 +240,6 @@ namespace bmerketo_webshop.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("bmerketo_webshop.Models.Entities.NewsletterSubscriberEntity", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(320)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("NewsletterSubscribers");
-                });
-
             modelBuilder.Entity("bmerketo_webshop.Models.Entities.ProductEntity", b =>
                 {
                     b.Property<string>("ArticleId")
@@ -257,9 +247,6 @@ namespace bmerketo_webshop.Migrations
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("CurrentPrice")
-                        .HasColumnType("money");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -272,11 +259,8 @@ namespace bmerketo_webshop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal?>("OriginalPrice")
+                    b.Property<decimal?>("Price")
                         .HasColumnType("money");
-
-                    b.Property<int>("SalePercentage")
-                        .HasColumnType("int");
 
                     b.HasKey("ArticleId");
 

@@ -1,0 +1,84 @@
+﻿@model ContactFormViewModel
+
+<div class="contact-form">
+    <div class="container">
+        <form novalidate method="post" id="contact-form">
+            <h2>Subscribe To Our Newsletter!</h2>
+
+            <div asp-validation-summary="ModelOnly" class="error"></div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="success-message">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <div class="input-group">
+                <input asp-for="@Model.Email" />
+                <button type="submit" id="submit-contact-form">SUBSCRIBE</button>
+            </div>
+
+            <span asp-validation-for="@Model.Email" class="error"></span>
+            <span data-valmsg-for="Email" id="invalid-email" class="error custom-error">Invalid email. Enter a valid email and try again.</span>
+            <span data-valmsg-for="Email" id="null-email" class="error custom-error">You must provide an email address.</span>
+   
+        </form>
+    </div>
+</div>
+
+@if (ViewBag.ScrollToBottom != null && ViewBag.ScrollToBottom == true)
+{
+    <script>
+        window.onload = function () {
+            var anchor = document.createElement("a");
+            anchor.name = "bottom";
+            document.body.appendChild(anchor);
+
+            window.scrollTo({
+                top: anchor.offsetTop,
+                behavior: "smooth"
+            });
+        };
+    </script>
+}
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const emailInput = document.getElementById("Email");
+        const form = document.getElementById("contact-form");
+        const invalidEmailMessage = document.getElementById("invalid-email");
+        const nullEmailMessage = document.getElementById("null-email");
+        const emailRegexPattern = "^(\\w[\\w.-]*@@[\\w-]+\\.[\\w.-]{2,4})$";
+        const emailRegex = new RegExp(emailRegexPattern);
+
+        const removeAllErrors = () => {
+            const errorElements = document.getElementsByClassName("error");
+
+            for (let i = 0; i < errorElements.length; i++) {
+                errorElements[i].style.display = "none";
+            }
+        }
+
+        emailInput.addEventListener("input", () => {
+            removeAllErrors();
+        });
+
+        form.addEventListener("submit", (e) => {
+            removeAllErrors();
+            e.preventDefault();
+
+            const inputValue = emailInput.value;
+
+            if (inputValue == null || inputValue == "") {
+                nullEmailMessage.style.display = "block";
+            }
+            else if (!emailRegex.test(inputValue) || inputValue.length > 320) {
+                invalidEmailMessage.style.display = "block";
+            }
+            else {
+                removeAllErrors();
+                form.submit();
+            }
+        });
+    });
+</script>

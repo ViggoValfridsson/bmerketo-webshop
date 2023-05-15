@@ -35,7 +35,7 @@ public abstract class GenericRepo<T> where T : class
         catch { return null; }
     }
 
-    public virtual async Task<IEnumerable<T>> GetAllAsync()
+    public virtual async Task<IEnumerable<T>> GetAllAsync(int page = 0, int pageAmount = 32)
     {
         try
         {
@@ -44,7 +44,7 @@ public abstract class GenericRepo<T> where T : class
         catch { return null!; }
     }
 
-    public virtual async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate)
+    public virtual async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate, int page = 0, int pageAmount = 32)
     {
         try
         {

@@ -8,5 +8,28 @@ public class TagEntity
 
     [Column(TypeName = "nvarchar(100)")]
     public string TagName { get; set; } = null!;
-    public ICollection<ProductsTagsEntity> Products = new HashSet<ProductsTagsEntity>();
+    public ICollection<ProductsTagsEntity> Products { get; set; } = new HashSet<ProductsTagsEntity>();
+
+
+    public static implicit operator TagModel?(TagEntity entity)
+    {
+        if (entity == null)
+            return null;
+
+        var tag = new TagModel
+        {
+            Name = entity.TagName ?? ""
+        };
+
+        var productModels = new List<ProductModel>();
+
+        foreach (var productTags in entity.Products)
+        {
+            productModels.Add(productTags.Product!);
+        }
+
+        tag.Products = productModels;
+
+        return tag;
+    }
 }

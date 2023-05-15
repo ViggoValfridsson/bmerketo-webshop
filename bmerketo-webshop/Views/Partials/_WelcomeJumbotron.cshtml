@@ -1,0 +1,22 @@
+﻿@{
+    var product = await _productService.GetRandomByTagAsync("Featured");
+}
+
+@if (product != null)
+{
+    <div class="welcome-jumbotron">
+        <div class="container">
+            <div class="text-container">
+                <h2 class="heading">WELCOME TO BMERKETO SHOP</h2>
+                <h1 class="heading">@product?.Name</h1>
+            </div>
+            <div class="img-container">
+                <img src="@product?.ImageUrl" alt="@product?.Name" />
+            </div>
+
+            <div class="button-container">
+                <button>SHOP NOW</button>
+            </div>
+        </div>
+    </div>
+} 

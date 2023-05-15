@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using bmerketo_webshop.Data;
 
@@ -11,9 +12,11 @@ using bmerketo_webshop.Data;
 namespace bmerketo_webshop.Migrations
 {
     [DbContext(typeof(WebshopContext))]
-    partial class WebshopContextModelSnapshot : ModelSnapshot
+    [Migration("20230512072903_OnSaleColumnForProducts")]
+    partial class OnSaleColumnForProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,19 +238,6 @@ namespace bmerketo_webshop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("bmerketo_webshop.Models.Entities.NewsletterSubscriberEntity", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(320)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("NewsletterSubscribers");
                 });
 
             modelBuilder.Entity("bmerketo_webshop.Models.Entities.ProductEntity", b =>

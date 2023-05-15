@@ -1,0 +1,59 @@
+﻿.product-collection {
+    padding-bottom: 32px;
+
+    .header-container {
+        margin: 32px 0;
+        text-align: center;
+
+        @include md {
+            margin: 40px;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: $color-dark-1;
+
+            @include md {
+                font-size: 40px;
+            }
+        }
+    }
+
+    .product-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+
+        @include md {
+            padding: 0;
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: minmax(500px, auto);
+        }
+
+        @include lg {
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(300px, auto);
+        }
+    }
+
+
+
+    .button-container {
+        margin-top: 32px;
+        display: flex;
+        justify-content: center;
+
+        button {
+            background-color: $color-white;
+            border: 2px solid $color-dark-2;
+            color: $color-dark-2;
+            font-weight: 500;
+            padding: 12px 32px;
+            border-radius: 3px;
+
+            &:hover {
+                background: $color-light;
+            }
+        }
+    }
+}

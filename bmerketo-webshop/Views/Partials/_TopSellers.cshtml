@@ -1,0 +1,57 @@
+﻿@{
+    var products = await _productService.GetAllByTag("Top Seller")!;
+}
+
+@if (products != null && products.Count > 0)
+{
+    <div class="top-sellers">
+        <div class="container-fluid">
+            <h2>Top Sellers Right Now!</h2>
+            <div class="product-container top-seller-products">
+                @foreach (var product in products)
+                {
+                    <partial name="/Views/Partials/_CollectionItem.cshtml" model=@product />
+                }
+            </div>
+
+            <div class="button-container">
+                <button id="scroll-left">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button id="scroll-right"><i class="bi bi-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const scrollLeftButton = document.getElementById('scroll-left');
+        const scrollRightButton = document.getElementById('scroll-right');
+        const productContainer = document.querySelector('.top-seller-products');
+
+        scrollLeftButton.addEventListener('click', () => {
+            const columnWidth = productContainer.scrollWidth / @products!.Count;
+            const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
+            productContainer.scrollTo({
+
+                left: productContainer.scrollLeft - columnWidth * amountOfVisibleProducts,
+                behavior: 'smooth'
+            });
+        });
+
+        scrollRightButton.addEventListener('click', () => {
+            const columnWidth = productContainer.scrollWidth / @products!.Count;
+            const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
+            productContainer.scrollTo({
+
+                left: productContainer.scrollLeft + columnWidth * amountOfVisibleProducts,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+
+

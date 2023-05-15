@@ -1,0 +1,21 @@
+﻿.footer {
+    height: 5em;
+    background-color: $color-dark-2;
+    color: $color-light;
+    font-size: 1.3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    p {
+        margin: 0;
+    }
+
+    @include md {
+        flex-direction: row;
+        gap: 0.3em;
+        flex-wrap: nowrap;
+    }
+}

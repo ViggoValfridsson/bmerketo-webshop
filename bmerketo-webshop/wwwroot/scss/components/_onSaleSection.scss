@@ -1,0 +1,90 @@
+﻿.on-sale-section {
+    background-color: $color-theme-2;
+    padding: 4em 0;
+
+    .container {
+        display: grid;
+        grid-template-areas: "sale" "product-1" "product-2";
+        gap: 2em;
+
+        @include md {
+            grid-template-areas: "sale sale" "product-1 product-2";
+        }
+
+        @include lg {
+            grid-template-areas: "product-1 sale product-2"
+        }
+    }
+
+    .product-item-1 {
+        @include md {
+            width: 332px;
+        }
+
+        @include lg {
+            width: auto;
+        }
+
+        grid-area: product-1;
+    }
+
+    .product-item-2 {
+        @include md {
+            width: 332px;
+        }
+
+        @include lg {
+            width: auto;
+        }
+
+        grid-area: product-2;
+    }
+
+    .sale-information {
+        grid-area: sale;
+        background-color: $color-white;
+        margin: auto;
+        padding: 2em 1em;
+        text-align: center;
+        color: $color-dark-1;
+        text-decoration: none;
+        border: 1px solid $color-light;
+        border-radius: 3px;
+
+        .sale {
+            color: red;
+        }
+
+        h3 {
+            font-size: 2.5em;
+            margin: 0.5em 0;
+        }
+
+        .discover {
+            font-size: 1.5em;
+            font-weight: 500;
+            color: $color-dark-3;
+            text-decoration: underline;
+            margin: 0;
+        }
+
+        @include xs {
+            width: 70%;
+        }
+
+        @include sm {
+            width: 60%;
+        }
+
+        @include md {
+            width: 100%;
+            margin: 0;
+        }
+
+        @include lg {
+            display:flex;
+            flex-direction:column;
+            justify-content: center;
+        }
+    }
+}

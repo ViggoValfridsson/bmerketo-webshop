@@ -15,4 +15,5 @@ public class WebshopContext : IdentityDbContext<IdentityUser>
     public DbSet<CategoryEntity> Categories { get; set; }
     public DbSet<TagEntity> Tags { get; set; }
     public DbSet<ProductsTagsEntity> ProductsTags { get; set; }
+    public DbSet<NewsletterSubscriberEntity> NewsletterSubscribers { get; set; }
 }
