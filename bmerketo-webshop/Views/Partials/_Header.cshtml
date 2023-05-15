@@ -34,10 +34,30 @@
         </nav>
 
         <div class="toggle">
-            <button onclick="toggleMobileMenu()" class="toggle-btn closed">
+            <button onclick="toggleMobileMenu()" id="menu-toggle" class="toggle-btn" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">
                 <i class="bi bi-list open-icon"></i>
                 <i class="bi bi-x-lg hidden close-icon"></i>
             </button>
         </div>
     </div>
 </header>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const menu = document.querySelector("#menu");
+        const button = document.querySelector(".toggle-btn");
+        const openIcon = document.querySelector(".open-icon");
+        const closeIcon = document.querySelector(".close-icon");
+
+
+        button.addEventListener("click", () => {
+            // gets the current value of aria-expanded
+            const expanded = button.getAttribute("aria-expanded") === "true";
+
+            button.setAttribute("aria-expanded", !expanded);
+            menu.classList.toggle("mobile-closed-menu");
+            openIcon.classList.toggle("hidden");
+            closeIcon.classList.toggle("hidden");
+        });
+    });
+</script>
