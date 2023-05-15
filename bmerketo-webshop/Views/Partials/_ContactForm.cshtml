@@ -5,17 +5,42 @@
         <form novalidate method="post" id="contact-form">
             <h2>Subscribe To Our Newsletter!</h2>
 
+            <div asp-validation-summary="ModelOnly" class="error"></div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="success-message">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
             <div class="input-group">
                 <input asp-for="@Model.Email" />
                 <button type="submit" id="submit-contact-form">SUBSCRIBE</button>
             </div>
 
             <span asp-validation-for="@Model.Email" class="error"></span>
-            <span id="invalid-email" class="error custom-error">Invalid email. Enter a valid email and try again.</span>
-            <span id="null-email" class="error custom-error">You must provide an email address.</span>
+            <span data-valmsg-for="Email" id="invalid-email" class="error custom-error">Invalid email. Enter a valid email and try again.</span>
+            <span data-valmsg-for="Email" id="null-email" class="error custom-error">You must provide an email address.</span>
+   
         </form>
     </div>
 </div>
+
+@if (ViewBag.ScrollToBottom != null && ViewBag.ScrollToBottom == true)
+{
+    <script>
+        window.onload = function () {
+            var anchor = document.createElement("a");
+            anchor.name = "bottom";
+            document.body.appendChild(anchor);
+
+            window.scrollTo({
+                top: anchor.offsetTop,
+                behavior: "smooth"
+            });
+        };
+    </script>
+}
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

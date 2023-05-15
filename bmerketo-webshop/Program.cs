@@ -17,6 +17,7 @@ builder.Services.AddScoped<CategoryRepo>();
 builder.Services.AddScoped<ProductRepo>();
 builder.Services.AddScoped<TagRepo>();
 builder.Services.AddScoped<ProductsTagsRepo>();
+builder.Services.AddScoped<NewsletterSubscriperRepo>();
 
 // Services
 builder.Services.AddScoped<ProductService>();
