@@ -1,4 +1,5 @@
-﻿using bmerketo_webshop.Helpers.Repositories;
+﻿using Azure;
+using bmerketo_webshop.Helpers.Repositories;
 using bmerketo_webshop.Helpers.Services;
 using bmerketo_webshop.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,21 @@ public class ProductsController : Controller
             AmountOfVisibleProducts = 32,
             Products = await _productService.GetAllAsync(x => x.Category.CategoryName == category, page - 1, 32),
             RowCount = await _productRepo.GetRowCountAsync(x => x.Category.CategoryName == category),
+            Page = page
+        };
+
+        return View("index", viewModel);
+    }
+
+
+    [Route("products/tags/{tag}/{page?}")]
+    public async Task<IActionResult> ProductsByTag(string tag, int page = 1)
+    {
+        var viewModel = new CollectionViewmodel
+        {
+            AmountOfVisibleProducts = 32,
+            Products = await _productService.GetAllAsync(x => x.Tags.Any(t => t.Tag.TagName == tag), page - 1, 32),
+            RowCount = await _productRepo.GetRowCountAsync(x => x.Tags.Any(t => t.Tag.TagName == tag)),
             Page = page
         };
 

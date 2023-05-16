@@ -1,5 +1,6 @@
 using bmerketo_webshop.Data;
 using bmerketo_webshop.Helpers.Repositories;
+using bmerketo_webshop.Helpers.Seed;
 using bmerketo_webshop.Helpers.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -27,6 +28,16 @@ builder.Services.AddScoped<CategoryService>();
 // Identity
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<WebshopContext>();
+
+    // Call SeedCategories method from Seed class and pass the dbContext
+    var seed = new Seed(dbContext);
+    await seed.SeedAll();
+}
 
 // Configure the HTTP request pipeline.
 app.UseHsts();
