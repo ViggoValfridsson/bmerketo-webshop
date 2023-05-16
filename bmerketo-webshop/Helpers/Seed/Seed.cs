@@ -1152,6 +1152,9 @@ public class Seed
 
     private async Task SeedProductTags()
     {
+        if (await _context.ProductsTags.AnyAsync())
+            return;
+
         var productTags = new List<ProductsTagsEntity>
         {
             // Featured items. Will be displayed in jumbotron on home page.

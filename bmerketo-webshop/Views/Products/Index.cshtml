@@ -5,23 +5,34 @@
     var categories = await _categoryService.GetAllAsync();
     var tags = await _tagService.GetAllAsync();
     var amountOfPages = Math.Ceiling(Model.RowCount / 32);
+    var currentRoute = ViewContext.RouteData.Values["action"]?.ToString();
+    var currentCategory = ViewContext.RouteData.Values["category"]?.ToString();
+    var currentTag = ViewContext.RouteData.Values["tag"]?.ToString();
 }
 
-<div>
+<div class="product-page">
     <div class="container">
         <div>
             <nav>
-                <ul>
-                @foreach (var category in categories)
-                {
+                <ul class="link-list">
                     <li>
-                            <a asp-action="ProductsByCategory" asp-route-category="@category.Name" asp-route-page="1">@category.Name</a>
+                        <a asp-action="Index" class="@(currentRoute == "Index" ? "active" : "")">All</a>
                     </li>
-                }
+                    @foreach (var category in categories)
+                    {
+                        <li>
+                            <a asp-action="ProductsByCategory" asp-route-category="@category.Name" asp-route-page="1"
+                               class="@(currentRoute == "ProductsByCategory" && category.Name == currentCategory ? "active" : "")">
+                                @category.Name
+                            </a>
+                        </li>
+                    }
                     @foreach (var tag in tags)
                     {
                         <li>
-                            <a asp-action="ProductsByTag" asp-route-tag="@tag.Name" asp-route-page="1">@tag.Name</a>
+                            <a asp-action="ProductsByTag" asp-route-tag="@tag.Name" asp-route-page="1" class="@(currentRoute == "ProductsByTag" && tag.Name == currentTag ? "active" : "")">
+                                @tag.Name
+                            </a>
                         </li>
                     }
                 </ul>
@@ -32,24 +43,30 @@
         {
             <Partial name="/Views/Partials/_ProductCollection.cshtml" />
 
-            @if (amountOfPages > 0)
-            {
+            <div class="page-button-container">
+                @if (Model.Page != 1)
+                {
+                    // We don't want to show go back arrow if we are on the first page
+                    <a asp-route-page="@(Model.Page - 1)"><i class="bi bi-chevron-left"></i></a>
+                }
                 @for (int i = 1; i <= amountOfPages; i++)
                 {
-                    @if (Model.Page != 1)
+                    if (i == Model.Page)
                     {
-                        <a asp-route-page="@(Model.Page - 1)"><i class="bi bi-chevron-left"></i></a>
+                        <a asp-route-page="@i" class="active">@i</a>
                     }
-                    <a asp-route-page="@i">@i</a>
-                    @if (Model.Page != amountOfPages)
+                    else
                     {
-                        <a asp-route-page="@(Model.Page + 1)"><i class="bi bi-chevron-right"></i></a>
+                        <a asp-route-page="@i">@i</a>
                     }
-
                 }
-            }
 
-
+                @if (Model.Page != amountOfPages)
+                {
+                    // We don't want go forward arrow to be visible if we are on the last page
+                    <a asp-route-page="@(Model.Page + 1)"><i class="bi bi-chevron-right"></i></a>
+                }
+            </div>
         }
         else
         {

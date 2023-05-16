@@ -1,0 +1,46 @@
+﻿.product-page {
+    .link-list {
+        padding: 0;
+        margin: 2em 0;
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 1.2em;
+        list-style: none;
+
+        a {
+            color: $color-dark-1;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                color: $color-theme-1;
+            }
+        }
+    }
+
+    .page-button-container {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        margin-bottom: 3em;
+
+        a {
+            text-align:center;
+            font-size: 1.5em;
+            text-decoration: none;
+            color: $color-dark-1;
+            width: 1.5em;
+
+            &:hover {
+                background-color: $color-dark-4;
+                border-radius: 40%;
+            }
+        }
+    }
+
+    .active {
+        color: $color-theme-1 !important;
+    }
+}
