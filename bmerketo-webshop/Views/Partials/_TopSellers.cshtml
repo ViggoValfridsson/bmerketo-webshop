@@ -23,35 +23,35 @@
         </div>
     </div>
 
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const scrollLeftButton = document.getElementById('scroll-left');
+            const scrollRightButton = document.getElementById('scroll-right');
+            const productContainer = document.querySelector('.top-seller-products');
+
+            scrollLeftButton.addEventListener('click', () => {
+                const columnWidth = productContainer.scrollWidth / @products!.Count;
+                const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
+                productContainer.scrollTo({
+
+                    left: productContainer.scrollLeft - columnWidth * amountOfVisibleProducts,
+                    behavior: 'smooth'
+                });
+            });
+
+            scrollRightButton.addEventListener('click', () => {
+                const columnWidth = productContainer.scrollWidth / @products!.Count;
+                const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
+                productContainer.scrollTo({
+
+                    left: productContainer.scrollLeft + columnWidth * amountOfVisibleProducts,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 }
 
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const scrollLeftButton = document.getElementById('scroll-left');
-        const scrollRightButton = document.getElementById('scroll-right');
-        const productContainer = document.querySelector('.top-seller-products');
-
-        scrollLeftButton.addEventListener('click', () => {
-            const columnWidth = productContainer.scrollWidth / @products!.Count;
-            const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
-            productContainer.scrollTo({
-
-                left: productContainer.scrollLeft - columnWidth * amountOfVisibleProducts,
-                behavior: 'smooth'
-            });
-        });
-
-        scrollRightButton.addEventListener('click', () => {
-            const columnWidth = productContainer.scrollWidth / @products!.Count;
-            const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
-            productContainer.scrollTo({
-
-                left: productContainer.scrollLeft + columnWidth * amountOfVisibleProducts,
-                behavior: 'smooth'
-            });
-        });
-    });
-</script>
 
 
 

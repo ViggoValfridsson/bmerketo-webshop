@@ -27,6 +27,16 @@ public class TagService
 
 
     // get all
+    public async Task<IEnumerable<TagModel>> GetAllAsync()
+    {
+        var entityList = await _tagRepo.GetAllAsync();
+        var models = new List<TagModel>();
+
+        foreach (var entity in entityList)
+            models.Add(entity!);
+
+        return models;
+    }
 
     // update
 

@@ -1,25 +1,24 @@
 ﻿@model CollectionViewmodel;
 
-@{
-    var products = await _productService.GetAllAsync(Model.Filter);
-}
-
-@if (products != null && products.Count > 0)
+@if (Model.Products != null && Model.Products.Count > 0)
 {
     <div class="container product-collection">
+
+    @if (!string.IsNullOrWhiteSpace(Model.CollectionName))
+    {
         <div class="header-container">
             <h2>@Model.CollectionName</h2>
         </div>
-
-        <div class="product-container">
-            @for (int i = 0; i < products.Count; i++)
-            {
-                <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[i] />
-            }
+    }
+   <div class="product-container">
+        @for (int i = 0; i < Model.Products.Count; i++)
+        {
+                    <partial name="/Views/Partials/_CollectionItem.cshtml" model=@Model.Products[i] />
+        }
         </div>
 
         <div class="button-container">
-            <button type="button" id="load-more-button">
+            <button type="button" id="load-more-button" class="hidden">
                 LOAD MORE
                 <i class="bi bi-arrow-clockwise"></i>
             </button>
@@ -27,14 +26,16 @@
     </div>
 
     <script>
-        let productAmount = @Model.ProductAmount;
+        let productAmount = @Model.AmountOfVisibleProducts;
         let currentIndex = productAmount;
-        let productsCount = @products.Count;
+        let productsCount = @Model.Products.Count;
 
         document.addEventListener('DOMContentLoaded', function () {
             let loadMoreButton = document.getElementById('load-more-button');
-            let productContainer = document.querySelector('.product-container');
+            // If all products are being shown there is no need to have the button visible
+            removeButtonIfAllShown(loadMoreButton);
 
+            let productContainer = document.querySelector('.product-container');
             let collectionItems = productContainer.getElementsByClassName('product-item');
 
             for (let i = currentIndex; i < collectionItems.length; i++) {
@@ -49,12 +50,18 @@
                 }
 
                 currentIndex = endIndex;
-
-                if (currentIndex >= productsCount) {
-                    loadMoreButton.style.display = 'none';
-                }
+                removeButtonIfAllShown(loadMoreButton);
             });
         });
-    </script>
 
+        const removeButtonIfAllShown = (loadMoreButton) => {
+            if (currentIndex >= productsCount) {
+                loadMoreButton.style.display = 'none';
+            }
+            else {
+                loadMoreButton.style.display = 'block';
+
+            }
+        } 
+    </script>
 }

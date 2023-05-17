@@ -75,6 +75,9 @@ public class ProductService
         else
             entities = await _repo.GetAllAsync(predicate, page, pageAmount);
 
+        if (entities == null)
+            return null!;
+
         foreach (var entity in entities)
             products.Add(entity!);
 
