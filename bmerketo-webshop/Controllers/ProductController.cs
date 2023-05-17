@@ -1,4 +1,5 @@
 ﻿using bmerketo_webshop.Helpers.Services;
+using bmerketo_webshop.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bmerketo_webshop.Controllers;
@@ -20,6 +21,12 @@ public class ProductController : Controller
         if (product == null)
             return NotFound();
 
-        return View(product);
+        var viewModel = new IndividualProductViewModel
+        {
+            Product = product,
+            RelatedProducts = await _productService.GetAllAsync(x => x.Category.CategoryName == product.CategoryName, 0, 4)
+        };
+
+        return View(viewModel);
     }
 }

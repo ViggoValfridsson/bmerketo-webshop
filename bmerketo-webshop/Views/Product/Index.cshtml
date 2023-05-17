@@ -1,24 +1,98 @@
-﻿@model ProductModel
+﻿@model IndividualProductViewModel
 
 @{
-    ViewData["Title"] = Model.Name;
+    ViewData["Title"] = Model.Product.Name;
 }
 
-<div class="container product-item-page">
-    <div class="image-container">
-        <img src="@Model.ImageUrl" alt="@Model.Name" />
+<div class="product-item-page">
+    <div class="banner-container">
+        <img src="~/images//placeholders/1920x300.svg" alt="banner-image" />
     </div>
 
-    <div>
-        <h1>@Model.Name</h1>
-        <p>@Model.Description</p>
-        <div class="price-container">
-            @if (Model.SalePercentage > 0 && Model.OriginalPrice != null)
-            {
-                <p>@Model.SalePercentage% OFF!</p>
-                <p class="old-price">@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.OriginalPrice)</p>
-            }
-            <p>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.CurrentPrice)</p>
+    <div class="container">
+        <div class="image-container">
+            <img src="@Model.Product.ImageUrl" alt="@Model.Product.Name" />
         </div>
+
+        <div>
+            <h1>@Model.Product.Name</h1>
+            <p>@Model.Product.Description?.Substring(0, Math.Min(Model.Product.Description.Length, 80))...</p>
+            <div class="price-container">
+                @if (Model.Product.SalePercentage > 0 && Model.Product.OriginalPrice != null)
+                {
+                    <p class="sale-percentage">@Model.Product.SalePercentage% OFF!</p>
+                    <p class="old-price">@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Product.OriginalPrice)</p>
+                    <p class="current-price">@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Product.CurrentPrice)</p>
+                }
+                else
+                {
+                    <p>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Product.CurrentPrice)</p>
+                }
+            </div>
+        </div>
+
+        <div class="extra-info">
+
+            <div class="extra-info-options">
+                <button class="active extra-info-option" type="button" data-target="description">DESCRIPTION</button>
+                <button class="extra-info-option" type="button" data-target="additional-info">ADDITIONAL INFO</button>
+                <button class="extra-info-option" type="button" data-target="reviews">REVIEWS</button>
+                <button class="extra-info-option" type="button" data-target="shipping">SHIPPING & DELIVERY</button>
+            </div>
+
+            <div class="active description info-div">
+                @Model.Product.Description
+            </div>
+            <div class="additional-info info-div">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas mauris quis nibh imperdiet, id commodo justo viverra. Vestibulum malesuada nec sapien vitae ultricies. In cursus, magna in viverra sollicitudin, nulla sem luctus felis, nec lacinia erat augue quis leo. Aenean elit magna, egestas ut urna vel, pellentesque cursus elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur fringilla dictum dolor non fringilla. Sed quis blandit lacus, vitae feugiat elit. Vivamus et diam ut odio placerat dapibus sed elementum dolor. Sed lectus turpis, ultrices vel est vel, posuere condimentum leo. Nullam in imperdiet neque. Integer sollicitudin eros eu elit dignissim consequat. Ut viverra nibh massa, non iaculis elit pretium vitae. Quisque hendrerit est a suscipit pulvinar.
+
+                Donec at rutrum lectus. Integer sit amet venenatis elit, sit amet tristique orci. Fusce auctor, turpis a facilisis dictum, quam nisl porttitor ligula, ac bibendum sem odio ut risus. Fusce sit amet dignissim ante, ac laoreet tortor. Mauris pretium neque enim. Sed sed dapibus nulla. Nam eget faucibus est, quis molestie eros. Cras vel dui pharetra, facilisis lorem ut, aliquam tellus. Nulla consectetur sollicitudin odio, sed egestas magna molestie ut. Praesent pulvinar commodo tempor. Duis lorem velit, egestas in lacus sit.
+            </div>
+            <div class="reviews info-div">
+                reviews
+            </div>
+            <div class="shipping info-div">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor nec leo molestie viverra. In dictum ex ex, maximus dapibus magna venenatis sed. Duis nec imperdiet ligula. Quisque quis eleifend nibh, non bibendum ligula. Maecenas et ornare lectus. Vivamus maximus felis sed dui rutrum consequat. Proin dignissim nisl a libero interdum commodo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin venenatis nunc sit amet tortor hendrerit, eget accumsan lacus aliquam. Aenean mattis vel diam feugiat finibus. Nulla justo tortor, vestibulum at lobortis at, pharetra vel purus. Donec lobortis diam nisl, in ultrices orci congue vehicula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque id urna dolor.
+
+                In fringilla turpis ornare, consequat ligula in, condimentum augue. Duis lacinia eros a vestibulum interdum. Aenean lorem nisl, elementum ac sem id, dapibus tempor tellus. Sed id hendrerit felis. Proin quam felis, venenatis eget ex quis, porttitor tempor ligula. Mauris tincidunt maximus eleifend. Maecenas sapien tellus, maximus eu lectus et, tincidunt ullamcorper lectus. In ornare felis viverra mi auctor, nec euismod turpis mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam gravida bibendum lectus, id pulvinar enim interdum eu. Duis viverra dui eu tellus aliquet scelerisque. Donec tellus est, aliquet in lacus ac, molestie viverra velit.
+
+                Cras rhoncus, nunc a tincidunt congue, massa felis rutrum mauris, non vulputate nisi augue eget eros. Aliquam efficitur nunc vel ex egestas ornare. Cras eu nisi diam. Sed iaculis.
+            </div>
+
+        </div>
+
+        @if (Model.RelatedProducts.Count > 0)
+        {
+            <h2>Related Products</h2>
+            <div class="related-products">
+                @foreach (var product in Model.RelatedProducts)
+                {
+                    <partial name="/Views/Partials/_CollectionItem.cshtml" model=@product />
+                }
+            </div>
+        }
     </div>
 </div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll(".extra-info-option");
+        const divs = document.querySelectorAll('.extra-info > .info-div');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.dataset.target; 
+
+                divs.forEach(div => {
+                    div.style.display = div.classList.contains(target) ? 'block' : 'none';
+                });
+
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                button.classList.add('active');
+            });
+        });
+    });
+</script>

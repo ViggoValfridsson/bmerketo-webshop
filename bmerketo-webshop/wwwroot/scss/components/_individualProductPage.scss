@@ -1,0 +1,71 @@
+﻿.product-item-page {
+    margin: 2em 0;
+    color: $color-dark-1;
+
+    .banner-container {
+        display: none;
+
+        @include lg {
+            display: block;
+        }
+    }
+
+    img {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    .price-container {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 1em;
+        margin-bottom: 1em;
+
+        p {
+            margin: 0;
+        }
+
+
+        .sale-percentage {
+            width: 100%;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+        }
+
+        .current-price {
+            color: red;
+        }
+    }
+
+    .extra-info {
+
+        .extra-info-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid $color-dark-4;
+            border-right: none;
+
+            button {
+                font-weight: $font-weight-bold;
+                font-size: 0.8em;
+                border: none;
+                border-right: 1px solid $color-dark-4;
+            }
+
+            .active {
+                background-color: $color-theme-1;
+                color: $color-white;
+            }
+        }
+
+        .info-div {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    }
+}
