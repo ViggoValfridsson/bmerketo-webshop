@@ -4,7 +4,7 @@
     ViewData["title"] = "Products";
     var categories = await _categoryService.GetAllAsync();
     var tags = await _tagService.GetAllAsync();
-    var amountOfPages = Math.Ceiling(Model.RowCount / 32);
+    var amountOfPages = (int)Math.Ceiling((decimal)Model.RowCount / 32);
     var currentRoute = ViewContext.RouteData.Values["action"]?.ToString();
     var currentCategory = ViewContext.RouteData.Values["category"]?.ToString();
     var currentTag = ViewContext.RouteData.Values["tag"]?.ToString();
@@ -16,7 +16,7 @@
             <nav>
                 <ul class="link-list">
                     <li>
-                        <a asp-action="Index" class="@(currentRoute == "Index" ? "active" : "")">All</a>
+                        <a asp-action="Index" asp-route-page="1" class="@(currentRoute == "Index" ? "active" : "")">All</a>
                     </li>
                     @foreach (var category in categories)
                     {
@@ -49,7 +49,25 @@
                     // We don't want to show go back arrow if we are on the first page
                     <a asp-route-page="@(Model.Page - 1)"><i class="bi bi-chevron-left"></i></a>
                 }
-                @for (int i = 1; i <= amountOfPages; i++)
+
+                @{
+                    // We use this so we don't have too many page buttons at the bottom of the page
+                    var startPage = Math.Max(1, Model.Page - 2);
+                    int endPage = Math.Min(Model.Page + 2, amountOfPages);
+                }
+
+                @if (startPage > 1)
+                {
+                    <a asp-route-page="1">1</a>
+                    // If there is pages between 1 and start page we want to show ...
+                    @if (startPage > 2)
+                    {
+                        <span class="dots">...</span>
+                    }
+
+                }
+
+                @for (int i = startPage; i <= endPage; i++)
                 {
                     if (i == Model.Page)
                     {
@@ -59,6 +77,17 @@
                     {
                         <a asp-route-page="@i">@i</a>
                     }
+                }
+
+                @if (endPage < amountOfPages)
+                {
+                    @if (endPage < amountOfPages - 1)
+                    {
+                        // Show dots if there is more than one page between endPage and last page
+                        <span class="dots">...</span>
+                    }
+
+                    <a asp-route-page="@amountOfPages">@amountOfPages</a>
                 }
 
                 @if (Model.Page != amountOfPages)
@@ -74,22 +103,4 @@
             <div>Not found</div>
         }
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var form = document.getElementById("category-form");
-            var categoryDropdown = document.getElementById("category-dropdown");
-
-            categoryDropdown.addEventListener("change", function () {
-                getUrl(categoryDropdown.value, "category")
-            });
-
-            function getUrl(selectedOption, type) {
-                var baseUrl = "/products/";
-                var actionUrl = baseUrl + type + "/" + selectedOption;
-                form.action = actionUrl;
-                form.submit();
-            }
-        });
-    </script>
 </div>

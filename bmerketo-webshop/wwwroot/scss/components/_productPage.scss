@@ -23,20 +23,31 @@
     .page-button-container {
         display: flex;
         justify-content: center;
-        gap: 1em;
+        gap: 0.5em;
         margin-bottom: 3em;
 
         a {
-            text-align:center;
-            font-size: 1.5em;
+            text-align: center;
+            font-size: 1.2em;
             text-decoration: none;
             color: $color-dark-1;
             width: 1.5em;
 
-            &:hover {
-                background-color: $color-dark-4;
-                border-radius: 40%;
+            @include lg {
+                gap: 1em;
+                font-size: 1.3em;
+
+                &:hover {
+                    background-color: $color-dark-4;
+                    border-radius: 40%;
+                }
             }
+        }
+
+        .dots {
+            display:flex;
+            align-items: end;
+            font-size: 1.3em;
         }
     }
 

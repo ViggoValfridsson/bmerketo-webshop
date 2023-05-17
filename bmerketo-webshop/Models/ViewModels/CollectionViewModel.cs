@@ -12,6 +12,6 @@ public class CollectionViewmodel
     public decimal AmountOfVisibleProducts { get; set; } = 8;
 
     // Set to zero in case it is not needed
-    public decimal RowCount { get; set; } = 0;
-    public decimal? Page { get; set;}
+    public int RowCount { get; set; }
+    public int Page { get; set; } 
 }
