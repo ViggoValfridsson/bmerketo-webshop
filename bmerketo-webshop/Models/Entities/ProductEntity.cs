@@ -32,6 +32,7 @@ public class ProductEntity
 
         var model = new ProductModel
         {
+            ArticleId = entity.ArticleId,
             Name = entity.Name,
             Description = entity.Description,
             OriginalPrice = entity.OriginalPrice,

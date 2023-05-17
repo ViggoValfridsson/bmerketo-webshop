@@ -3,7 +3,7 @@
 
 @if (!string.IsNullOrWhiteSpace(Model.Name) && !string.IsNullOrWhiteSpace(Model.ImageUrl))
 {
-    <a href="#" class="product-item">
+    <a asp-controller="product" asp-route-articleId="@Model.ArticleId" class="product-item">
         <img src="@Model.ImageUrl" alt="@Model.Name" />
         <div class="text-container">
             <h4>@Model.Name</h4>
