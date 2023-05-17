@@ -1,0 +1,24 @@
+﻿@model ProductModel
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="container product-item-page">
+    <div class="image-container">
+        <img src="@Model.ImageUrl" alt="@Model.Name" />
+    </div>
+
+    <div>
+        <h1>@Model.Name</h1>
+        <p>@Model.Description</p>
+        <div class="price-container">
+            @if (Model.SalePercentage > 0 && Model.OriginalPrice != null)
+            {
+                <p>@Model.SalePercentage% OFF!</p>
+                <p class="old-price">@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.OriginalPrice)</p>
+            }
+            <p>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.CurrentPrice)</p>
+        </div>
+    </div>
+</div>
