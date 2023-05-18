@@ -1,6 +1,32 @@
 ﻿.product-item-page {
-    margin: 2em 0;
+    margin: 1em 0;
     color: $color-dark-1;
+
+    @include lg {
+        margin-top: 0em;
+    }
+
+    .main-item-info {
+        display: grid;
+        grid-template-areas: "title" "image" "description";
+
+        @include lg {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .image-container {
+        grid-area: image;
+    }
+
+    .title {
+        grid-area: title;
+        margin-bottom: 0.5em;
+    }
+
+    .description-and-price {
+        grid-area: description;
+    }
 
     .banner-container {
         display: none;
@@ -17,10 +43,12 @@
 
     .price-container {
         display: flex;
+        align-items: center;
         flex-wrap: wrap;
-        column-gap: 1em;
+        column-gap: 0.5em;
         margin-bottom: 1em;
 
+  
         p {
             margin: 0;
         }
@@ -37,21 +65,45 @@
         .current-price {
             color: red;
         }
+
+        .buy-button {
+            display: flex;
+            gap: 0.5em;
+            background-color: $color-theme-1;
+            color: $color-white;
+            border: none;
+            padding: 0.5em 0.5em;
+            border-radius: 2px;
+
+            @include md {
+                padding: 0.5em 1em;
+                gap: 1;
+            }
+
+            &:hover {
+                background-color: $color-theme-3;
+                outline: 1px solid $color-dark-3;
+            }
+        }
+    }
+
+    .category {
+        color: $color-dark-3;
+        font-weight: 700;
     }
 
     .extra-info {
-
         .extra-info-options {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr;
             border: 1px solid $color-dark-4;
-            border-right: none;
+            border-bottom: none;
 
             button {
-                font-weight: $font-weight-bold;
-                font-size: 0.8em;
+                padding: 0.5em 0;
+                font-weight: 600;
                 border: none;
-                border-right: 1px solid $color-dark-4;
+                border-bottom: 1px solid $color-dark-4;
             }
 
             .active {
@@ -62,10 +114,84 @@
 
         .info-div {
             display: none;
+            padding: 1em 0 2em 0;
+            border-bottom: 1px solid $color-dark-4
         }
 
         .active {
             display: block;
+        }
+    }
+
+    .reviews {
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1em;
+
+            h3 {
+                margin: 0;
+            }
+        }
+
+        .create-button {
+            padding: 0;
+            width: 2.5em;
+            height: 2.5em;
+            background-color: $color-theme-1;
+            color: $color-white;
+            border: none;
+            border-radius: 5px;
+
+            .bi-plus {
+                font-size: 1.75em;
+            }
+
+            &:hover {
+                background-color: $color-theme-3;
+                outline: 1px solid $color-dark-3;
+            }
+        }
+
+        .review-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1em;
+
+            .review-item {
+                padding: 0.5em;
+                border: 1px solid $color-dark-4;
+                border-radius: 3px;
+
+                i {
+                    color: darkgoldenrod;
+                }
+
+                .author {
+                    font-size: 1.3em;
+                }
+
+                p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+
+    .related-section {
+        margin: 1.5em 0;
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        .related-products {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1em;
         }
     }
 }

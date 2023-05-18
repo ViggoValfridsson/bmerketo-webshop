@@ -24,7 +24,7 @@ public class ProductController : Controller
         var viewModel = new IndividualProductViewModel
         {
             Product = product,
-            RelatedProducts = await _productService.GetAllAsync(x => x.Category.CategoryName == product.CategoryName, 0, 4)
+            RelatedProducts = await _productService.GetAllAsync(x => x.Category.CategoryName == product.CategoryName && x.ArticleId != articleId, 0, 4)
         };
 
         return View(viewModel);

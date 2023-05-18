@@ -1,0 +1,28 @@
+﻿@model ReviewViewModel
+
+<div class="review-item">
+    <p class="author">@Model.UserName</p>
+
+    <div>
+        @for (int i = 0; i < 5; i++)
+        {
+            if (i < Math.Floor(Model.Stars))
+            {
+                <i class="bi bi-star-fill"></i>
+                continue;
+            }
+            else if (Model.Stars != Math.Floor(Model.Stars))
+            {
+                <i class="bi bi-star-half"></i>
+                i++;
+            }
+
+            for (int j = 0; j < 5 - i; j++)
+            {
+                <i class="bi bi-star"></i>
+            }
+            break;
+        }
+    </div>
+    <p class="body">@Model.ReviewBody</p>
+</div>

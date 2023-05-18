@@ -1,0 +1,57 @@
+﻿#review-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 4.5em;
+
+    @include lg {
+        padding-bottom: 0;
+    }
+
+    .content {
+        height: 70%;
+        width: 80%;
+        border: 2px solid $color-dark-3;
+        background: $color-white;
+        border-radius: 5px;
+        padding: 1em;
+
+        @include md {
+            width: 60%;
+        }
+
+        @include lg {
+            width: 50%;
+        }
+
+        @include xl {
+            width: 40%
+        }
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: end;
+
+        button {
+            color: $color-dark-3;
+            border: none;
+            width: 1.5em;
+            height: 1.5em;
+            font-size: 2em;
+            padding: 0;
+            border-radius: 10%;
+        }
+    }
+}
+
+body.modal-open {
+    overflow: hidden;
+}
