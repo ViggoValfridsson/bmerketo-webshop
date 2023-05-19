@@ -17,4 +17,5 @@ public class WebshopContext : IdentityDbContext<IdentityUser>
     public DbSet<TagEntity> Tags { get; set; }
     public DbSet<ProductsTagsEntity> ProductsTags { get; set; }
     public DbSet<NewsletterSubscriberEntity> NewsletterSubscribers { get; set; }
+    public DbSet<ContactFormEntity> ContactForms { get; set; }
 }
