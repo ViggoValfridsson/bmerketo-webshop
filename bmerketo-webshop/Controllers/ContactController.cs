@@ -21,6 +21,8 @@ public class ContactController : Controller
     [HttpPost]
     public async Task<IActionResult> Index(ContactFormViewModel model)
     {
+        TempData["SuccessMessage"] = null;
+
         if (ModelState.IsValid)
         {
             if (await _contactFormRepo.CreateAsync(model) != null)
