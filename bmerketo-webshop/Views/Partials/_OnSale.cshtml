@@ -9,7 +9,7 @@
             <div class="product-item-1">
                 <partial name="/Views/Partials/_CollectionItem.cshtml" model=@products[0] />
             </div>
-            <a asp-action="on-sale" asp-controller="products" class="sale-information">
+            <a asp-controller="products" asp-action="ProductsByTag" asp-route-tag="on sale" asp-route-page="1" class="sale-information">
                 <h4 class="sale">On Sale!</h4>
                 <h3>Up To 60% Off!</h3>
                 <h4>Get The Best Price</h4>

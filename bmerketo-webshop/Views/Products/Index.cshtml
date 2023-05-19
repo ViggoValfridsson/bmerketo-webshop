@@ -6,8 +6,8 @@
     var tags = await _tagService.GetAllAsync();
     var amountOfPages = (int)Math.Ceiling((decimal)Model.RowCount / 32);
     var currentRoute = ViewContext.RouteData.Values["action"]?.ToString();
-    var currentCategory = ViewContext.RouteData.Values["category"]?.ToString();
-    var currentTag = ViewContext.RouteData.Values["tag"]?.ToString();
+    var currentCategory = ViewContext.RouteData.Values["category"]?.ToString()!.ToLower();
+    var currentTag = ViewContext.RouteData.Values["tag"]?.ToString()!.ToLower();
 }
 
 <div class="product-page">
@@ -21,8 +21,8 @@
                     @foreach (var category in categories)
                     {
                         <li>
-                            <a asp-action="ProductsByCategory" asp-route-category="@category.Name" asp-route-page="1"
-                               class="@(currentRoute == "ProductsByCategory" && category.Name == currentCategory ? "active" : "")">
+                            <a asp-action="ProductsByCategory" asp-route-category="@category.Name.ToLower()" asp-route-page="1"
+                               class="@(currentRoute == "ProductsByCategory" && category.Name.ToLower() == currentCategory ? "active" : "")">
                                 @category.Name
                             </a>
                         </li>
@@ -30,7 +30,7 @@
                     @foreach (var tag in tags)
                     {
                         <li>
-                            <a asp-action="ProductsByTag" asp-route-tag="@tag.Name" asp-route-page="1" class="@(currentRoute == "ProductsByTag" && tag.Name == currentTag ? "active" : "")">
+                            <a asp-action="ProductsByTag" asp-route-tag="@tag.Name.ToLower()" asp-route-page="1" class="@(currentRoute == "ProductsByTag" && tag.Name.ToLower() == currentTag ? "active" : "")">
                                 @tag.Name
                             </a>
                         </li>

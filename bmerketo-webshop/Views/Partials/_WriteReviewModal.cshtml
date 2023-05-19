@@ -1,0 +1,43 @@
+﻿<button class="create-button"><i class="bi bi-plus"></i></button>
+
+<div id="review-modal" class="create-review-modal">
+    <div class="content">
+        <div class="button-container">
+            <button class="close-modal"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="main-content">
+            <h2>This functionality has not yet been implemented. Come back later!</h2>
+            <form>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam ultricies orci vitae lobortis. Proin ultrices vel quam quis tincidunt. Fusce pellentesque purus in dui lacinia tempus. Nullam blandit fermentum lacinia. Sed in blandit enim. Curabitur porttitor arcu eget tempor interdum. Cras a turpis varius, vehicula est non, sagittis
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const openButton = document.querySelector(".create-button");
+        const modal = document.getElementById("review-modal");
+        const closteButton = document.querySelector(".close-modal");
+
+        openButton.addEventListener("click", function () {
+            modal.style.display = "flex"
+            document.body.classList.add("modal-open");
+        });
+
+        closteButton.addEventListener("click", function () {
+            closeModal();
+        });
+
+        window.window.addEventListener("click", function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            modal.style.display = "none"
+            document.body.classList.remove("modal-open");
+        }
+    });
+</script>
