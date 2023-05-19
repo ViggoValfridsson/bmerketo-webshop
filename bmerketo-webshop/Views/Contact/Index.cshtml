@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ContactFormViewModel
+
+@{
     ViewData["Title"] = "Contact Us";
 }
 
@@ -6,7 +8,51 @@
     <div class="banner-container">
         <img src="~/images//placeholders/1920x300.svg" alt="banner-image" />
     </div>
+  
     <div class="container">
-        <form method="post"></form>
+        <form method="post" novalidate>
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="fields">
+                <div class="group">
+                    <label asp-for="@Model.FirstName">First Name</label>
+                    <input asp-for="@Model.FirstName" />
+                    <span asp-validation-for="@Model.FirstName"></span>
+                </div>
+                <div class="group">
+                    <label asp-for="@Model.LastName">Last Name</label>
+                    <input asp-for="@Model.LastName" />
+                    <span asp-validation-for="@Model.LastName"></span>
+                </div>
+                <div class="group">
+                    <label asp-for="@Model.Email"></label>
+                    <input asp-for="@Model.Email" />
+                    <span asp-validation-for="@Model.Email"></span>
+                </div>
+                <div class="group">
+                    <label asp-for="@Model.PhoneNumber">Phone Number</label>
+                    <input asp-for="@Model.PhoneNumber" />
+                    <span asp-validation-for="@Model.PhoneNumber"></span>
+                </div>
+                <div class="group company">
+                    <label asp-for="@Model.CompanyName">Company Name (optional)</label>
+                    <input asp-for="@Model.CompanyName" />
+                    <span asp-validation-for="@Model.CompanyName"></span>
+                </div>
+                <div class="group message">
+                    <label asp-for="@Model.Content">What do you want to tell us?</label>
+                    <textarea asp-for="@Model.Content" rows="10" ></textarea>
+                    <span asp-validation-for="@Model.Content"></span>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button type="submit">SUBMIT</button>
+            </div>
+        </form>
     </div>
+    <section class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.846379992451!2d18.021943310261673!3d59.34492585222009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9d9d263b022d%3A0x82fc0f30ed84f9ed!2sNackademin!5e0!3m2!1ssv!2sse!4v1679451477145!5m2!1ssv!2sse" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
 </div>
+
