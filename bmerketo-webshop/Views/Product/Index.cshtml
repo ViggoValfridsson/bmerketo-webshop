@@ -25,6 +25,11 @@
             ReviewBody = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas mauris quis nibh imperdiet, id commodo justo viverra. Vestibulum malesuada nec sapien vitae ultricies. In cursus, magna in viverra sollicitudin, nulla sem luctus felis, nec lacinia erat augue quis leo."
         }
     };
+
+
+    // since rating/reviews have not yet been implemented I declare it as variables here.
+    var averageRating = 3f;
+    var amountOfReviews = 3;
 }
 
 <div class="product-item-page">
@@ -44,19 +49,53 @@
 
             <div class="description-and-price">
                 <p>@Model.Product.Description</p>
+                <div class="rating">
+                    <div class="starts">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            if (i < Math.Floor(averageRating))
+                            {
+                                <i class="bi bi-star-fill"></i>
+                                continue;
+                            }
+                            else if (averageRating != Math.Floor(averageRating))
+                            {
+                                <i class="bi bi-star-half"></i>
+                                i++;
+                            }
+
+                            for (int j = 0; j < 5 - i; j++)
+                            {
+                                <i class="bi bi-star"></i>
+                            }
+                            break;
+                        }
+                    </div>
+                    <p>@amountOfReviews Reviews</p>
+                </div>
                 <div class="price-container">
                     @if (Model.Product.SalePercentage > 0 && Model.Product.OriginalPrice != null)
                     {
+                        // On sale layout
                         <p class="sale-percentage">@Model.Product.SalePercentage% OFF!</p>
                         <p class="old-price">@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Product.OriginalPrice)</p>
                         <p class="current-price">@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Product.CurrentPrice)</p>
                     }
                     else
                     {
+                        // Regular layout
                         <p>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:c}", Model.Product.CurrentPrice)</p>
                     }
+                </div>
+                <div class="buy-options">
+                    <div class="amount-container">
+                        <button id="decrement-amount">-</button>
+                        <p id="product-amount">1</p>
+                        <button id="increment-amount">+</button>
+                    </div>
                     <button class="buy-button">Add To Cart <i class="bi bi-cart-plus"></i></button>
                 </div>
+
                 <p class="category">Category:  @Model.Product.CategoryName</p>
             </div>
         </div>
@@ -138,5 +177,26 @@
                 button.classList.add('active');
             });
         });
+    });
+</script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const decrementBtn = document.querySelector("#decrement-amount");
+        const incrementBtn = document.querySelector("#increment-amount");
+        const amount = document.querySelector("#product-amount");
+
+        decrementBtn.addEventListener('click', () => {
+            if (!(parseInt(amount.innerHTML) <= 1))
+                amount.innerHTML = parseInt(amount.innerHTML) - 1;
+
+
+        });
+
+        incrementBtn.addEventListener('click', () => {
+            if (!(parseInt(amount.innerHTML) >= 15))
+                amount.innerHTML = parseInt(amount.innerHTML) + 1;
+        });
+
     });
 </script>

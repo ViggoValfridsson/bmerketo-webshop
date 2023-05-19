@@ -4,14 +4,21 @@
 
     @include lg {
         margin-top: 0em;
+        margin-bottom: 4em;
     }
 
     .main-item-info {
         display: grid;
         grid-template-areas: "title" "image" "description";
 
+        @include md {
+            grid-template-areas: "image title" "image description";
+            grid-template-rows: auto 1fr;
+            column-gap: 1.5em;
+        }
+
         @include lg {
-            grid-template-columns: 1fr 1fr;
+            margin: 2em;
         }
     }
 
@@ -36,9 +43,33 @@
         }
     }
 
-    img {
-        width: 100%;
+    .image-container {
+        @include md {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            width: 100%;
+            margin-bottom: 1em;
+        }
+    }
+
+    .rating {
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
         margin-bottom: 1em;
+
+        i {
+            color: darkgoldenrod;
+        }
+
+        p {
+            margin-top: 0.1em;
+            margin-bottom: 0;
+        }
     }
 
     .price-container {
@@ -47,12 +78,11 @@
         flex-wrap: wrap;
         column-gap: 0.5em;
         margin-bottom: 1em;
+        font-size: 1.1em;
 
-  
         p {
             margin: 0;
         }
-
 
         .sale-percentage {
             width: 100%;
@@ -65,9 +95,34 @@
         .current-price {
             color: red;
         }
+    }
+
+    .buy-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+        margin-bottom: 1em;
+
+        .amount-container {
+            display: flex;
+
+            p, button {
+                border: 1px solid $color-dark-4;
+                height: 100%;
+                width: 3em;
+            }
+
+            p {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.2em;
+            }
+        }
 
         .buy-button {
             display: flex;
+            align-items: center;
             gap: 0.5em;
             background-color: $color-theme-1;
             color: $color-white;
@@ -87,9 +142,11 @@
         }
     }
 
+
     .category {
         color: $color-dark-3;
         font-weight: 700;
+        width: 100%;
     }
 
     .extra-info {
@@ -99,11 +156,22 @@
             border: 1px solid $color-dark-4;
             border-bottom: none;
 
+            @include lg {
+                grid-template-columns: 1fr 1fr 1fr;
+                border-bottom: 1px solid $color-dark-4;
+                border-right: none;
+            }
+
             button {
                 padding: 0.5em 0;
                 font-weight: 600;
                 border: none;
                 border-bottom: 1px solid $color-dark-4;
+
+                @include lg {
+                    border-right: 1px solid $color-dark-4;
+                    border-bottom: none;
+                }
             }
 
             .active {
@@ -192,6 +260,14 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 1em;
+
+            @include md {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @include lg {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
     }
 }
