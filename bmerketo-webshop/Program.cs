@@ -19,6 +19,7 @@ builder.Services.AddScoped<ProductRepo>();
 builder.Services.AddScoped<TagRepo>();
 builder.Services.AddScoped<ProductsTagsRepo>();
 builder.Services.AddScoped<NewsletterSubscriperRepo>();
+builder.Services.AddScoped<ContactFormRepo>();
 
 // Services
 builder.Services.AddScoped<ProductService>();

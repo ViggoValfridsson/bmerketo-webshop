@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using bmerketo_webshop.Models.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -30,4 +31,20 @@ public class ContactFormViewModel
 
     [MaxLength(4000, ErrorMessage = "Message is too long. Please try again with less than 4000 characters.")]
     public string Content { get; set; } = null!;
+
+    public static implicit operator  ContactFormEntity (ContactFormViewModel model)
+    {
+        if (model == null)
+            return null!;
+
+        return new ContactFormEntity
+        {
+            FirstName = model.FirstName,
+            LastName = model.LastName,
+            Email = model.Email,
+            PhoneNumber = model.PhoneNumber,
+            CompanyName = model.CompanyName,
+            Content = model.Content,
+        };
+    }
 }
