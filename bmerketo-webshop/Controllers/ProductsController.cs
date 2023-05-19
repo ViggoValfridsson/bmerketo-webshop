@@ -1,5 +1,4 @@
-﻿using Azure;
-using bmerketo_webshop.Helpers.Repositories;
+﻿using bmerketo_webshop.Helpers.Repositories;
 using bmerketo_webshop.Helpers.Services;
 using bmerketo_webshop.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
