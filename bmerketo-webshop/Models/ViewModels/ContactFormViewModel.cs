@@ -12,7 +12,7 @@ public class ContactFormViewModel
     public string FirstName { get; set; } = null!;
 
     [Required(ErrorMessage = "You must provide a last name.")]
-    [MaxLength(320, ErrorMessage = "The maximum length is 100 characters.")]
+    [MaxLength(100, ErrorMessage = "The maximum length is 100 characters.")]
     public string LastName { get; set; } = null!;
 
     [Required(ErrorMessage = "You must provide an email address.")]
@@ -29,6 +29,7 @@ public class ContactFormViewModel
     [MaxLength(100, ErrorMessage = "The maximum length is 100 characters.")]
     public string? CompanyName { get; set; }
 
+    [Required(ErrorMessage = "You must enter a message.")]
     [MaxLength(4000, ErrorMessage = "Message is too long. Please try again with less than 4000 characters.")]
     public string Content { get; set; } = null!;
 
@@ -41,7 +42,7 @@ public class ContactFormViewModel
         {
             FirstName = model.FirstName,
             LastName = model.LastName,
-            Email = model.Email,
+            Email = model.Email.ToLower(),
             PhoneNumber = model.PhoneNumber,
             CompanyName = model.CompanyName,
             Content = model.Content,

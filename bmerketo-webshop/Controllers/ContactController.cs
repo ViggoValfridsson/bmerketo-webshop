@@ -25,7 +25,9 @@ public class ContactController : Controller
         {
             if (await _contactFormRepo.CreateAsync(model) != null)
             {
-                TempData["SuccessMessage"] = "Email added to newsletter list!";
+                TempData["SuccessMessage"] = "CONTACT FORM SENT!";
+                ModelState.Clear();
+                model = new ContactFormViewModel();
             }
             else
             {

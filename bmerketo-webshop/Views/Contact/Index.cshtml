@@ -8,41 +8,54 @@
     <div class="banner-container">
         <img src="~/images//placeholders/1920x300.svg" alt="banner-image" />
     </div>
-  
+
     <div class="container">
-        <form method="post" novalidate>
-            <div asp-validation-summary="ModelOnly"></div>
+        <form method="post" novalidate id="contact-form">
+            <div class="error" asp-validation-summary="ModelOnly"></div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="success-message">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
 
             <div class="fields">
-                <div class="group">
+                <div class="group required" id="first-name-group">
                     <label asp-for="@Model.FirstName">First Name</label>
                     <input asp-for="@Model.FirstName" />
-                    <span asp-validation-for="@Model.FirstName"></span>
+                    <span class="error" asp-validation-for="@Model.FirstName"></span>
+                    <span class="error custom-error required">You must provide a first name.</span>
                 </div>
-                <div class="group">
+                <div class="group required" id="last-name-group">
                     <label asp-for="@Model.LastName">Last Name</label>
                     <input asp-for="@Model.LastName" />
-                    <span asp-validation-for="@Model.LastName"></span>
+                    <span class="error" asp-validation-for="@Model.LastName"></span>
+                    <span class="error custom-error required">You must provide a last name.</span>
                 </div>
-                <div class="group">
+                <div class="group required regex" id="email-group" data-regex="^[\w\.-]+@@([\w-]+\.)+[\w-]{2,4}$">
                     <label asp-for="@Model.Email"></label>
                     <input asp-for="@Model.Email" />
-                    <span asp-validation-for="@Model.Email"></span>
+                    <span class="error" asp-validation-for="@Model.Email"></span>
+                    <span class="error custom-error required">You must provide an email address.</span>
+                    <span class="error custom-error regex">Invalid email. Enter a valid email and try again.</span>
                 </div>
-                <div class="group">
+                <div class="group required regex" id="phone-group" data-regex-="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
                     <label asp-for="@Model.PhoneNumber">Phone Number</label>
                     <input asp-for="@Model.PhoneNumber" />
-                    <span asp-validation-for="@Model.PhoneNumber"></span>
+                    <span class="error" asp-validation-for="@Model.PhoneNumber"></span>
+                    <span class="error custom-error required">You must provide a phone number.</span>
+                    <span class="error custom-error regex">Not a valid phone number. Please try again.</span>
                 </div>
-                <div class="group company">
+                <div class="group company" id="company-group">
                     <label asp-for="@Model.CompanyName">Company Name (optional)</label>
                     <input asp-for="@Model.CompanyName" />
-                    <span asp-validation-for="@Model.CompanyName"></span>
+                    <span class="error" asp-validation-for="@Model.CompanyName"></span>
                 </div>
-                <div class="group message">
+                <div class="group message required" id="message-group">
                     <label asp-for="@Model.Content">What do you want to tell us?</label>
-                    <textarea asp-for="@Model.Content" rows="10" ></textarea>
-                    <span asp-validation-for="@Model.Content"></span>
+                    <textarea asp-for="@Model.Content" rows="10"></textarea>
+                    <span class="error" asp-validation-for="@Model.Content"></span>
+                    <span class="error custom-error required">You must enter a message.</span>
                 </div>
             </div>
 
@@ -55,4 +68,59 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.846379992451!2d18.021943310261673!3d59.34492585222009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9d9d263b022d%3A0x82fc0f30ed84f9ed!2sNackademin!5e0!3m2!1ssv!2sse!4v1679451477145!5m2!1ssv!2sse" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const requiredGroups = document.querySelectorAll(".group.required");
+        const regexGroups = document.querySelectorAll(".group.regex");
+        const contactForm = document.querySelector("#contact-form");
+
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let modelIsValid = true;
+
+            requiredGroups.forEach(group => {
+                const input = group.querySelector("input, textarea");
+                const requiredSpan = group.querySelector(".custom-error.required");
+
+                if (input.value.trim() === "") {
+                    requiredSpan.style.display = "block";
+                    modelIsValid = false;
+                } else {
+                    requiredSpan.style.display = "none";
+                }
+            });
+
+            regexGroups.forEach(group => {
+                const input = group.querySelector("input");
+                const regexPattern = group.dataset.regex;
+                const regexErrorSpan = group.querySelector(".custom-error.regex");
+
+                if (input.value.trim() != "" && !new RegExp(regexPattern).test(input.value)) {
+                    regexErrorSpan.style.display = "block";
+                    modelIsValid = false;
+                } else {
+                    regexErrorSpan.style.display = "none";
+                }
+            });
+
+            const allGroups = [...requiredGroups, ...regexGroups]
+
+            allGroups.forEach(group => {
+                const input = group.querySelector("input, textarea");
+                const errorSpans = group.querySelectorAll(".error");
+
+                input.addEventListener("input", () => {
+                    errorSpans.forEach(span => {
+                        span.style.display = "none";
+                    });
+                });
+            });
+
+            if (modelIsValid) {
+                contactForm.submit();
+            }
+        });
+    });
+</script>
 
