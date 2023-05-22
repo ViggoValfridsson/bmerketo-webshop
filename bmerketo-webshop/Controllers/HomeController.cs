@@ -24,7 +24,7 @@ public class HomeController : Controller
 
 
     [HttpPost]
-    public async Task<IActionResult> Index(ContactFormViewModel model)
+    public async Task<IActionResult> Index(NewsletterFormViewModel model)
     {
         ViewBag.ScrollToBottom = true;
 

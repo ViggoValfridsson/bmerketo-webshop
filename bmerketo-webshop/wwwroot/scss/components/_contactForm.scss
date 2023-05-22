@@ -1,116 +1,129 @@
-﻿.contact-form {
-    padding: 4em 0;
-    background: $color-light-bg;
+﻿.contact-page {
+    margin-top: 1em;
 
-    .container {
-        flex-wrap: wrap;
-        text-align: center;
+    @include lg {
+        margin: 0;
+    }
 
-        h2 {
-            margin-bottom: 1em;
-            width: 100%;
+    .banner-container {
+        display: none;
+
+        @include lg {
+            display: block;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    form {
+        color: $color-dark-2;
+
+        @include lg {
+            margin: 2em 0;
         }
 
-        form {
+        .fields {
+            display: grid;
+            gap: 1em;
+
             @include md {
-                background: $color-white;
-                padding: 1.5em;
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
+                grid-template-columns: 1fr 1fr;
             }
+        }
+
+        .company {
+            grid-column: span 2;
+        }
+
+        .message {
+            grid-column: span 2;
+
+            textarea {
+                resize: none;
+            }
+        }
+
+        input, textarea {
+            border: 1px solid $color-dark-4;
+            border-radius: 2px;
+            width: 100%;
 
             @include lg {
-                padding: 3em 0;
+                padding: 0.25em;
             }
         }
 
-        .input-group {
+        .button-container {
+            margin: 1em 0;
+            display: flex;
             justify-content: center;
 
-            @include md {
-                outline: 1px solid $color-dark-4;
-                flex-wrap: nowrap;
-                outline-offset: -1px;
-                height: 3em;
-                border-radius: 30px;
-            }
-
             @include lg {
-                width: 80%;
+                justify-content: start;
+                margin: 2em 0;
             }
 
-            @include xl {
-                height: 3.5em;
-            }
-        }
-
-        input {
-            width: 90%;
-            border: 1px solid $color-dark-4;
-            border-radius: 5px !important;
-            padding: 0.3em 0;
-            margin-bottom: 1em;
-
-            @include md {
+            button {
+                padding: 0.5em 2em;
+                font-size: 1.1em;
+                color: $color-white;
+                background-color: $color-theme-1;
                 border: none;
-                border-radius: 5px 0 0 5px !important;
-                margin: 0;
-                padding: 0.3em 1em;
+                transition: transform 0.2s;
 
-                &:focus {
-                    outline: none;
+                &:hover {
+                    transform: scale(1.05);
                 }
             }
         }
+    }
 
-        button {
-            background: $color-theme-1;
-            color: $color-white;
-            font-size: 1.1em;
-            padding: 0.75em 2em;
-            border: none;
-            border-radius: 5px !important;
+    .success-message {
+        width: 100%;
+        color: #1d7832;
+        font-size: 1.25em;
+        margin-bottom: 1em;
+    }
 
-            &:hover {
-                background: $color-theme-3;
-                outline: 1px solid $color-dark-4;
-                outline-offset: -1px;
-            }
+    .custom-error {
+        display: none;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .validation-summary-errors > ul {
+        list-style: none;
+        padding: 0;
+        font-size: 1.1em;
+
+        li {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .map {
+        display: flex;
+        align-items: end;
+
+        iframe {
+            width: 100%;
 
             @include md {
-                border-radius: 30px !important;
-                padding: 0 2em;
-                height: 100%;
-                z-index: 10;
+                height: 15em;
             }
-        }
 
-        .error {
-            width: 100%;
-            margin-top: 1em;
-            color: red;
-        }
-
-        .validation-summary-errors {
-            margin-top: -1em;
-            margin-bottom: 0.5em;
-
-            ul {
-                list-style: none;
+            @include lg {
+                height: 25em;
             }
-        }
 
-        .custom-error {
-            display: none;
-        }
-
-        .success-message {
-            width: 100%;
-            margin-top: -1em;
-            margin-bottom: 1em;
-            color: #1d7832;
-            font-size: 1.1em;
+            @include xxl {
+                height: 35em;
+            }
         }
     }
 }

@@ -40,6 +40,10 @@
 
         @include lg {
             display: block;
+
+            img {
+                width: 100%;
+            }
         }
     }
 
