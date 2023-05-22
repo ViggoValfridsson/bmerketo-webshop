@@ -4,6 +4,30 @@ namespace bmerketo_webshop.Models.ViewModels;
 
 public class SignUpViewModel
 {
+    [Required(ErrorMessage = "You must provide a first name.")]
+    [MaxLength(100, ErrorMessage = "The maximum length is 100 characters.")]
+    public string FirstName { get; set; } = null!;
+
+    [Required(ErrorMessage = "You must provide a last name.")]
+    [MaxLength(100, ErrorMessage = "The maximum length is 100 characters.")]
+    public string LastName { get; set; } = null!;
+
+    [MaxLength(100, ErrorMessage = "The maximum length is 100 characters.")]
+    public string? CompanyName { get; set; }
+
+    [Required(ErrorMessage = "You must enter a street name.")]
+    [MaxLength(255, ErrorMessage = "The maximum length is 255 characters.")]
+    public string StreetName { get; set; } = null!;
+
+    [Required(ErrorMessage = "You must enter a street name.")]
+    [MaxLength(20, ErrorMessage = "The maximum length is 20 numbers.")]
+    [RegularExpression(@"^[0-9]*$", ErrorMessage = "Please only enter numbers.")]
+    public string PostalCode { get; set; } = null!;
+
+    [Required(ErrorMessage = "You must enter a city.")]
+    [MaxLength(255, ErrorMessage = "The maximum length is 255 characters.")]
+    public string City { get; set; } = null!;
+
     [Required(ErrorMessage = "You must provide an email address.")]
     [MinLength(6, ErrorMessage = "Invalid email. Enter a valid email and try again.")]
     [MaxLength(320, ErrorMessage = "Email is too long. Please enter less than 320 characters.")]
@@ -20,4 +44,5 @@ public class SignUpViewModel
     [DataType(DataType.Password)]
     [Compare(nameof(Password), ErrorMessage = "Passwords do not match.")]
     public string ConfirmPassword { get; set; } = null!;
+
 }
