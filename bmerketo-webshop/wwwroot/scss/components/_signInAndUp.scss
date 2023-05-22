@@ -1,7 +1,7 @@
 ﻿.user-page {
     margin: 2em 0;
 
-    .container {
+    .sign-in.container {
         @include md {
             width: 60%;
         }
@@ -16,6 +16,36 @@
 
         @include xxl {
             width: 40%;
+        }
+    }
+
+    .sign-up.container {
+        @include md {
+            width: 90%;
+        }
+
+        @include lg {
+            width: 85%;
+        }
+
+        @include xl {
+            width: 80%;
+        }
+
+        @include xxl {
+            width: 70%;
+        }
+
+        .fields {
+            @include lg {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 1em;
+            }
+
+            .span-two {
+                grid-column: span 2;
+            }
         }
     }
 
@@ -67,6 +97,7 @@
 
         .checkbox {
             width: auto;
+            margin-left: 0.5em;
         }
     }
 
@@ -93,5 +124,10 @@
             width: 100%;
             text-align: start;
         }
+    }
+
+    .terms-and-conditions {
+        margin-top: 0.25em;
+        margin-bottom: -1em;
     }
 }

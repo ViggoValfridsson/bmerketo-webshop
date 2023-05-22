@@ -45,4 +45,5 @@ public class SignUpViewModel
     [Compare(nameof(Password), ErrorMessage = "Passwords do not match.")]
     public string ConfirmPassword { get; set; } = null!;
 
+    public bool TermsAndConditions { get; set; }
 }
