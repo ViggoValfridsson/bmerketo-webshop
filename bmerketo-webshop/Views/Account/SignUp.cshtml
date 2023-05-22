@@ -1,0 +1,104 @@
+﻿@model SignUpViewModel
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<div class="user-page">
+    <div class="container">
+        <h1>SIGN UP</h1>
+        <form method="post" id="sign-in-form" novalidate>
+            <div asp-validation-summary="ModelOnly" class="error"></div>
+            <div class="fields">
+                <div class="group required regex" data-regex="^[\w\.-]+@@([\w-]+\.)+[\w-]{2,4}$">
+                    <label asp-for="@Model.Email"></label>
+                    <input asp-for="@Model.Email" />
+                    <span class="error" asp-validation-for="@Model.Email"></span>
+                    <span class="error custom-error required">You must enter an email.</span>
+                    <span class="error custom-error regex">Invalid email. Enter a valid email and try again.</span>
+                </div>
+                <div class="group required regex" data-regex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@@$!%*?&])[A-Za-z\d@@$!%*?&]{8,}$">
+                    <label asp-for="@Model.Password"></label>
+                    <input id="password" asp-for="@Model.Password" />
+                    <span class="error" asp-validation-for="@Model.Password"></span>
+                    <span class="error custom-error required">You must enter a password.</span>
+                    <span class="error custom-error regex">Password must contain a minimum of eight characters, at least one uppercase letter, one lowercase letter, one number and and one special character.</span>
+                </div>
+                <div class="group required">
+                    <label asp-for="@Model.ConfirmPassword">Confirm Password</label>
+                    <input id="confirm-password" asp-for="@Model.ConfirmPassword" />
+                    <span class="error custom-error required">You must confirm your password.</span>
+                    <span class="error custom-error matching-error">The passwords do not match.</span>
+                </div>
+            </div>
+            <div class="button-container">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const requiredGroups = document.querySelectorAll(".group.required");
+            const regexGroups = document.querySelectorAll(".group.regex");
+            const signInForm = document.querySelector("#sign-in-form");
+
+            signInForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                let modelIsValid = true;
+
+                requiredGroups.forEach(group => {
+                    const input = group.querySelector("input");
+                    const requiredSpan = group.querySelector(".custom-error.required");
+
+                    if (input.value.trim() === "") {
+                        requiredSpan.style.display = "block";
+                        modelIsValid = false;
+                    } else {
+                        requiredSpan.style.display = "none";
+                    }
+                });
+
+                regexGroups.forEach(group => {
+                    const input = group.querySelector("input");
+                    const regexPattern = group.dataset.regex;
+                    const regexErrorSpan = group.querySelector(".custom-error.regex");
+
+                    if (input.value.trim() != "" && !new RegExp(regexPattern).test(input.value)) {
+                        regexErrorSpan.style.display = "block";
+                        modelIsValid = false;
+                    } else {
+                        regexErrorSpan.style.display = "none";
+                    }
+                });
+
+                const confirmPasswordInput = document.querySelector("#confirm-password");
+                const passwordInput = document.querySelector("#password");
+                const matchingError = document.querySelector(".custom-error.matching-error");
+
+                if (confirmPasswordInput.value.trim() !== "" && confirmPasswordInput.value !== passwordInput.value) {
+                    matchingError.style.display = "block";
+                    modelIsValid = false;
+                } else {
+                    matchingError.style.display = "none";
+                }
+
+                if (modelIsValid) {
+                    signInForm.submit();
+                }
+            });
+
+
+            requiredGroups.forEach(group => {
+                const input = group.querySelector("input, textarea");
+                const errorSpans = group.querySelectorAll(".error");
+
+                input.addEventListener("input", () => {
+                    errorSpans.forEach(span => {
+                        span.style.display = "none";
+                    });
+                });
+            });
+        });
+    </script>
+</div>

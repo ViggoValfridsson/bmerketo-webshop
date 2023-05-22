@@ -10,13 +10,13 @@ public class AccountController : Controller
         return View();
     }
 
-    public IActionResult LogIn()
+    public IActionResult SignIn()
     {
         return View();
     }
 
     [HttpPost]
-    public IActionResult LogIn(LogInViewModel viewModel)
+    public IActionResult LogIn(SignInViewModel viewModel)
     {
         if (ModelState.IsValid)
         {

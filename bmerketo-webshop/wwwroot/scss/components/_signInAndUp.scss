@@ -1,4 +1,4 @@
-﻿.login-page {
+﻿.user-page {
     margin: 2em 0;
 
     .container {
@@ -68,6 +68,11 @@
         .checkbox {
             width: auto;
         }
+    }
+
+    .signup-link {
+        color: $color-theme-1;
+        font-weight: 600;
     }
 
     .custom-error {

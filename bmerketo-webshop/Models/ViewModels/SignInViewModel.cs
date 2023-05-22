@@ -2,7 +2,7 @@
 
 namespace bmerketo_webshop.Models.ViewModels;
 
-public class LogInViewModel
+public class SignInViewModel
 {
     [Required(ErrorMessage = "You need to enter an email.")]
     public string Email { get; set; } = null!;

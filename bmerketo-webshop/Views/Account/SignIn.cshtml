@@ -1,10 +1,10 @@
-﻿@model LogInViewModel
+﻿@model SignInViewModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Sign in";
 }
 
-<div class="login-page">
+<div class="user-page">
     <div class="container">
         <h1>SIGN IN</h1>
         <form method="post" id="login-form" novalidate>
@@ -31,6 +31,7 @@
                 <button type="submit">Log In</button>
             </div>
         </form>
+        <a asp-action="signup" class="signup-link">Don't have an account? Click here to sign up!</a>
     </div>
 
     <script>
