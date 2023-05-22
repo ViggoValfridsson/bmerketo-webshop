@@ -1,8 +1,11 @@
-﻿@using bmerketo_webshop.Models;
+﻿@using Microsoft.AspNetCore.Identity;
+@using bmerketo_webshop.Models;
+@using bmerketo_webshop.Models.Identity;
 @using bmerketo_webshop.Models.ViewModels;
 @using bmerketo_webshop.Models.Entities;
 @using bmerketo_webshop.Helpers.Services;
 @inject ProductService _productService;
 @inject CategoryService _categoryService;
 @inject TagService _tagService;
+@inject SignInManager<AppUser> _signInManager;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

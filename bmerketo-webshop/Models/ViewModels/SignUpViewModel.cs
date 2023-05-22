@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using bmerketo_webshop.Models.Entities;
+using bmerketo_webshop.Models.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace bmerketo_webshop.Models.ViewModels;
 
@@ -46,4 +48,32 @@ public class SignUpViewModel
     public string ConfirmPassword { get; set; } = null!;
 
     public bool TermsAndConditions { get; set; }
+
+    public static implicit operator AddressEntity(SignUpViewModel model)
+    {
+        if (model == null)
+            return null!;
+
+        return new AddressEntity
+        {
+            StreetName = model.StreetName,
+            City = model.City,
+            PostalCode = model.PostalCode,
+        };
+    }
+
+    public static implicit operator AppUser(SignUpViewModel model)
+    {
+        if (model == null)
+            return null!;
+
+        return new AppUser
+        {
+            UserName = model.Email,
+            FirstName = model.FirstName,
+            LastName = model.LastName,
+            Email = model.Email,
+            CompanyName = model.CompanyName
+        };
+    }
 }
