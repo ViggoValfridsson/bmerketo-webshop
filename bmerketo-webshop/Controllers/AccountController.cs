@@ -67,4 +67,12 @@ public class AccountController : Controller
 
         return View(model);
     }
+
+    public async Task<IActionResult> LogOut()
+    {
+        if (_signInManager.IsSignedIn(User))
+            await _signInManager.SignOutAsync();
+
+        return LocalRedirect("/");
+    }
 }
