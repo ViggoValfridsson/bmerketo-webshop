@@ -34,11 +34,15 @@
         }
 
         .company {
-            grid-column: span 2;
+            @include md {
+                grid-column: span 2;
+            }
         }
 
         .message {
-            grid-column: span 2;
+            @include md {
+                grid-column: span 2;
+            }
 
             textarea {
                 resize: none;

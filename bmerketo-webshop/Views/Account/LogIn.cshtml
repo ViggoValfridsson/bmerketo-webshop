@@ -1,0 +1,74 @@
+﻿@model LogInViewModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="login-page">
+    <div class="container">
+        <h1>SIGN IN</h1>
+        <form method="post" id="login-form" novalidate>
+            <div asp-validation-summary="ModelOnly" class="error"></div>
+            <div class="fields">
+                <div class="group required">
+                    <label asp-for="@Model.Email"></label>
+                    <input asp-for="@Model.Email" />
+                    <span class="error" asp-validation-for="@Model.Email"></span>
+                    <span class="error custom-error required">You must enter an email.</span>
+                </div>
+                <div class="group required">
+                    <label asp-for="@Model.Password"></label>
+                    <input asp-for="@Model.Password" />
+                    <span class="error" asp-validation-for="@Model.Password"></span>
+                    <span class="error custom-error required">You must enter a password.</span>
+                </div>
+                <div class="group">
+                    <label asp-for="@Model.RememberMe">Remember me</label>
+                    <input class="checkbox" asp-for="@Model.RememberMe" />
+                </div>
+            </div>
+            <div class="button-container">
+                <button type="submit">Log In</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const requiredGroups = document.querySelectorAll(".group.required");
+            const loginForm = document.querySelector("#login-form");
+
+            loginForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                let modelIsValid = true;
+
+                requiredGroups.forEach(group => {
+                    const input = group.querySelector("input");
+                    const requiredSpan = group.querySelector(".custom-error.required");
+
+                    if (input.value.trim() === "") {
+                        requiredSpan.style.display = "block";
+                        modelIsValid = false;
+                    } else {
+                        requiredSpan.style.display = "none";
+                    }
+                });
+
+                if (modelIsValid) {
+                    loginForm.submit();
+                }
+            });
+
+            requiredGroups.forEach(group => {
+                const input = group.querySelector("input, textarea");
+                const errorSpans = group.querySelectorAll(".error");
+
+                input.addEventListener("input", () => {
+                    errorSpans.forEach(span => {
+                        span.style.display = "none";
+                    });
+                });
+            });
+        });
+    </script>
+</div>

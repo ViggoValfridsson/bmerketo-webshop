@@ -178,16 +178,15 @@
             align-items: center;
             font-family: $font-poppins;
             height: 100%;
-            width: 20%;
-            padding: 24px;
+            width: 25%;
+            padding: 24px 0;
 
             &:hover {
                 background-color: $color-dark-3;
             }
 
-
             @include lg {
-                padding: 16px;
+                padding: 16px 0;
                 width: 33.333%;
                 color: $color-dark-3;
                 font-weight: $font-weight-medium;
