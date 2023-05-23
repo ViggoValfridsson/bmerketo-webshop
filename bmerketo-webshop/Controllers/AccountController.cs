@@ -63,11 +63,11 @@ public class AccountController : Controller
                     if (!string.IsNullOrWhiteSpace(model.NewPassword))
                     {
                         await _signInManager.PasswordSignInAsync(model.Email, model.NewPassword, true, false);
-                        TempData["SuccessMessage"] = "Password successfully updated.";
                     }
                     else
                         await _signInManager.PasswordSignInAsync(model.Email, model.OldPassword, true, false);
 
+                    TempData["SuccessMessage"] = "Changes saved";
                     return View(updatedUser);
                 }
 
