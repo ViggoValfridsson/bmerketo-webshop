@@ -24,12 +24,12 @@
             margin: auto;
             padding: 12px;
             display: grid;
-            grid-template-columns: 1.3fr 1.2fr 1.1fr;
+            grid-template-columns: 1.2fr 1.1fr 1.2fr;
         }
 
         @include xl {
             width: 1140px;
-            grid-template-columns: 1.8fr 1.2fr 0.7fr;
+            grid-template-columns: 1.3fr 1fr 1fr;
         }
 
         @include xxl {
@@ -173,21 +173,21 @@
         }
 
         .link {
+            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: $font-poppins;
             height: 100%;
-            width: 20%;
-            padding: 24px;
+            width: 25%;
+            padding: 24px 0;
 
             &:hover {
                 background-color: $color-dark-3;
             }
 
-
             @include lg {
-                padding: 16px;
+                padding: 16px 0;
                 width: 33.333%;
                 color: $color-dark-3;
                 font-weight: $font-weight-medium;
@@ -197,6 +197,15 @@
                     color: $color-theme-1;
                     text-decoration: underline;
                 }
+            }
+        }
+
+        .link.my-account {
+            width: auto;
+            min-width: 40%;
+
+            @include lg {
+                width: 33.333%;
             }
         }
     }

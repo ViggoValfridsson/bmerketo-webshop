@@ -19,13 +19,11 @@ public class Seed
 
     public async Task SeedAll()
     {
-
         await SeedCategories();
         await SeedProducts();
         await SeedTags();
         await SeedProductTags();
     }
-
 
     private async Task SeedCategories()
     {

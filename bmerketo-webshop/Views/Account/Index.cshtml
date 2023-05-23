@@ -1,0 +1,153 @@
+﻿@model UpdateUserViewModel
+
+@{
+    ViewData["Title"] = "Account";
+}
+
+<div class="user-page">
+    <div class="update container">
+        <h1>Account Overview</h1>
+        <form method="post" id="update-form" novalidate>
+            <div asp-validation-summary="ModelOnly" class="error"></div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="success-message">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+            @Html.HiddenFor(m => m.Id)
+            <div class="fields">
+                <div class="group required">
+                    <label asp-for="@Model.FirstName">First Name</label>
+                    <input asp-for="@Model.FirstName" />
+                    <span class="error" asp-validation-for="@Model.FirstName"></span>
+                    <span class="error custom-error required">You must provide a first name.</span>
+                </div>
+                <div class="group required">
+                    <label asp-for="@Model.LastName">Last Name</label>
+                    <input asp-for="@Model.LastName" />
+                    <span class="error" asp-validation-for="@Model.LastName"></span>
+                    <span class="error custom-error required">You must provide a last name.</span>
+                </div>
+                <div class="group span-two required">
+                    <label asp-for="@Model.StreetName">Street Name</label>
+                    <input asp-for="@Model.StreetName" />
+                    <span class="error" asp-validation-for="@Model.StreetName"></span>
+                    <span class="error custom-error required">You must enter a street name.</span>
+                </div>
+                <div class="group required regex" data-regex="^[0-9]*$">
+                    <label asp-for="@Model.PostalCode">Postal Code</label>
+                    <input asp-for="@Model.PostalCode" />
+                    <span class="error" asp-validation-for="@Model.PostalCode"></span>
+                    <span class="error custom-error required">You must enter a postal code.</span>
+                    <span class="error custom-error regex">Please only enter numbers.</span>
+                </div>
+                <div class="group required">
+                    <label asp-for="@Model.City"></label>
+                    <input asp-for="@Model.City" />
+                    <span class="error" asp-validation-for="@Model.City"></span>
+                    <span class="error custom-error required">You must enter a city.</span>
+                </div>
+                <div class="group span-two company">
+                    <label asp-for="@Model.CompanyName">Company (optional)</label>
+                    <input asp-for="@Model.CompanyName" />
+                    <span class="error" asp-validation-for="@Model.CompanyName"></span>
+                </div>
+                <div class="group span-two required regex" data-regex="^[\w\.-]+@@([\w-]+\.)+[\w-]{2,4}$">
+                    <label asp-for="@Model.Email"></label>
+                    <input asp-for="@Model.Email" />
+                    <span class="error" asp-validation-for="@Model.Email"></span>
+                    <span class="error custom-error required">You must enter an email.</span>
+                    <span class="error custom-error regex">Invalid email. Enter a valid email and try again.</span>
+                </div>
+                <div class="group span-two required ">
+                    <label asp-for="@Model.OldPassword">Current Password</label>
+                    <input asp-for="@Model.OldPassword" />
+                    <span class="error" asp-validation-for="@Model.OldPassword"></span>
+                    <span class="error custom-error required">You must enter your password to update your account.</span>
+                </div>
+                <div class="group span-two">
+                    <label asp-for="@Model.NewPassword">New Password (leave blank if you do not wish to change passwords)</label>
+                    <input id="password" asp-for="@Model.NewPassword" />
+                    <span class="error" asp-validation-for="@Model.NewPassword"></span>
+                    <span class="error custom-error regex">Password must contain a minimum of eight characters, at least one uppercase letter, one lowercase letter, one number and and one special character.</span>
+                </div>
+                <div class="group span-two">
+                    <label asp-for="@Model.ConfirmNewPassword">Confirm Password (leave blank if you do not wish to change passwords)</label>
+                    <input id="confirm-password" asp-for="@Model.ConfirmNewPassword" />
+                    <span class="error" asp-validation-for="@Model.ConfirmNewPassword"></span>
+                    <span class="error custom-error matching-error">The passwords do not match.</span>
+                </div>
+            </div>
+            <div class="button-container">
+                <button type="submit">UPDATE ACCOUNT</button>
+            </div>
+        </form>
+        <a class="sign-out-link" asp-action="logout">SIGN OUT</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const allGroups = document.querySelectorAll(".group");
+            const requiredGroups = document.querySelectorAll(".group.required");
+            const regexGroups = document.querySelectorAll(".group.regex");
+            const updateForm = document.querySelector("#update-form");
+
+            updateForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                let modelIsValid = true;
+
+                requiredGroups.forEach(group => {
+                    const input = group.querySelector("input");
+                    const requiredSpan = group.querySelector(".custom-error.required");
+
+                    if (input.value.trim() === "") {
+                        requiredSpan.style.display = "block";
+                        modelIsValid = false;
+                    } else {
+                        requiredSpan.style.display = "none";
+                    }
+                });
+
+                regexGroups.forEach(group => {
+                    const input = group.querySelector("input");
+                    const regexPattern = group.dataset.regex;
+                    const regexErrorSpan = group.querySelector(".custom-error.regex");
+
+                    if (input.value.trim() !== "" && !new RegExp(regexPattern).test(input.value)) {
+                        regexErrorSpan.style.display = "block";
+                        modelIsValid = false;
+                    } else {
+                        regexErrorSpan.style.display = "none";
+                    }
+                });
+
+                const confirmPasswordInput = document.querySelector("#confirm-password");
+                const passwordInput = document.querySelector("#password");
+                const matchingError = document.querySelector(".custom-error.matching-error");
+
+                if (confirmPasswordInput.value.trim() !== "" && confirmPasswordInput.value !== passwordInput.value) {
+                    matchingError.style.display = "block";
+                    modelIsValid = false;
+                } else {
+                    matchingError.style.display = "none";
+                }
+
+                if (modelIsValid) {
+                    updateForm.submit();
+                }
+            });
+
+            allGroups.forEach(group => {
+                const input = group.querySelector("input, textarea");
+                const errorSpans = group.querySelectorAll(".error");
+
+                input.addEventListener("input", () => {
+                    errorSpans.forEach(span => {
+                        span.style.display = "none";
+                    });
+                });
+            });
+        });
+    </script>
+</div>

@@ -1,6 +1,6 @@
 ﻿<button class="create-button"><i class="bi bi-plus"></i></button>
 
-<div id="review-modal" class="create-review-modal">
+<div id="not-implemented-modal" class="not-implemented-modal">
     <div class="content">
         <div class="button-container">
             <button class="close-modal"><i class="bi bi-x-lg"></i></button>
@@ -17,15 +17,15 @@
 <script>
     window.addEventListener('DOMContentLoaded', () => {
         const openButton = document.querySelector(".create-button");
-        const modal = document.getElementById("review-modal");
-        const closteButton = document.querySelector(".close-modal");
+        const modal = document.getElementById("not-implemented-modal");
+        const closeButton = document.querySelector(".close-modal");
 
         openButton.addEventListener("click", function () {
             modal.style.display = "flex"
             document.body.classList.add("modal-open");
         });
 
-        closteButton.addEventListener("click", function () {
+        closeButton.addEventListener("click", function () {
             closeModal();
         });
 

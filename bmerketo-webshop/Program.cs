@@ -2,6 +2,9 @@ using bmerketo_webshop.Data;
 using bmerketo_webshop.Helpers.Repositories;
 using bmerketo_webshop.Helpers.Seed;
 using bmerketo_webshop.Helpers.Services;
+using bmerketo_webshop.Models.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
@@ -20,13 +23,30 @@ builder.Services.AddScoped<TagRepo>();
 builder.Services.AddScoped<ProductsTagsRepo>();
 builder.Services.AddScoped<NewsletterSubscriperRepo>();
 builder.Services.AddScoped<ContactFormRepo>();
+builder.Services.AddScoped<AddressRepo>();
 
 // Services
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<TagService>();
 builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<RoleSeedService>();
 
 // Identity
+builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
+{
+    x.SignIn.RequireConfirmedAccount = false;
+    x.Password.RequiredLength = 8;
+    x.User.RequireUniqueEmail = true;
+})
+    .AddEntityFrameworkStores<WebshopContext>();
+
+builder.Services.ConfigureApplicationCookie(x =>
+{
+    x.LoginPath = "/account/signin";
+    x.LogoutPath = "/";
+    x.AccessDeniedPath = "/denied";
+});
 
 var app = builder.Build();
 

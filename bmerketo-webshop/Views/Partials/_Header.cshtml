@@ -24,13 +24,19 @@
 
         <nav class="menu-icons">
             <!-- Add search funtionality -->
-            <a class="link" href="#"><i class="bi bi-search"></i></a>
+            <a asp-controller="notimplemented" asp-action="index" class="link"><i class="bi bi-search"></i></a>
 
-            <!-- Add condition for signout instead -->
-            <a asp-controller="auth" asp-action="login" class="link">Login</a>
+            @if (_signInManager.IsSignedIn(User))
+            {
+                <a asp-controller="account" asp-action="index" class="link my-account">My Account</a>
+            }
+            else
+            {
+                <a asp-controller="account" asp-action="signin" class="link">SIGN IN</a>
+            }
 
             <!-- Turn into button that pops up modal with cart info -->
-            <a class="link" href="#"><i class="bi bi-cart"></i></a>
+            <a asp-controller="notimplemented" asp-action="index" class="link"><i class="bi bi-cart"></i></a>
         </nav>
 
         <div class="toggle">
