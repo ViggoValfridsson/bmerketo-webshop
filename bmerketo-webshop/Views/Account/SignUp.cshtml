@@ -63,7 +63,7 @@
                 <div class="group span-two required">
                     <label asp-for="@Model.ConfirmPassword">Confirm Password</label>
                     <input id="confirm-password" asp-for="@Model.ConfirmPassword" />
-                    <span class="error" asp-validation-for="@Model.Password"></span>
+                    <span class="error" asp-validation-for="@Model.ConfirmPassword"></span>
                     <span class="error custom-error required">You must confirm your password.</span>
                     <span class="error custom-error matching-error">The passwords do not match.</span>
                 </div>

@@ -19,7 +19,7 @@
         }
     }
 
-    .sign-up.container {
+    .sign-up.container, .update.container {
         @include md {
             width: 90%;
         }
@@ -78,7 +78,7 @@
             justify-content: start;
 
             @include lg {
-                margin: 2em 0;
+                margin: 1em 0;
             }
 
             button {
@@ -101,7 +101,7 @@
         }
     }
 
-    .signup-link {
+    .signup-link, .sign-out-link {
         color: $color-theme-1;
         font-weight: 600;
     }
