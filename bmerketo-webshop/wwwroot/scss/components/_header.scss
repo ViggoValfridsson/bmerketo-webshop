@@ -243,6 +243,8 @@
     }
 
     .active {
-        color: $color-theme-1 !important;
+        @include lg {
+            color: $color-theme-1 !important;
+        }
     }
 }
