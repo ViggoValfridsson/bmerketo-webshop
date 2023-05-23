@@ -24,7 +24,7 @@
             margin: auto;
             padding: 12px;
             display: grid;
-            grid-template-columns: 1.2fr 1.1fr 1.2fr;
+            grid-template-columns: 1.2fr 1.5fr 1.2fr;
         }
 
         @include xl {
@@ -75,7 +75,7 @@
     .menu-links {
         background: $color-dark-2;
         position: absolute;
-        bottom: -120px;
+        bottom: -7.5em;
         z-index: 999;
         width: 100%;
         margin-left: -32px;
@@ -142,6 +142,12 @@
                 width: 8px;
                 width: 33.333%;
             }
+        }
+    }
+
+    .menu-links.admin {
+        @media (max-width: 992px) {
+            bottom: -10em;
         }
     }
 
