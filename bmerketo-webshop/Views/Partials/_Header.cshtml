@@ -1,5 +1,7 @@
 ﻿@{
     var user = Context.User.Identity;
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
 }
 
 <header>
@@ -12,25 +14,25 @@
         <div class="logo logo-light"><img src="images/logo_light.svg" alt="">bmerketo</div>
 
         @{
-            // Conditional style to make sure menu is correctly displayed with an extra option
+            // Conditional admin class to make sure menu is correctly displayed with an extra option
         }
         <nav id="menu" class="menu-links mobile-closed-menu @(user != null && user.IsAuthenticated && User.IsInRole("admin") ? "admin" : "")">
             <ul>
+                <li class="link">
+                    <a class="@(currentController == "Home" ? "active" : "")" asp-controller="home" asp-action="index">HOME</a>
+                </li>
+                <li class="link">
+                    <a class="@(currentController == "Products" ? "active" : "")" asp-controller="products" asp-action="index">PRODUCTS</a>
+                </li>
+                <li class="link">
+                    <a class="@(currentController == "Contact" ? "active" : "")" asp-controller="contact" asp-action="index">CONTACT</a>
+                </li>
                 @if (user != null && user.IsAuthenticated && User.IsInRole("admin"))
                 {
                     <li class="link">
-                        <a asp-controller="admin" asp-action="index">ADMIN</a>
+                        <a class="@(currentController == "Admin" ? "active" : "")" asp-controller="admin" asp-action="index">ADMIN</a>
                     </li>
                 }
-                <li class="link">
-                    <a asp-controller="home" asp-action="index">HOME</a>
-                </li>
-                <li class="link">
-                    <a asp-controller="products" asp-action="index">PRODUCTS</a>
-                </li>
-                <li class="link">
-                    <a asp-controller="contact" asp-action="index">CONTACT</a>
-                </li>
             </ul>
 
         </nav>
@@ -41,11 +43,11 @@
 
             @if (_signInManager.IsSignedIn(User))
             {
-                <a asp-controller="account" asp-action="index" class="link my-account">My Account</a>
+                <a class="@(currentController == "Account"  && currentAction == "Index" ? "active" : "") link my-account" asp-controller="account" asp-action="index">My Account</a>
             }
             else
             {
-                <a asp-controller="account" asp-action="signin" class="link">SIGN IN</a>
+                <a class="@(currentController == "Account"  && currentAction == "SignIn" ? "active" : "") link" asp-controller="account" asp-action="signin">SIGN IN</a>
             }
 
             <!-- Turn into button that pops up modal with cart info -->
