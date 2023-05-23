@@ -61,10 +61,13 @@ public class AccountController : Controller
                 {
                     // Log in here because otherwise user will be logged out after password/email change
                     if (!string.IsNullOrWhiteSpace(model.NewPassword))
+                    {
                         await _signInManager.PasswordSignInAsync(model.Email, model.NewPassword, true, false);
+                        TempData["SuccessMessage"] = "Password successfully updated.";
+                    }
                     else
                         await _signInManager.PasswordSignInAsync(model.Email, model.OldPassword, true, false);
-                    
+
                     return View(updatedUser);
                 }
 

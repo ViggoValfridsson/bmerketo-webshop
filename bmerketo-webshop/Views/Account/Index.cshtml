@@ -9,6 +9,16 @@
         <h1>Account Overview</h1>
         <form method="post" id="update-form" novalidate>
             <div asp-validation-summary="ModelOnly" class="error"></div>
+
+            @{
+                // Since the password is not shown it will be hard to tell that it was updated. Therefore this message will be shown.
+            }
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="success-message">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
             @Html.HiddenFor(m => m.Id)
             <div class="fields">
                 <div class="group required">
