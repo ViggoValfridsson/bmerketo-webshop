@@ -4,6 +4,7 @@
     ViewData["Title"] = @Model.Email;
     var userCurrentRoles = await _userManager.GetRolesAsync(Model);
     var roles = _roleManager.Roles.ToList();
+    var address = await _addressRepo.GetAsync(x => x.Id == Model.AddressId);
 }
 
 <div class="user-role-edit">
@@ -21,9 +22,18 @@
             </div>
         }
         <div class="user-info">
-            <h1>@Model.Email</h1>
-            <p>@Model.FirstName</p>
-            <p>@Model.LastName</p>
+            <h1>UPDATE USER ROLES</h1>
+            <h3>User Info:</h3>
+            <p><b>Email:</b> @Model.Email</p>
+            <p><b>Name:</b> @Model.FirstName @Model.LastName</p>
+            @if (!String.IsNullOrWhiteSpace(Model.CompanyName))
+            {
+                <p><b>Company:</b> @Model.CompanyName</p>
+            }
+            <h3>Address:</h3>
+            <p><b>Street:</b> @address!.StreetName</p>
+            <p><b>City:</b> @address!.City</p>
+            <p><b>Zip Code:</b> @address!.PostalCode</p>
         </div>
         <div class="role">
             <form method="post">
@@ -36,7 +46,7 @@
                             <label for="@role.Id">@role.Name</label>
                         </div>
                     }
-                </div>
+                    </div>
                 <button type="submit">UPDATE ROLES</button>
             </form>
         </div>

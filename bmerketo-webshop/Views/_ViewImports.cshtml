@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity;
+@using bmerketo_webshop.Helpers.Repositories;
 @using bmerketo_webshop.Models;
 @using bmerketo_webshop.Models.Identity;
 @using bmerketo_webshop.Models.ViewModels;
@@ -8,6 +9,7 @@
 @inject CategoryService _categoryService;
 @inject TagService _tagService;
 @inject UserService _userService;
+@inject AddressRepo _addressRepo;
 @inject SignInManager<AppUser> _signInManager;
 @inject UserManager<AppUser> _userManager;
 @inject RoleManager<IdentityRole> _roleManager;

@@ -6,22 +6,90 @@
         margin: 2em 0;
     }
 
-    .user-info {
-        display: flex;
-        flex-wrap: wrap;
-        column-gap: 0.5em;
+    .container {
+        @include md {
+            width: 70%;
+        }
 
-        h1 {
-            width: 100%;
+        @include lg {
+            width: 65%;
+        }
+
+        @include xl {
+            width: 60%;
+        }
+
+        @include xxl {
         }
     }
 
-    .role-container {
+    .user-info {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        column-gap: 1em;
 
-        @include md {
-            grid-template-columns: repeat(4, 1fr);
+        @include xs {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include lg {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        h1, h3 {
+            @include xs {
+                grid-column: span 2;
+            }
+
+            @include lg {
+                grid-column: span 3;
+            }
+        }
+
+        h1 {
+            margin-bottom: 0.5em;
+        }
+
+        h3 {
+            font-size: 1.35em;
+        }
+    }
+
+    form {
+        h2 {
+            font-size: 1.35em;
+        }
+
+        .role-container {
+            display: grid;
+            width: auto;
+            gap: 1em;
+            grid-template-columns: auto auto auto 1fr;
+
+            @include sm {
+                grid-template-columns: repeat(5, auto) 1fr;
+                column-gap: 2em;
+            }
+
+            @include lg {
+                grid-template-columns: repeat(7, auto) 1fr;
+                column-gap: 2em;
+            }
+        }
+
+        button {
+            margin: 1em 0;
+            color: $color-white;
+            background-color: $color-theme-1;
+            height: 3em;
+            width: 9em;
+            border-radius: 3px;
+            border: none;
+
+            &:hover {
+                background-color: $color-theme-3;
+                outline: 1px solid $color-dark-3;
+                outline-offset: -1px;
+            }
         }
     }
 }
