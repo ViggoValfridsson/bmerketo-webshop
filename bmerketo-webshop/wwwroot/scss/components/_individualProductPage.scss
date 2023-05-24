@@ -29,6 +29,32 @@
     .title {
         grid-area: title;
         margin-bottom: 0.5em;
+        display: flex;
+        align-items: start;
+        gap: 0.5em;
+
+        h1 {
+            margin: 0;
+        }
+
+        .edit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $color-theme-1;
+            color: $color-white;
+            border: none;
+            height: 3em;
+            width: 8em;
+            border-radius: 2px;
+            text-decoration: none;
+
+            &:hover {
+                background-color: $color-theme-3;
+                outline: 1px solid $color-dark-3;
+                outline-offset: -1px;
+            }
+        }
     }
 
     .description-and-price {

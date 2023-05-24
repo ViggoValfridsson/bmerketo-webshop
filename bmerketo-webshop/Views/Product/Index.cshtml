@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = Model.Product.Name;
+    var user = Context.User.Identity;
 
     // Since there is no review functionality i create some static reviews here
     var fakeReviews = new List<ReviewViewModel>
@@ -45,7 +46,12 @@
 
             <div class="title">
                 <h1>@Model.Product.Name</h1>
-            </div>
+                @if (user != null && user.IsAuthenticated && User.IsInRole("admin"))
+                {
+                    <a asp-controller="admin" asp-action="product" asp-route-articleId="@Model.Product.ArticleId" class="edit">EDIT</a>
+
+                }
+        </div>
 
             <div class="description-and-price">
                 <p>@Model.Product.Description</p>

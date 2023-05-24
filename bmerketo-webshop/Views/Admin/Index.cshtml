@@ -1,5 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Admin Dashboard";
+    
+    var collectionViewModel = new CollectionViewmodel
+            {
+                Products = await _productService.GetAllAsync()
+            };
 }
 
 <div class="admin-dashboard-page">
@@ -12,6 +17,8 @@
 
         <div class="products">
             <button class="create-button"><i class="bi bi-plus"></i></button>
+
+            <partial name="/Views/Partials/_ProductCollection.cshtml" model=@collectionViewModel />
         </div>
     </div>
 </div>
