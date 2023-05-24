@@ -11,13 +11,13 @@
     <div class="container">
         @if (TempData["SuccessMessage"] != null)
         {
-            <div class="success-message">
+            <div class="success-message message">
                 @TempData["SuccessMessage"]
             </div>
         }
         @if (TempData["FailureMessage"] != null)
         {
-            <div class="failure-message">
+            <div class="failure-message message">
                 @TempData["FailureMessage"]
             </div>
         }
@@ -46,7 +46,7 @@
                             <label for="@role.Id">@role.Name</label>
                         </div>
                     }
-                    </div>
+                </div>
                 <button type="submit">UPDATE ROLES</button>
             </form>
         </div>

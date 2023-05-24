@@ -57,7 +57,7 @@ public class AdminController : Controller
 
         if(!addResult.Succeeded) 
         {
-            TempData["FailureMessage"] = "Roles were successfully removed but something went wrong when adding new roles. Please try again.";
+            TempData["FailureMessage"] = "Roles were successfully removed but something went wrong when adding the roles. Please try again.";
             return View(user);
         }
 

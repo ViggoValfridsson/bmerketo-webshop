@@ -92,4 +92,19 @@
             }
         }
     }
+
+    .message {
+        font-weight: 600;
+        margin-bottom: 0.5em;
+    }
+
+    .success-message {
+        color: green;
+        font-size: 1.35em;
+    }
+
+    .failure-message {
+        color: red;
+        font-size: 1.1em;
+    }
 }
