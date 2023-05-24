@@ -19,7 +19,7 @@ public class ProductController : Controller
         var product = await _productService.GetAsync(x => x.ArticleId == articleId);
 
         if (product == null)
-            return NotFound();
+            return RedirectToAction("index", "notfound");
 
         var viewModel = new IndividualProductViewModel
         {

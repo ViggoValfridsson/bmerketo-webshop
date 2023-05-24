@@ -1,0 +1,44 @@
+﻿@model AppUser
+
+@{
+    ViewData["Title"] = @Model.Email;
+    var userCurrentRoles = await _userManager.GetRolesAsync(Model);
+    var roles = _roleManager.Roles.ToList();
+}
+
+<div class="user-role-edit">
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="success-message">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        @if (TempData["FailureMessage"] != null)
+        {
+            <div class="failure-message">
+                @TempData["FailureMessage"]
+            </div>
+        }
+        <div class="user-info">
+            <h1>@Model.Email</h1>
+            <p>@Model.FirstName</p>
+            <p>@Model.LastName</p>
+        </div>
+        <div class="role">
+            <form method="post">
+                <h2>Roles:</h2>
+                <div class="role-container">
+                    @foreach (var role in roles)
+                    {
+                        <div>
+                            <input type="checkbox" id="@role.Id" name="selectedRoles" value="@role.Name" @(userCurrentRoles.Contains(role.Name!) ? "checked" : "")>
+                            <label for="@role.Id">@role.Name</label>
+                        </div>
+                    }
+                </div>
+                <button type="submit">UPDATE ROLES</button>
+            </form>
+        </div>
+    </div>
+</div>

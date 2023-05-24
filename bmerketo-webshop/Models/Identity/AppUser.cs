@@ -41,6 +41,8 @@ public class AppUser : IdentityUser
         return new UserModel
         {
             Id = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
             Email = user.UserName!
         };
     }

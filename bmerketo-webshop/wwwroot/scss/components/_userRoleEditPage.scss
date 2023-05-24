@@ -1,0 +1,27 @@
+﻿.user-role-edit {
+    margin: 1em 0;
+    color: $color-dark-1;
+
+    @include lg {
+        margin: 2em 0;
+    }
+
+    .user-info {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 0.5em;
+
+        h1 {
+            width: 100%;
+        }
+    }
+
+    .role-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        @include md {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}

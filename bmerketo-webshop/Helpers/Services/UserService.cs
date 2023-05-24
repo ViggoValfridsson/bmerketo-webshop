@@ -32,7 +32,7 @@ public class UserService
         return await _userManager.Users.AnyAsync(predicate);
     }
 
-    public async Task<List<UserModel>> GetAll()
+    public async Task<List<UserModel>> GetAllAsync()
     {
         var usersEntities = await _context.Users.ToListAsync();
         var userModels = new List<UserModel>();
