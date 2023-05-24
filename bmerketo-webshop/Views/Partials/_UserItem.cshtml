@@ -1,0 +1,10 @@
+﻿@model UserModel
+
+<div class="user-item">
+    <div class="user-info">
+        <p>@Model.Email</p>
+    </div>
+    <a asp-controller="admin" asp-action="user" asp-route-id="@Model.Id">
+        <i class="bi bi-pencil-square"></i>
+    </a>
+</div>

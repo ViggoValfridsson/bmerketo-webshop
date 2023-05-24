@@ -1,6 +1,7 @@
 ﻿using bmerketo_webshop.Data;
 using bmerketo_webshop.Helpers.Repositories;
 using bmerketo_webshop.Helpers.Seed;
+using bmerketo_webshop.Models;
 using bmerketo_webshop.Models.Entities;
 using bmerketo_webshop.Models.Identity;
 using bmerketo_webshop.Models.ViewModels;
@@ -16,17 +17,30 @@ public class UserService
     private readonly UserManager<AppUser> _userManager;
     private readonly AddressRepo _addressRepo;
     private readonly RoleSeedService _seed;
+    private readonly WebshopContext _context;
 
-    public UserService(UserManager<AppUser> userManager, AddressRepo addressRepo, RoleSeedService seed)
+    public UserService(UserManager<AppUser> userManager, AddressRepo addressRepo, RoleSeedService seed, WebshopContext context)
     {
         _userManager = userManager;
         _addressRepo = addressRepo;
         _seed = seed;
+        _context = context;
     }
 
     public async Task<bool> UserExists(Expression<Func<AppUser, bool>> predicate)
     {
         return await _userManager.Users.AnyAsync(predicate);
+    }
+
+    public async Task<List<UserModel>> GetAll()
+    {
+        var usersEntities = await _context.Users.ToListAsync();
+        var userModels = new List<UserModel>();
+
+        foreach (var user in usersEntities)
+            userModels.Add(user);
+
+        return userModels;
     }
 
     public async Task<bool> SignUp(SignUpViewModel model)

@@ -30,18 +30,102 @@
         }
     }
 
-    .products {
-        .create-button {
-            padding: 0;
-            width: 2.5em;
-            height: 2.5em;
-            background-color: $color-theme-1;
-            color: $color-white;
-            border: none;
-            border-radius: 5px;
+    .option {
+        display: none;
 
-            .bi-plus {
-                font-size: 1.75em;
+        &.active {
+            display: block;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5em 0;
+
+            @include lg {
+                padding: 1em 0;
+            }
+
+            h2 {
+                font-size: 1.1em;
+                margin: 0;
+
+                @include md {
+                    font-size: 1.25em;
+                }
+
+                @include xl {
+                    font-size: 1.35em;
+                }
+            }
+
+            .create-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 2.5em;
+                height: 2.5em;
+                background-color: $color-theme-1;
+                color: $color-white;
+                border: none;
+                border-radius: 5px;
+
+                &:hover {
+                    background-color: $color-theme-3;
+                    outline: 1px solid $color-dark-3;
+                    outline-offset: -1px;
+                }
+
+                .bi-plus {
+                    font-size: 1.75em;
+                }
+            }
+        }
+
+        .user-container {
+            display: grid;
+            gap: 1em;
+
+            @include lg {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @include xl {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .user-item {
+                display: flex;
+                justify-content: space-between;
+                border: 1px solid $color-dark-4;
+                border-radius: 5px;
+                overflow: hidden;
+
+                .user-info {
+                    padding: 0.5em;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.5em;
+                    width: 82%;
+
+                    p {
+                        margin: 0;
+                    }
+                }
+
+                a {
+                    color: $color-white;
+                    background-color: $color-theme-1;
+                    width: 18%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .bi-pencil-square {
+                        font-size: 1.5rem;
+                    }
+                }
             }
         }
     }
