@@ -1,6 +1,11 @@
 ﻿.product-creation-page {
     margin: 2em 0;
 
+    h1 {
+        color: $color-dark-1;
+        margin-bottom: 0.75em;
+    }
+
     form {
         color: $color-dark-2;
 
@@ -25,6 +30,10 @@
             margin-bottom: 1em;
         }
 
+        label {
+            width: 100%;
+        }
+
         input {
             border: 1px solid $color-dark-4;
             border-radius: 2px;
@@ -34,6 +43,52 @@
 
             @include lg {
                 padding: 0.25em;
+            }
+        }
+
+        select {
+            background-color: $color-white;
+            border: 1px solid $color-dark-4;
+            border-radius: 2px;
+            margin: 3.2px 0 3.2px 0.25em;
+            height: 2.2em;
+            width:100%;
+
+            @include lg {
+                margin-left: 0;
+            }
+        }
+
+        .file-upload {
+            padding: 0;
+            height: 2.2em;
+
+            &:hover {
+                outline: 2px solid royalblue;
+            }
+
+            &::file-selector-button {
+                background-color: $color-theme-1;
+                color: $color-white;
+                border: none;
+                height: 100%;
+            }
+        }
+
+        .tag-label {
+            font-weight: bold;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 1em;
+            row-gap: 0.5em;
+
+            .tag {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 0.25em;
             }
         }
 

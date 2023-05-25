@@ -14,13 +14,7 @@
             </h1>
         </div>
         <form novalidate method="post" enctype="multipart/form-data" id="product-creation-form">
-            <div asp-validation-summary="ModelOnly"></div>
-            @if (TempData["SuccessMessage"] != null)
-            {
-                <div class="success-message">
-                    @TempData["SuccessMessage"]
-                </div>
-            }
+            <div class="error" asp-validation-summary="ModelOnly"></div>
             <div class="fields">
                 <div class="group required">
                     <label asp-for="@Model.ArticleNumber">Article Number</label>
@@ -54,20 +48,20 @@
                     <span class="error custom-error regex">Please enter only enter numbers.</span>
                 </div>
                 <div class="group required regex" data-regex="^[0-9]$|^[1-9][0-9]$|^(120)$">
-                    <label asp-for="@Model.SalePercentage">Sale Percentage (enter 0 if not on sale)</label>
+                    <label asp-for="@Model.SalePercentage">Sale Percentage (Enter "0" if not on sale)</label>
                     <input asp-for="@Model.SalePercentage" />
                     <span class="error" asp-validation-for="@Model.SalePercentage"></span>
                     <span class="error custom-error required">You must enter the sale percentage.</span>
                     <span class="error custom-error regex">Please enter a number between 0-99.</span>
                 </div>
                 <div class="group required">
-                    <label asp-for="@Model.Image">Upload product picture. (Picture needs to be 537px x 576px)</label>
-                    <input asp-for="@Model.Image" />
+                    <label asp-for="@Model.Image">Product Image (Picture needs to be 537 x 576)</label>
+                    <input class="file-upload" asp-for="@Model.Image" />
                     <span class="error" asp-validation-for="@Model.Image"></span>
                     <span class="error custom-error required">You must upload an image.</span>
                 </div>
                 <div class="group required-select">
-                    <label asp-for="@Model.CategoryId">Category</label>
+                    <label asp-for="@Model.CategoryId">Category:</label>
                     <select asp-for="@Model.CategoryId">
                         <option value="" disabled selected>Select Category</option>
                         @foreach (var category in categories)
@@ -79,14 +73,16 @@
                     <span class="error custom-error required">You must choose a category.</span>
                 </div>
                 <div class="group">
-                    <label asp-for="@Model.TagIds">Tags</label>
-                    @foreach (var tag in tags)
-                    {
-                        <div>
-                            <input type="checkbox" name="TagIds[]" value="@tag.Id" id="tag-@tag.Id" />
-                            <label for="tag-@tag.Id">@tag.Name</label>
-                        </div>
-                    }
+                    <label class="tag-label" asp-for="@Model.TagIds">Tags:</label>
+                    <div class="tags">
+                        @foreach (var tag in tags)
+                        {
+                            <div class="tag">
+                                <input type="checkbox" name="TagIds[]" value="@tag.Id" id="tag-@tag.Id" />
+                                <label for="tag-@tag.Id">@tag.Name</label>
+                            </div>
+                        }
+                    </div>
                     <span class="error" asp-validation-for="@Model.TagIds"></span>
                 </div>
             </div>

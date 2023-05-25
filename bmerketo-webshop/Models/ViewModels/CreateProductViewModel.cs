@@ -23,6 +23,7 @@ public class CreateProductViewModel
     public decimal CurrentPrice { get; set; }
 
     [Required(ErrorMessage = "You must enter the sale percentage.")]
+    [RegularExpression(@"^[0-9]$|^[1-9][0-9]$|^(120)$", ErrorMessage = "Not a valid sale percentage. Please enter a number between 0-99")]
     public int SalePercentage { get; set; } = 0;
 
     [Required]
