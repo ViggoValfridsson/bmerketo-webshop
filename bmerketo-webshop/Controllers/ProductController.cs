@@ -44,27 +44,20 @@ public class ProductController : Controller
     [Route("product/add")]
     public async Task<IActionResult> Add(CreateProductViewModel model)
     {
-        if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            foreach(var tagId in model.TagIds)
+            if (await _productService.GetAsync(x => x.ArticleId == model.ArticleNumber) != null)
             {
-                Console.WriteLine("tagid: " + tagId);
+                ModelState.AddModelError("", "Article number already in use. Change the article number and try again.");
+                return View(model);
             }
 
-            //var product = await _productService.CreateAsync(model);
-
-            //if(product != null)
-            //{
-            //    return RedirectToAction("index");
-            //}
+            if (await _productService.CreateAsync(model))
+            {
+                return RedirectToAction("index", "admin");
+            }
 
             ModelState.AddModelError("", "Something went wrong when creating the product, please try again.");
-        }
-
-        // Remove later
-        foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-        {
-            Console.WriteLine("Validation Error: " + error.ErrorMessage);
         }
 
         return View(model);

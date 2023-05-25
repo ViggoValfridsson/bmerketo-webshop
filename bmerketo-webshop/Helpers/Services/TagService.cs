@@ -14,9 +14,6 @@ public class TagService
         _tagRepo = tagRepo;
     }
 
-    // create
-
-
     // get
     public async Task<TagModel?> GetAsync(Expression<Func<TagEntity, bool>> predicate)
     {

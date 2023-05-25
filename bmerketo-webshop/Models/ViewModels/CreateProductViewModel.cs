@@ -31,4 +31,22 @@ public class CreateProductViewModel
     [Required]
     public int CategoryId { get; set; }
     public List<int> TagIds { get; set; } = new List<int>();
+
+    public static implicit operator ProductEntity (CreateProductViewModel viewModel)
+    {
+        if (viewModel == null)
+            return null!;
+
+        return new ProductEntity
+        {
+            ArticleId = viewModel.ArticleNumber,
+            Name = viewModel.Name,
+            Description = viewModel.Description,
+            OriginalPrice = viewModel.OriginalPrice,
+            CurrentPrice = viewModel.CurrentPrice,
+            SalePercentage = viewModel.SalePercentage,
+            CategoryId = viewModel.CategoryId,
+            ImageUrl = $"/images/products/{viewModel.ArticleNumber}_{viewModel.Image.FileName}"
+        };
+    }
 }
