@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,7 +57,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var dbContext = services.GetRequiredService<WebshopContext>();
 
-    // Call SeedCategories method from Seed class and pass the dbContext
+    // Seeds the database
     var seed = new Seed(dbContext);
     await seed.SeedAll();
 }
