@@ -81,7 +81,6 @@ public class ProductService
         return products[randomNumber];
     }
 
-    // get all
     public async Task<List<ProductModel>> GetAllAsync(Expression<Func<ProductEntity, bool>> predicate = null!, int page = 0, int pageAmount = 32)
     {
         var products = new List<ProductModel>();
@@ -100,13 +99,4 @@ public class ProductService
 
         return products;
     }
-
-
-    // get all filtered
-
-    //get all by tag kolla featured tag funktionen för hur man gör
-
-    // update
-
-    // delete
 }

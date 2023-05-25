@@ -1,7 +1,7 @@
 ﻿.product-page {
     .link-list {
         padding: 0;
-        margin: 2em 0;
+        margin: 1em 0;
         font-size: 1.2em;
         list-style: none;
         display: flex;
@@ -10,7 +10,12 @@
         flex-wrap: wrap;
 
         @include lg {
+            margin: 2em 0;
             gap: 1em;
+
+            .seperator {
+                display: none;
+            }
         }
 
         a {

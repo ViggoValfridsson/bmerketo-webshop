@@ -18,6 +18,7 @@
                     <li>
                         <a asp-action="Index" asp-route-page="1" class="@(currentRoute == "Index" ? "active" : "")">All</a>
                     </li>
+                    <li class="seperator">|</li>
                     @foreach (var category in categories)
                     {
                         <li>
@@ -26,14 +27,20 @@
                                 @category.Name
                             </a>
                         </li>
+                        <li class="seperator">|</li>
                     }
-                    @foreach (var tag in tags)
+                    @for (var i = 0; i < tags.Count; i++)
                     {
                         <li>
-                            <a asp-action="ProductsByTag" asp-route-tag="@tag.Name.ToLower()" asp-route-page="1" class="@(currentRoute == "ProductsByTag" && tag.Name.ToLower() == currentTag ? "active" : "")">
-                                @tag.Name
+                            <a asp-action="ProductsByTag" asp-route-tag="@tags[i].Name.ToLower()" asp-route-page="1" class="@(currentRoute == "ProductsByTag" && tags[i].Name.ToLower() == currentTag ? "active" : "")">
+                                @tags[i].Name
                             </a>
                         </li>
+
+                        @if (i != tags.Count - 1)
+                        {
+                            <li class="seperator">|</li>
+                        }
                     }
                 </ul>
             </nav>
