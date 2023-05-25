@@ -15,6 +15,6 @@ public class ProductModel
     public int SalePercentage { get; set; }
     public string ImageUrl { get; set; } = null!;
     public string CategoryName { get; set; } = null!;
-    public ICollection<string> Tags { get; set; } = new HashSet<string>();
+    public List<string> Tags { get; set; } = new List<string>();
 
 }

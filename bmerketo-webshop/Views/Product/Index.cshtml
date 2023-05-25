@@ -103,6 +103,17 @@
                 </div>
 
                 <p class="category">Category:  @Model.Product.CategoryName</p>
+                <p class="tags">Tags:  @for (var i = 0; i < Model.Product.Tags.Count; i++) {
+                        if (i != Model.Product.Tags.Count - 1)
+                        {
+                            <span>@Model.Product.Tags[i],</span>
+                        }
+                        else
+                        {
+                            <span>@Model.Product.Tags[i]</span>
+                        }
+                    }
+                </p>
             </div>
         </div>
 
