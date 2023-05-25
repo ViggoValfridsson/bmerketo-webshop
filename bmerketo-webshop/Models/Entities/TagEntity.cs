@@ -18,6 +18,7 @@ public class TagEntity
 
         var tag = new TagModel
         {
+            Id = entity.Id,
             Name = entity.TagName ?? ""
         };
 

@@ -21,7 +21,7 @@
             <div class="products option active">
                 <div class="button-container">
                     <h2>Modify or add products</h2>
-                    <a asp-action="products" class="create-button"><i class="bi bi-plus"></i></a>
+                    <a asp-action="add" asp-controller="product" class="create-button"><i class="bi bi-plus"></i></a>
                 </div>
 
                 <partial name="/Views/Partials/_ProductCollection.cshtml" model=@collectionViewModel />

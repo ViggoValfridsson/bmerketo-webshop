@@ -2,7 +2,9 @@
 using bmerketo_webshop.Helpers.Repositories;
 using bmerketo_webshop.Models;
 using bmerketo_webshop.Models.Entities;
+using bmerketo_webshop.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Identity.Client;
 using System.Linq.Expressions;
 
@@ -20,9 +22,11 @@ public class ProductService
     }
 
     // create
+    public async Task<CreateProductViewModel?> CreateAsync(CreateProductViewModel viewModel)
+    {
+        throw new NotImplementedException();
+    }
 
-
-    //get
     public async Task<ProductModel?> GetAsync(Expression<Func<ProductEntity, bool>> predicate)
     {
         var entity = await _repo.GetAsync(predicate);
@@ -30,7 +34,7 @@ public class ProductService
         return entity!;
     }
 
-    // Gets random product with featured tag
+    // need refactoring
     public async Task<ProductModel?> GetRandomByTagAsync(string tagName)
     {
         var tag = await _tagService.GetAsync(x => x.TagName == tagName);
@@ -49,6 +53,7 @@ public class ProductService
         return products[randomNumber];
     }
 
+    // needs to be removed
     public async Task<List<ProductModel>>? GetAllByTag(string tagName)
     {
         var tag = await _tagService.GetAsync(x => x.TagName == tagName);

@@ -1,0 +1,93 @@
+﻿@model CreateProductViewModel
+
+@{
+    ViewData["Title"] = "Create Product";
+    var categories = await _categoryService.GetAllAsync();
+    var tags = await _tagService.GetAllAsync();
+}
+
+<div class="product-creation-page">
+    <div class="container">
+        <div class="header">CREATE NEW PRODUCT</div>
+        <form novalidate method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly"></div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="success-message">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+            <div class="fields">
+                <div class="group required">
+                    <label asp-for="@Model.ArticleNumber">Article Number</label>
+                    <input asp-for="@Model.ArticleNumber" />
+                    <span class="error" asp-validation-for="@Model.ArticleNumber"></span>
+                    <span class="error custom-error required">You must provide an article number.</span>
+                </div>
+                <div class="group required">
+                    <label asp-for="@Model.Name">Product Name</label>
+                    <input asp-for="@Model.Name" />
+                    <span class="error" asp-validation-for="@Model.Name"></span>
+                    <span class="error custom-error required">You must provide a product name.</span>
+                </div>
+                <div class="group">
+                    <label asp-for="@Model.Description">Description</label>
+                    <input asp-for="@Model.Description" />
+                    <span class="error" asp-validation-for="@Model.Description"></span>
+                </div>
+                <div class="group">
+                    <label asp-for="@Model.OriginalPrice">Original Price (leave empty if product is not on sale)</label>
+                    <input asp-for="@Model.OriginalPrice" />
+                    <span class="error" asp-validation-for="@Model.OriginalPrice"></span>
+                </div>
+                <div class="group required">
+                    <label asp-for="@Model.CurrentPrice">Current Price</label>
+                    <input asp-for="@Model.CurrentPrice" />
+                    <span class="error" asp-validation-for="@Model.CurrentPrice"></span>
+                    <span class="error custom-error required">You must enter the current price.</span>
+                </div>
+                <div class="group required">
+                    <label asp-for="@Model.SalePercentage">Sale Percentage (enter 0 if not on sale)</label>
+                    <input asp-for="@Model.SalePercentage" />
+                    <span class="error" asp-validation-for="@Model.SalePercentage"></span>
+                    <span class="error custom-error required">You must enter the sale percentage.</span>
+                </div>
+                <div class="group required">
+                    <label asp-for="@Model.Image">Upload product picture. (Picture needs to be 537px x 576px)</label>
+                    <input asp-for="@Model.Image" />
+                    <span class="error" asp-validation-for="@Model.Image"></span>
+                    <span class="error custom-error required">You must upload an image.</span>
+                </div>
+                <div class="group required">
+                    <label asp-for="@Model.CategoryId">Category</label>
+                    <select asp-for="@Model.CategoryId">
+                        <option value="" disabled selected>Select Category</option>
+                        @foreach (var category in categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                    <span class="error" asp-validation-for="@Model.CategoryId"></span>
+                    <span class="error custom-error required">You must choose a category.</span>
+                </div>
+                <div class="group">
+                    <label asp-for="TagIds">Tags</label>
+                    @foreach (var tag in tags)
+                    {
+                        <div>
+                            <input type="checkbox" name="TagIds[]" value="@tag.Id" id="tag-@tag.Id" />
+                            <label for="tag-@tag.Id">@tag.Name</label>
+                        </div>
+                    }
+                    <span class="error" asp-validation-for="@Model.TagIds"></span>
+                </div>
+
+
+
+            </div>
+            <div class="button-container">
+                <button type="submit">UPDATE ACCOUNT</button>
+            </div>
+        </form>
+    </div>
+</div>
