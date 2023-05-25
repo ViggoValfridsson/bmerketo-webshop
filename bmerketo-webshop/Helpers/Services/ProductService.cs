@@ -81,22 +81,6 @@ public class ProductService
         return products[randomNumber];
     }
 
-    // needs to be removed
-    public async Task<List<ProductModel>>? GetAllByTag(string tagName)
-    {
-        var tag = await _tagService.GetAsync(x => x.TagName == tagName);
-
-        if (tag == null)
-            return null!;
-
-        var products = tag.Products.ToList();
-
-        if (products.Count < 1)
-            return null!;
-
-        return products;
-    }
-
     // get all
     public async Task<List<ProductModel>> GetAllAsync(Expression<Func<ProductEntity, bool>> predicate = null!, int page = 0, int pageAmount = 32)
     {

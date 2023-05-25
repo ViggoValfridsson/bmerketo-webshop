@@ -1,5 +1,5 @@
 ﻿@{
-    var products = await _productService.GetAllByTag("On Sale")!;
+    var products = await _productService.GetAllAsync(p => p.Tags.Any(t => t.Tag.TagName == "On Sale"))!;
 }
 
 @if (products != null && products.Count >= 2)
