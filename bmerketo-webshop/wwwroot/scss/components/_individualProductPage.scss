@@ -30,7 +30,8 @@
         grid-area: title;
         margin-bottom: 0.5em;
         display: flex;
-        align-items: start;
+        justify-content: space-between;
+        align-items: center;
         gap: 0.5em;
 
         h1 {
@@ -38,16 +39,20 @@
         }
 
         .edit {
+            font-size: 1.25em;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: $color-theme-1;
             color: $color-white;
             border: none;
-            height: 3em;
-            width: 8em;
+            padding: 0.5em 2em;
             border-radius: 3px;
             text-decoration: none;
+
+            @include lg {
+                margin-left: 1em;
+            }
 
             &:hover {
                 background-color: $color-theme-3;
