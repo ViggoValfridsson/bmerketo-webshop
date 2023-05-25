@@ -31,6 +31,7 @@ builder.Services.AddScoped<TagService>();
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<RoleSeedService>();
+builder.Services.AddScoped<ProductsTagsService>();
 
 // Identity
 builder.Services.AddIdentity<AppUser, IdentityRole>(x =>

@@ -1,0 +1,152 @@
+﻿.product-creation-page {
+    margin: 2em 0;
+
+    h1 {
+        color: $color-dark-1;
+        margin-bottom: 0.75em;
+    }
+
+    form {
+        color: $color-dark-2;
+
+        @include lg {
+            margin: 2em 0;
+        }
+
+
+        .fields {
+            @include lg {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 1em;
+            }
+
+            .span-two {
+                grid-column: span 2;
+            }
+        }
+
+        .group {
+            margin-bottom: 1em;
+        }
+
+        label {
+            width: 100%;
+        }
+
+        input {
+            border: 1px solid $color-dark-4;
+            border-radius: 2px;
+            margin-bottom: 1em;
+            width: 100%;
+            margin: 0.2em 0;
+
+            @include lg {
+                padding: 0.25em;
+            }
+        }
+
+        select {
+            background-color: $color-white;
+            border: 1px solid $color-dark-4;
+            border-radius: 2px;
+            margin: 3.2px 0 3.2px 0.25em;
+            height: 2.2em;
+            width:100%;
+
+            @include lg {
+                margin-left: 0;
+            }
+        }
+
+        .file-upload {
+            padding: 0;
+            height: 2.2em;
+
+            &:hover {
+                outline: 2px solid royalblue;
+            }
+
+            &::file-selector-button {
+                background-color: $color-theme-1;
+                color: $color-white;
+                border: none;
+                height: 100%;
+            }
+        }
+
+        .tag-label {
+            font-weight: bold;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 1em;
+            row-gap: 0.5em;
+
+            .tag {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 0.25em;
+            }
+        }
+
+        .button-container {
+            margin: 1em 0;
+            display: flex;
+            justify-content: start;
+
+            @include lg {
+                margin: 1em 0;
+            }
+
+            button {
+                padding: 0.5em 2em;
+                font-size: 1.1em;
+                color: $color-white;
+                background-color: $color-theme-1;
+                border: none;
+                transition: transform 0.2s;
+
+                &:hover {
+                    background-color: $color-theme-3;
+                    outline: 1px solid $color-dark-3;
+                    outline-offset: -1px;
+                }
+            }
+        }
+    }
+
+    .custom-error {
+        display: none;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .validation-summary-errors > ul {
+        list-style: none;
+        padding: 0;
+        font-size: 1.1em;
+        margin-top: -1em;
+
+        li {
+            width: 100%;
+            text-align: start;
+        }
+    }
+
+    .terms-and-conditions {
+        margin-top: 0.25em;
+        margin-bottom: -1em;
+    }
+
+    .success-message {
+        width: 100%;
+        margin-bottom: 1em;
+        color: #1d7832;
+        font-size: 1.1em;
+    }
+}

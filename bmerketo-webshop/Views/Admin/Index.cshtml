@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+
+    var collectionViewModel = new CollectionViewmodel
+            {
+                Products = await _productService.GetAllAsync()
+            };
+
+    var users = await _userService.GetAllAsync();
+}
+
+<div class="admin-dashboard-page">
+    <div class="container">
+        <h1>ADMIN DASHBOARD</h1>
+        <div class="dashboard-options">
+            <button class="active dashboard-option" type="button" data-target="products">PRODUCTS</button>
+            <button class="dashboard-option" type="button" data-target="users">USERS</button>
+        </div>
+
+        <div class="options">
+            <div class="products option active">
+                <div class="button-container">
+                    <h2>Modify or add products</h2>
+                    <a asp-action="add" asp-controller="product" class="create-button"><i class="bi bi-plus"></i></a>
+                </div>
+
+                <partial name="/Views/Partials/_ProductCollection.cshtml" model=@collectionViewModel />
+            </div>
+
+            <div class="users option">
+                <div class="button-container">
+                    <h2>Handle users</h2>
+                </div>
+                <div class="user-container">
+                    @foreach (var user in users)
+                    {
+                        <partial name="/Views/Partials/_UserItem.cshtml" model=@user />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll(".dashboard-option");
+            const divs = document.querySelectorAll('.options > .option');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const target = button.dataset.target;
+
+                    divs.forEach(div => {
+                        div.style.display = div.classList.contains(target) ? 'block' : 'none';
+                    });
+
+                    buttons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+
+                    button.classList.add('active');
+                });
+            });
+        });
+    </script>
+</div>

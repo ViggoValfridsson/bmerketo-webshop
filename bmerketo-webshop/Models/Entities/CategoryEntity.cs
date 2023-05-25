@@ -17,6 +17,7 @@ public class CategoryEntity
 
         var model = new CategoryModel
         {
+            Id = entity.Id,
             Name = entity.CategoryName
         };
 

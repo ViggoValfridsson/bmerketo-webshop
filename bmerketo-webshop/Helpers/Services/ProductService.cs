@@ -2,8 +2,7 @@
 using bmerketo_webshop.Helpers.Repositories;
 using bmerketo_webshop.Models;
 using bmerketo_webshop.Models.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+using bmerketo_webshop.Models.ViewModels;
 using System.Linq.Expressions;
 
 namespace bmerketo_webshop.Helpers.Services;
@@ -12,17 +11,50 @@ public class ProductService
 {
     private readonly ProductRepo _repo;
     private readonly TagService _tagService;
+    private readonly IWebHostEnvironment _webHostEnvironment;
+    private readonly ProductsTagsService _productsTagsService;
 
-    public ProductService(ProductRepo repo, TagService tagService)
+    public ProductService(ProductRepo repo, TagService tagService, IWebHostEnvironment webHostEnvironment, ProductsTagsService productsTagsService)
     {
         _repo = repo;
         _tagService = tagService;
+        _webHostEnvironment = webHostEnvironment;
+        _productsTagsService = productsTagsService;
     }
 
-    // create
+    public async Task<bool> CreateAsync(CreateProductViewModel viewModel)
+    {
+        if (!await UploadImageAsync(viewModel))
+            return false;
 
+        var productEntity = await _repo.CreateAsync(viewModel);
 
-    //get
+        if (productEntity == null)
+            return false;
+
+        foreach (var tagId in viewModel.TagIds)
+        {
+            var productTagWasCreated = await _productsTagsService.CreateAsync(tagId, viewModel.ArticleNumber);
+            
+            if (!productTagWasCreated)
+                return false;
+        }
+
+        return true;
+    }
+
+    public async Task<bool> UploadImageAsync(CreateProductViewModel viewModel)
+    {
+        try
+        {
+            string imagePath = $"{_webHostEnvironment.WebRootPath}/images/products/{viewModel.ArticleNumber}_{viewModel.Image.FileName}";
+            await viewModel.Image.CopyToAsync(new FileStream(imagePath, FileMode.Create));
+
+            return true;
+        }
+        catch { return false; }
+    }
+
     public async Task<ProductModel?> GetAsync(Expression<Func<ProductEntity, bool>> predicate)
     {
         var entity = await _repo.GetAsync(predicate);
@@ -30,7 +62,7 @@ public class ProductService
         return entity!;
     }
 
-    // Gets random product with featured tag
+    // need refactoring
     public async Task<ProductModel?> GetRandomByTagAsync(string tagName)
     {
         var tag = await _tagService.GetAsync(x => x.TagName == tagName);
@@ -49,6 +81,7 @@ public class ProductService
         return products[randomNumber];
     }
 
+    // needs to be removed
     public async Task<List<ProductModel>>? GetAllByTag(string tagName)
     {
         var tag = await _tagService.GetAsync(x => x.TagName == tagName);

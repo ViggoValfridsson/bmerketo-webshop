@@ -18,7 +18,7 @@ public class AppUser : IdentityUser
     public int AddressId { get; set; }
     public AddressEntity Address { get; set; } = null!;
 
-    public static implicit operator UpdateUserViewModel (AppUser user)
+    public static implicit operator UpdateUserViewModel(AppUser user)
     {
         if (user == null)
             return null!;
@@ -29,6 +29,20 @@ public class AppUser : IdentityUser
             FirstName = user.FirstName,
             LastName = user.LastName,
             CompanyName = user.CompanyName,
+            Email = user.UserName!
+        };
+    }
+
+    public static implicit operator UserModel(AppUser user)
+    {
+        if (user == null)
+            return null!;
+
+        return new UserModel
+        {
+            Id = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
             Email = user.UserName!
         };
     }

@@ -1,6 +1,8 @@
 ﻿using bmerketo_webshop.Helpers.Services;
 using bmerketo_webshop.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace bmerketo_webshop.Controllers;
 
@@ -19,7 +21,7 @@ public class ProductController : Controller
         var product = await _productService.GetAsync(x => x.ArticleId == articleId);
 
         if (product == null)
-            return NotFound();
+            return RedirectToAction("index", "notfound");
 
         var viewModel = new IndividualProductViewModel
         {
@@ -28,5 +30,36 @@ public class ProductController : Controller
         };
 
         return View(viewModel);
+    }
+
+    [Authorize(Roles = "admin")]
+    [Route("product/add")]
+    public IActionResult Add()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "admin")]
+    [Route("product/add")]
+    public async Task<IActionResult> Add(CreateProductViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            if (await _productService.GetAsync(x => x.ArticleId == model.ArticleNumber) != null)
+            {
+                ModelState.AddModelError("", "Article number already in use. Change the article number and try again.");
+                return View(model);
+            }
+
+            if (await _productService.CreateAsync(model))
+            {
+                return RedirectToAction("index", "admin");
+            }
+
+            ModelState.AddModelError("", "Something went wrong when creating the product, please try again.");
+        }
+
+        return View(model);
     }
 }

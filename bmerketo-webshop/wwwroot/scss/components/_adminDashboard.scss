@@ -1,0 +1,99 @@
+﻿.admin-dashboard-page {
+    margin: 1em 0;
+    color: $color-dark-1;
+
+    @include lg {
+        margin: 2em 0;
+    }
+
+    .dashboard-options {
+        display: flex;
+        border: 1px solid $color-dark-4;
+        border-right: none;
+
+        .dashboard-option {
+            width: 50%;
+            padding: 0.5em 0;
+            font-weight: 600;
+            border: none;
+            border-right: 1px solid $color-dark-4;
+            background-color: transparent;
+
+            &:hover {
+                background-color: $color-dark-5;
+            }
+        }
+
+        .dashboard-option.active {
+            background-color: $color-theme-1;
+            color: $color-white;
+        }
+    }
+
+    .option {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5em 0;
+
+            @include lg {
+                padding: 1em 0;
+            }
+
+            h2 {
+                font-size: 1.1em;
+                margin: 0;
+
+                @include md {
+                    font-size: 1.25em;
+                }
+
+                @include xl {
+                    font-size: 1.35em;
+                }
+            }
+
+            .create-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 2.5em;
+                height: 2.5em;
+                background-color: $color-theme-1;
+                color: $color-white;
+                border: none;
+                border-radius: 5px;
+
+                &:hover {
+                    background-color: $color-theme-3;
+                    outline: 1px solid $color-dark-3;
+                    outline-offset: -1px;
+                }
+
+                .bi-plus {
+                    font-size: 1.75em;
+                }
+            }
+        }
+
+        .user-container {
+            display: grid;
+            gap: 1em;
+
+            @include lg {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @include xl {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+﻿.user-item {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid $color-dark-4;
+    border-radius: 5px;
+    overflow: hidden;
+
+    .user-info {
+        padding: 0.5em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+        width: 82%;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    a {
+        color: $color-white;
+        background-color: $color-theme-1;
+        width: 18%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .bi-pencil-square {
+            font-size: 1.5rem;
+        }
+    }
+}

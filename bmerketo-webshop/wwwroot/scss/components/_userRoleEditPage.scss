@@ -1,0 +1,100 @@
+﻿.user-role-edit {
+    margin: 1em 0;
+    color: $color-dark-1;
+
+    @include lg {
+        margin: 2em 0;
+    }
+
+    .container {
+        @include md {
+            width: 70%;
+        }
+
+        @include lg {
+            width: 65%;
+        }
+
+        @include xl {
+            width: 60%;
+        }
+
+        @include xxl {
+        }
+    }
+
+    .user-info {
+        display: grid;
+        column-gap: 1em;
+
+        @include xs {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include lg {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        h1, h3 {
+            @include xs {
+                grid-column: span 2;
+            }
+
+            @include lg {
+                grid-column: span 3;
+            }
+        }
+
+        h1 {
+            margin-bottom: 0.5em;
+        }
+
+        h3 {
+            font-size: 1.35em;
+        }
+    }
+
+    form {
+        h2 {
+            font-size: 1.35em;
+        }
+
+        .role-container {
+            display: flex;
+            width: auto;
+            gap: 1em;
+            flex-wrap: wrap;
+        }
+
+        button {
+            margin: 1em 0;
+            color: $color-white;
+            background-color: $color-theme-1;
+            height: 3em;
+            width: 9em;
+            border-radius: 3px;
+            border: none;
+
+            &:hover {
+                background-color: $color-theme-3;
+                outline: 1px solid $color-dark-3;
+                outline-offset: -1px;
+            }
+        }
+    }
+
+    .message {
+        font-weight: 600;
+        margin-bottom: 0.5em;
+    }
+
+    .success-message {
+        color: green;
+        font-size: 1.35em;
+    }
+
+    .failure-message {
+        color: red;
+        font-size: 1.1em;
+    }
+}
