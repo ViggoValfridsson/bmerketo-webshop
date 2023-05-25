@@ -46,7 +46,7 @@
             </nav>
         </div>
         <div class="filter"></div>
-        @if (Model.Products != null && Model.Products.Count > 0)
+        @if (false && Model.Products != null && Model.Products.Count > 0)
         {
             <Partial name="/Views/Partials/_ProductCollection.cshtml" />
 
@@ -107,7 +107,10 @@
         else
         {
             <!--THis need styling!!!!-->
-            <div>Not found</div>
+            <div class="not-found">
+                <h1>NOT FOUND</h1>
+                <p>There were no products in the specified category. If you believe this to be an error please contact us.</p>
+            </div>
         }
     </div>
 </div>
