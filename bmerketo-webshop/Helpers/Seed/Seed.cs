@@ -1141,6 +1141,10 @@ public class Seed
             new TagEntity
             {
                 TagName = "Best Collection"
+            },
+            new TagEntity
+            {
+                TagName = "Popular"
             }
         };
 
@@ -1191,7 +1195,7 @@ public class Seed
         };
 
         var bestCollectionProducts = await _context.Products.Take(32).ToListAsync();
-        var topSellersProducts = await _context.Products.Skip(32).Take(32).ToListAsync();
+        var topSellersAndPopularProducts = await _context.Products.Skip(32).Take(32).ToListAsync();
         var newProducts = await _context.Products.Skip(64).Take(10).ToListAsync();
 
         foreach (var product in bestCollectionProducts)
@@ -1204,11 +1208,21 @@ public class Seed
             productTags.Add(tag);
         }
 
-        foreach (var product in topSellersProducts)
+        foreach (var product in topSellersAndPopularProducts)
         {
             var tag = new ProductsTagsEntity
             {
-                TagId =3,
+                TagId = 3,
+                ProductArticleNumber = product.ArticleId
+            };
+            productTags.Add(tag);
+        }
+
+        foreach (var product in topSellersAndPopularProducts)
+        {
+            var tag = new ProductsTagsEntity
+            {
+                TagId = 6,
                 ProductArticleNumber = product.ArticleId
             };
             productTags.Add(tag);
