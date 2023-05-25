@@ -1,0 +1,97 @@
+﻿.product-creation-page {
+    margin: 2em 0;
+
+    form {
+        color: $color-dark-2;
+
+        @include lg {
+            margin: 2em 0;
+        }
+
+
+        .fields {
+            @include lg {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 1em;
+            }
+
+            .span-two {
+                grid-column: span 2;
+            }
+        }
+
+        .group {
+            margin-bottom: 1em;
+        }
+
+        input {
+            border: 1px solid $color-dark-4;
+            border-radius: 2px;
+            margin-bottom: 1em;
+            width: 100%;
+            margin: 0.2em 0;
+
+            @include lg {
+                padding: 0.25em;
+            }
+        }
+
+        .button-container {
+            margin: 1em 0;
+            display: flex;
+            justify-content: start;
+
+            @include lg {
+                margin: 1em 0;
+            }
+
+            button {
+                padding: 0.5em 2em;
+                font-size: 1.1em;
+                color: $color-white;
+                background-color: $color-theme-1;
+                border: none;
+                transition: transform 0.2s;
+
+                &:hover {
+                    background-color: $color-theme-3;
+                    outline: 1px solid $color-dark-3;
+                    outline-offset: -1px;
+                }
+            }
+        }
+    }
+
+    .custom-error {
+        display: none;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .validation-summary-errors > ul {
+        list-style: none;
+        padding: 0;
+        font-size: 1.1em;
+        margin-top: -1em;
+
+        li {
+            width: 100%;
+            text-align: start;
+        }
+    }
+
+    .terms-and-conditions {
+        margin-top: 0.25em;
+        margin-bottom: -1em;
+    }
+
+    .success-message {
+        width: 100%;
+        margin-bottom: 1em;
+        color: #1d7832;
+        font-size: 1.1em;
+    }
+}

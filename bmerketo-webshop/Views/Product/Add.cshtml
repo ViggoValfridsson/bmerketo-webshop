@@ -8,8 +8,12 @@
 
 <div class="product-creation-page">
     <div class="container">
-        <div class="header">CREATE NEW PRODUCT</div>
-        <form novalidate method="post" enctype="multipart/form-data">
+        <div class="header">
+            <h1>
+                CREATE NEW PRODUCT
+            </h1>
+        </div>
+        <form novalidate method="post" enctype="multipart/form-data" id="product-creation-form">
             <div asp-validation-summary="ModelOnly"></div>
             @if (TempData["SuccessMessage"] != null)
             {
@@ -30,27 +34,31 @@
                     <span class="error" asp-validation-for="@Model.Name"></span>
                     <span class="error custom-error required">You must provide a product name.</span>
                 </div>
-                <div class="group">
+                <div class="group required">
                     <label asp-for="@Model.Description">Description</label>
                     <input asp-for="@Model.Description" />
                     <span class="error" asp-validation-for="@Model.Description"></span>
+                    <span class="error custom-error required">You must provide enter a description.</span>
                 </div>
-                <div class="group">
+                <div class="group regex" data-regex="^[0-9]*$">
                     <label asp-for="@Model.OriginalPrice">Original Price (leave empty if product is not on sale)</label>
                     <input asp-for="@Model.OriginalPrice" />
                     <span class="error" asp-validation-for="@Model.OriginalPrice"></span>
+                    <span class="error custom-error regex">Please enter only enter numbers.</span>
                 </div>
-                <div class="group required">
+                <div class="group required regex" data-regex="^[0-9]*$">
                     <label asp-for="@Model.CurrentPrice">Current Price</label>
                     <input asp-for="@Model.CurrentPrice" />
                     <span class="error" asp-validation-for="@Model.CurrentPrice"></span>
                     <span class="error custom-error required">You must enter the current price.</span>
+                    <span class="error custom-error regex">Please enter only enter numbers.</span>
                 </div>
-                <div class="group required">
+                <div class="group required regex" data-regex="^[0-9]$|^[1-9][0-9]$|^(120)$">
                     <label asp-for="@Model.SalePercentage">Sale Percentage (enter 0 if not on sale)</label>
                     <input asp-for="@Model.SalePercentage" />
                     <span class="error" asp-validation-for="@Model.SalePercentage"></span>
                     <span class="error custom-error required">You must enter the sale percentage.</span>
+                    <span class="error custom-error regex">Please enter a number between 0-99.</span>
                 </div>
                 <div class="group required">
                     <label asp-for="@Model.Image">Upload product picture. (Picture needs to be 537px x 576px)</label>
@@ -58,7 +66,7 @@
                     <span class="error" asp-validation-for="@Model.Image"></span>
                     <span class="error custom-error required">You must upload an image.</span>
                 </div>
-                <div class="group required">
+                <div class="group required-select">
                     <label asp-for="@Model.CategoryId">Category</label>
                     <select asp-for="@Model.CategoryId">
                         <option value="" disabled selected>Select Category</option>
@@ -87,4 +95,69 @@
             </div>
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const allGroups = document.querySelectorAll(".group");
+            const requiredGroups = document.querySelectorAll(".group.required");
+            const requiredSelectGroups = document.querySelectorAll(".group.required-select");
+            const regexGroups = document.querySelectorAll(".group.regex");
+            const createProductForm = document.querySelector("#product-creation-form");
+
+            createProductForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                let modelIsValid = true;
+
+                requiredGroups.forEach(group => {
+                    const input = group.querySelector("input");
+                    const requiredSpan = group.querySelector(".custom-error.required");
+                    if (input.value.trim() === "") {
+                        requiredSpan.style.display = "block";
+                        modelIsValid = false;
+                    } else {
+                        requiredSpan.style.display = "none";
+                    }
+                });
+
+                requiredSelectGroups.forEach(group => {
+                    const select = group.querySelector("select");
+                    const requiredSpan = group.querySelector(".custom-error.required");
+
+                    if (select.value.trim() === "") {
+                        requiredSpan.style.display = "block";
+                        modelIsValid = false;
+                    } else {
+                        requiredSpan.style.display = "none";
+                    }
+                });
+
+                regexGroups.forEach(group => {
+                    const input = group.querySelector("input");
+                    const regexPattern = group.dataset.regex;
+                    const regexErrorSpan = group.querySelector(".custom-error.regex");
+
+                    if (input.value.trim() !== "" && !new RegExp(regexPattern).test(input.value)) {
+                        regexErrorSpan.style.display = "block";
+                        modelIsValid = false;
+                    } else {
+                        regexErrorSpan.style.display = "none";
+                    }
+                });
+
+                if (modelIsValid) {
+                    createProductForm.submit();
+                }
+            });
+
+            allGroups.forEach(group => {
+                const input = group.querySelector("input, textarea");
+                const errorSpans = group.querySelectorAll(".error");
+
+                input.addEventListener("input", () => {
+                    errorSpans.forEach(span => {
+                        span.style.display = "none";
+                    });
+                });
+            });
+        });
+    </script>
 </div>
