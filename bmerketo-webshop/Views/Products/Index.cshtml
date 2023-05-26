@@ -1,4 +1,4 @@
-﻿@model CollectionViewmodel
+﻿ @model CollectionViewmodel
 
 @{
     ViewData["title"] = "Products";
@@ -12,9 +12,10 @@
 
 <div class="product-page">
     <div class="container">
-        <div>
-            <nav>
-                <ul class="link-list">
+        <div class="nav-container">
+            <nav class="mobile-dropdown">
+                <button class="open-menu-btn">Sort By Category <span id="arrow"><i class="bi bi-caret-down"></i></span></button>
+                <ul class="link-list" data-dropdown>
                     <li>
                         <a asp-action="Index" asp-route-page="1" class="@(currentRoute == "Index" ? "active" : "")">All</a>
                     </li>
@@ -106,11 +107,26 @@
         }
         else
         {
-            <!--THis need styling!!!!-->
             <div class="not-found">
                 <h1>NOT FOUND</h1>
                 <p>There were no products in the specified category. If you believe this to be an error please contact us.</p>
             </div>
         }
     </div>
+    <script>
+        document.addEventListener("click", (e) => {
+            const isDropdownButton = e.target.matches(".open-menu-btn");
+            const dropdown = document.querySelector(".link-list")
+            const arrow = document.querySelector("#arrow")
+
+            if (isDropdownButton) {
+                dropdown.classList.toggle("active");
+                arrow.classList.toggle("active");
+            } else if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove("active");
+                arrow.classList.remove("active");
+            }
+       
+        });
+    </script>
 </div>

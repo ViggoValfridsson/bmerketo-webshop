@@ -1,31 +1,154 @@
 ﻿.product-page {
-    .link-list {
-        padding: 0;
-        margin: 1em 0;
-        font-size: 1.2em;
-        list-style: none;
+    .nav-container {
         display: flex;
-        gap: 0.5em;
         justify-content: center;
-        flex-wrap: wrap;
+        padding: 0 11px;
+
+        .mobile-dropdown {
+            margin: 1em 0;
+            position: relative;
+            width: 100%;
+
+            @include xs {
+                width: 70%;
+            }
+
+            @include sm {
+                width: 60%;
+            }
+
+            @include md {
+                width: 100%;
+                margin: 0;
+            }
+
+            .open-menu-btn {
+                border-radius: 0.25em;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                border: 1px solid $color-dark-4;
+                background-color: $color-white;
+                padding: 0.5em 0.5em;
+
+
+                @include md {
+                    display: none;
+                }
+
+                #arrow {
+                    display: block;
+                    transition: transform 200ms ease-in-out;
+
+                    i {
+                        position: relative;
+                        font-size: 1.2em;
+                        top: 0.1em;
+                    }
+                }
+
+                #arrow.active {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    .link-list {
+        /*display: none;*/
+        position: absolute;
+        list-style: none;
+        left: 0;
+        right: 0;
+        padding: 0;
+        background-color: $color-white;
+        box-shadow: 0 5px 5px 3px rgba(0,0,0, 0.2);
+        border: 1px solid $color-dark-4;
+        border-top:none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 150ms ease-in-out;
+        pointer-events: none;
+        border-radius: 0.25em;
+
+        &.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            z-index: 99;
+        }
+
+        @include md {
+            pointer-events: auto;
+            transform: translateY(0);
+            opacity: 100;
+            box-shadow: none;
+            border: none;
+            background: none;
+            margin: 1em 0;
+            position: static;
+            font-size: 1.2em;
+            list-style: none;
+            display: flex;
+            gap: 0.5em;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
         @include lg {
             margin: 2em 0;
             gap: 1em;
+        }
 
-            .seperator {
+        .seperator {
+            display: none;
+
+            @include md {
+                display: block;
+            }
+
+            @include lg {
                 display: none;
             }
         }
 
+        li {
+            &:not(:last-child) {
+                border-bottom: 1px solid $color-dark-4;
+            }
+
+            @include md {
+                border: none !important;
+            }
+        }
+
         a {
-            text-align: center;
-            text-decoration: none;
             color: $color-dark-1;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            width: 100%;
+            font-size: 1.15em;
+            padding: 0.3em 0;
 
             &:hover {
                 text-decoration: underline;
                 color: $color-theme-1;
+                background-color: $color-dark-5;
+            }
+
+            &.active {
+                color: $color-theme-1 !important;
+            }
+
+            @include md {
+                padding: 0;
+                font-size: 1em;
+
+                &:hover {
+                    background-color: transparent;
+                }
             }
         }
     }
@@ -67,9 +190,5 @@
             align-items: end;
             font-size: 1.3em;
         }
-    }
-
-    .active {
-        color: $color-theme-1 !important;
     }
 }
