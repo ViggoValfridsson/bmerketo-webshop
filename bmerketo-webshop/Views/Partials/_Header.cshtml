@@ -8,10 +8,14 @@
     <div class="nav-container">
         <div class="logo logo-dark">
             <a asp-controller="home" asp-action="index">
-                <img src="images/logo.svg" alt="">bmerketo
+                <img src="/images/logo.svg" alt="">bmerketo
             </a>
         </div>
-        <div class="logo logo-light"><img src="images/logo_light.svg" alt="">bmerketo</div>
+        <div class="logo logo-light">
+            <a asp-controller="home" asp-action="index">
+                <img src="/images/logo_light.svg" alt="">bmerketo
+            </a>
+          </div>
 
         @{
             // Conditional admin class to make sure menu is correctly displayed with an extra option
