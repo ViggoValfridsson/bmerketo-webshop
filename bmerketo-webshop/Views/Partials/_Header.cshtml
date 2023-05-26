@@ -16,7 +16,7 @@
         @{
             // Conditional admin class to make sure menu is correctly displayed with an extra option
         }
-        <nav id="menu" class="menu-links mobile-closed-menu @(user != null && user.IsAuthenticated && User.IsInRole("admin") ? "admin" : "")">
+        <nav id="menu" class="menu-links @(user != null && user.IsAuthenticated && User.IsInRole("admin") ? "admin" : "")">
             <ul>
                 <li class="link">
                     <a class="@(currentController == "Home" ? "active" : "")" asp-controller="home" asp-action="index">HOME</a>
@@ -76,7 +76,7 @@
             const expanded = button.getAttribute("aria-expanded") === "true";
 
             button.setAttribute("aria-expanded", !expanded);
-            menu.classList.toggle("mobile-closed-menu");
+            menu.classList.toggle("open-menu");
             openIcon.classList.toggle("hidden");
             closeIcon.classList.toggle("hidden");
         });
