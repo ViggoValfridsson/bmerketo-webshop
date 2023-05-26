@@ -56,7 +56,6 @@
     }
 
     .link-list {
-        /*display: none;*/
         position: absolute;
         list-style: none;
         left: 0;
@@ -65,23 +64,24 @@
         background-color: $color-white;
         box-shadow: 0 5px 5px 3px rgba(0,0,0, 0.2);
         border: 1px solid $color-dark-4;
-        border-top:none;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: all 150ms ease-in-out;
+        border-top: none;
+        transform-origin: top;
+        transform: scaleY(0);
+        transition: transform 150ms ease-in-out;
         pointer-events: none;
         border-radius: 0.25em;
 
         &.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: scaleY(1);
             pointer-events: auto;
             z-index: 99;
         }
 
         @include md {
             pointer-events: auto;
-            transform: translateY(0);
+            transform: none;
+            transition: none;
             opacity: 100;
             box-shadow: none;
             border: none;
