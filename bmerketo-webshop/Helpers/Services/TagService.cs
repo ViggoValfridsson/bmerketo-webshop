@@ -14,7 +14,6 @@ public class TagService
         _tagRepo = tagRepo;
     }
 
-    // get
     public async Task<TagModel?> GetAsync(Expression<Func<TagEntity, bool>> predicate)
     {
         var entity = await _tagRepo.GetAsync(predicate);
@@ -23,19 +22,17 @@ public class TagService
     }
 
 
-    // get all
-    public async Task<IEnumerable<TagModel>> GetAllAsync()
+    public async Task<List<TagModel>> GetAllAsync()
     {
         var entityList = await _tagRepo.GetAllAsync();
         var models = new List<TagModel>();
 
-        foreach (var entity in entityList)
-            models.Add(entity!);
+        if (entityList != null)
+        {
+            foreach (var entity in entityList)
+                models.Add(entity!);
+        }
 
         return models;
     }
-
-    // update
-
-    // delete
 }

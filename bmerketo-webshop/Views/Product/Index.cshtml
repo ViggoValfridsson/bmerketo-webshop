@@ -99,10 +99,21 @@
                         <p id="product-amount">1</p>
                         <button id="increment-amount">+</button>
                     </div>
-                    <button class="buy-button">Add To Cart <i class="bi bi-cart-plus"></i></button>
+                    <a asp-controller="notimplemented" asp-action="index" class="buy-button">Add To Cart <i class="bi bi-cart-plus"></i></a>
                 </div>
 
                 <p class="category">Category:  @Model.Product.CategoryName</p>
+                <p class="tags">Tags:  @for (var i = 0; i < Model.Product.Tags.Count; i++) {
+                        if (i != Model.Product.Tags.Count - 1)
+                        {
+                            <span>@Model.Product.Tags[i],</span>
+                        }
+                        else
+                        {
+                            <span>@Model.Product.Tags[i]</span>
+                        }
+                    }
+                </p>
             </div>
         </div>
 
@@ -125,7 +136,7 @@
             <div class="reviews info-div">
                 <div class="header-container">
                     <h3>Reviews</h3>
-                    <partial name="/Views/Partials/_NotImplemented.cshtml" />
+                    <partial name="/Views/Partials/_NotImplementedModal.cshtml" />
                 </div>
 
                 <div class="review-container">

@@ -14,10 +14,6 @@ public class CategoryService
         _repo = repo;
     }
 
-    // create
-
-
-    //get
     public async Task<CategoryModel> GetAsync(Expression<Func<CategoryEntity, bool>> predicate)
     {
         var entity = await _repo.GetAsync(predicate);
@@ -25,7 +21,6 @@ public class CategoryService
         return entity!;
     }
 
-    // get all
     public async Task<List<CategoryModel>> GetAllAsync(Expression<Func<CategoryEntity, bool>> predicate = null!)
     {
         var products = new List<CategoryModel>();
@@ -36,18 +31,12 @@ public class CategoryService
         else
             entities = await _repo.GetAllAsync(predicate);
 
-        foreach (var entity in entities)
-            products.Add(entity!);
+        if (entities != null)
+        {
+            foreach (var entity in entities)
+                products.Add(entity!);
+        }
 
         return products;
     }
-
-
-    // get all filtered
-
-    //get all by tag kolla featured tag funktionen för hur man gör
-
-    // update
-
-    // delete
 }

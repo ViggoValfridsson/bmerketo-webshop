@@ -64,8 +64,10 @@
 
     .button-container {
         grid-area: button;
+        margin-top: 1em;
 
         @include lg {
+            margin-top: 0;
             display: flex;
             flex-direction: column;
             justify-content: start;
@@ -97,12 +99,13 @@
         }
     }
 
-    button {
+    a {
         background-color: $color-theme-1;
         border: none;
         color: $color-white;
         padding: 12px 40px;
         transition: transform 0.2s;
+        text-decoration: none;
 
         &:hover {
             transform: scale(1.05);

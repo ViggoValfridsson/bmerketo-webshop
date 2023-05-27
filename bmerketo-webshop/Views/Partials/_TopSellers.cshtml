@@ -1,5 +1,5 @@
 ﻿@{
-    var products = await _productService.GetAllByTag("Top Seller")!;
+    var products = await _productService.GetAllAsync(p => p.Tags.Any(t => t.Tag.TagName == "Top Seller"));
 }
 
 @if (products != null && products.Count > 0)
@@ -21,35 +21,34 @@
                 <button id="scroll-right"><i class="bi bi-chevron-right"></i></button>
             </div>
         </div>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                const scrollLeftButton = document.getElementById('scroll-left');
+                const scrollRightButton = document.getElementById('scroll-right');
+                const productContainer = document.querySelector('.top-seller-products');
+
+                scrollLeftButton.addEventListener('click', () => {
+                    const columnWidth = productContainer.scrollWidth / @products!.Count;
+                    const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
+                    productContainer.scrollTo({
+
+                        left: productContainer.scrollLeft - columnWidth * amountOfVisibleProducts,
+                        behavior: 'smooth'
+                    });
+                });
+
+                scrollRightButton.addEventListener('click', () => {
+                    const columnWidth = productContainer.scrollWidth / @products!.Count;
+                    const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
+                    productContainer.scrollTo({
+
+                        left: productContainer.scrollLeft + columnWidth * amountOfVisibleProducts,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
     </div>
-
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const scrollLeftButton = document.getElementById('scroll-left');
-            const scrollRightButton = document.getElementById('scroll-right');
-            const productContainer = document.querySelector('.top-seller-products');
-
-            scrollLeftButton.addEventListener('click', () => {
-                const columnWidth = productContainer.scrollWidth / @products!.Count;
-                const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
-                productContainer.scrollTo({
-
-                    left: productContainer.scrollLeft - columnWidth * amountOfVisibleProducts,
-                    behavior: 'smooth'
-                });
-            });
-
-            scrollRightButton.addEventListener('click', () => {
-                const columnWidth = productContainer.scrollWidth / @products!.Count;
-                const amountOfVisibleProducts = Math.round(productContainer.getBoundingClientRect().width / columnWidth);
-                productContainer.scrollTo({
-
-                    left: productContainer.scrollLeft + columnWidth * amountOfVisibleProducts,
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 }
 
 

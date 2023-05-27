@@ -2,9 +2,9 @@
     ViewData["Title"] = "Admin Dashboard";
 
     var collectionViewModel = new CollectionViewmodel
-            {
-                Products = await _productService.GetAllAsync()
-            };
+    {
+        Products = await _productService.GetAllAsync()
+    };
 
     var users = await _userService.GetAllAsync();
 }
@@ -16,7 +16,6 @@
             <button class="active dashboard-option" type="button" data-target="products">PRODUCTS</button>
             <button class="dashboard-option" type="button" data-target="users">USERS</button>
         </div>
-
         <div class="options">
             <div class="products option active">
                 <div class="button-container">
@@ -26,7 +25,6 @@
 
                 <partial name="/Views/Partials/_ProductCollection.cshtml" model=@collectionViewModel />
             </div>
-
             <div class="users option">
                 <div class="button-container">
                     <h2>Handle users</h2>
@@ -40,7 +38,6 @@
             </div>
         </div>
     </div>
-
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll(".dashboard-option");

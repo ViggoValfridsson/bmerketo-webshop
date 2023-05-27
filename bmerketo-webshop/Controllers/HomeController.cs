@@ -26,6 +26,7 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Index(NewsletterFormViewModel model)
     {
+        // This value tells the view to scroll down to the contact form. This is to make sure you dont miss the success/error message
         ViewBag.ScrollToBottom = true;
 
         if (ModelState.IsValid)

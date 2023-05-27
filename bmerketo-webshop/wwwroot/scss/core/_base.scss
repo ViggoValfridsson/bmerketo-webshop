@@ -14,7 +14,7 @@ body {
     font-family: $font-poppins;
     font-weight: $font-weight-regular;
     color: $color-dark-3;
-    // So header icons don't hide footer
+    // padding to account for mobile view header
     padding-bottom: 4.5em;
 
     @include lg {

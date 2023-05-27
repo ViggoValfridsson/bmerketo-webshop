@@ -160,6 +160,7 @@
         }
 
         .buy-button {
+            text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5em;
@@ -182,8 +183,7 @@
         }
     }
 
-
-    .category {
+    .category, .tags {
         color: $color-dark-3;
         font-weight: 700;
         width: 100%;
@@ -296,7 +296,6 @@
             }
         }
     }
-
 
     .related-section {
         margin: 1.5em 0;

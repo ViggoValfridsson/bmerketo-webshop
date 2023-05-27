@@ -1,7 +1,6 @@
 ﻿using bmerketo_webshop.Data;
 using bmerketo_webshop.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq.Expressions;
 
 namespace bmerketo_webshop.Helpers.Repositories;
@@ -44,9 +43,13 @@ public class ProductRepo : GenericRepo<ProductEntity>
 
     public async Task<int> GetRowCountAsync(Expression<Func<ProductEntity, bool>> predicate = null!)
     {
-        if (predicate == null)
-            return await _context.Products.CountAsync();
-        else
-            return await _context.Products.CountAsync(predicate);
+        try
+        {
+            if (predicate == null)
+                return await _context.Products.CountAsync();
+            else
+                return await _context.Products.CountAsync(predicate);
+        }
+        catch { return -1; }
     }
 }

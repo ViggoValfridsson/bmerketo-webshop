@@ -1,4 +1,4 @@
-﻿@model CollectionViewmodel
+﻿ @model CollectionViewmodel
 
 @{
     ViewData["title"] = "Products";
@@ -12,12 +12,14 @@
 
 <div class="product-page">
     <div class="container">
-        <div>
-            <nav>
-                <ul class="link-list">
+        <div class="nav-container">
+            <nav class="mobile-dropdown">
+                <button class="open-menu-btn">Sort By Category <span id="arrow"><i class="bi bi-caret-down"></i></span></button>
+                <ul class="link-list" data-dropdown>
                     <li>
                         <a asp-action="Index" asp-route-page="1" class="@(currentRoute == "Index" ? "active" : "")">All</a>
                     </li>
+                    <li class="seperator">|</li>
                     @foreach (var category in categories)
                     {
                         <li>
@@ -26,14 +28,20 @@
                                 @category.Name
                             </a>
                         </li>
+                        <li class="seperator">|</li>
                     }
-                    @foreach (var tag in tags)
+                    @for (var i = 0; i < tags.Count; i++)
                     {
                         <li>
-                            <a asp-action="ProductsByTag" asp-route-tag="@tag.Name.ToLower()" asp-route-page="1" class="@(currentRoute == "ProductsByTag" && tag.Name.ToLower() == currentTag ? "active" : "")">
-                                @tag.Name
+                            <a asp-action="ProductsByTag" asp-route-tag="@tags[i].Name.ToLower()" asp-route-page="1" class="@(currentRoute == "ProductsByTag" && tags[i].Name.ToLower() == currentTag ? "active" : "")">
+                                @tags[i].Name
                             </a>
                         </li>
+
+                        @if (i != tags.Count - 1)
+                        {
+                            <li class="seperator">|</li>
+                        }
                     }
                 </ul>
             </nav>
@@ -59,12 +67,11 @@
                 @if (startPage > 1)
                 {
                     <a asp-route-page="1">1</a>
-                    // If there is pages between 1 and start page we want to show ...
+                    // If there is pages between 1 and start page we want to show "..."
                     @if (startPage > 2)
                     {
                         <span class="dots">...</span>
                     }
-
                 }
 
                 @for (int i = startPage; i <= endPage; i++)
@@ -99,8 +106,26 @@
         }
         else
         {
-            <!--THis need styling!!!!-->
-            <div>Not found</div>
+            <div class="not-found">
+                <h1>NOT FOUND</h1>
+                <p>There were no products in the specified category. If you believe this to be an error please contact us.</p>
+            </div>
         }
     </div>
+    <script>
+        document.addEventListener("click", (e) => {
+            const isDropdownButton = e.target.matches(".open-menu-btn");
+            const dropdown = document.querySelector(".link-list")
+            const arrow = document.querySelector("#arrow")
+
+            if (isDropdownButton) {
+                dropdown.classList.toggle("active");
+                arrow.classList.toggle("active");
+            } else if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove("active");
+                arrow.classList.remove("active");
+            }
+       
+        });
+    </script>
 </div>

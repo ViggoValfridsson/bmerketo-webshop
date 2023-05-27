@@ -1,5 +1,4 @@
-﻿using bmerketo_webshop.Data;
-using bmerketo_webshop.Helpers.Repositories;
+﻿using bmerketo_webshop.Helpers.Repositories;
 using bmerketo_webshop.Models;
 using bmerketo_webshop.Models.Entities;
 using bmerketo_webshop.Models.ViewModels;
@@ -62,17 +61,11 @@ public class ProductService
         return entity!;
     }
 
-    // need refactoring
     public async Task<ProductModel?> GetRandomByTagAsync(string tagName)
     {
-        var tag = await _tagService.GetAsync(x => x.TagName == tagName);
+        var products = await GetAllAsync(x => x.Tags.Any(t => t.Tag.TagName == tagName));
 
-        if (tag == null)
-            return null;
-
-        var products = tag.Products.ToList();
-
-        if (products.Count < 1)
+        if (products == null || products.Count < 1)
             return null;
 
         var random = new Random();
@@ -81,30 +74,13 @@ public class ProductService
         return products[randomNumber];
     }
 
-    // needs to be removed
-    public async Task<List<ProductModel>>? GetAllByTag(string tagName)
-    {
-        var tag = await _tagService.GetAsync(x => x.TagName == tagName);
-
-        if (tag == null)
-            return null!;
-
-        var products = tag.Products.ToList();
-
-        if (products.Count < 1)
-            return null!;
-
-        return products;
-    }
-
-    // get all
     public async Task<List<ProductModel>> GetAllAsync(Expression<Func<ProductEntity, bool>> predicate = null!, int page = 0, int pageAmount = 32)
     {
         var products = new List<ProductModel>();
         IEnumerable<ProductEntity> entities;
 
         if (predicate == null)
-            entities = await _repo.GetAllAsync();
+            entities = await _repo.GetAllAsync(page, pageAmount);
         else
             entities = await _repo.GetAllAsync(predicate, page, pageAmount);
 
@@ -116,13 +92,4 @@ public class ProductService
 
         return products;
     }
-
-
-    // get all filtered
-
-    //get all by tag kolla featured tag funktionen för hur man gör
-
-    // update
-
-    // delete
 }

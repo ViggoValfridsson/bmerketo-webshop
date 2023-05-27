@@ -1,5 +1,4 @@
-﻿using bmerketo_webshop.Migrations;
-using bmerketo_webshop.Models.Entities;
+﻿using bmerketo_webshop.Models.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace bmerketo_webshop.Models.ViewModels;
@@ -19,7 +18,7 @@ public class NewsletterFormViewModel
 
         return new NewsletterSubscriberEntity
         {
-            Email = model.Email
+            Email = model.Email.ToLower()
         };
     }
 }

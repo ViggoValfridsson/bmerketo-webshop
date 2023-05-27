@@ -25,9 +25,7 @@ public class TagEntity
         var productModels = new List<ProductModel>();
 
         foreach (var productTags in entity.Products)
-        {
             productModels.Add(productTags.Product!);
-        }
 
         tag.Products = productModels;
 

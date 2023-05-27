@@ -24,61 +24,65 @@
    
         </form>
     </div>
-</div>
 
-@if (ViewBag.ScrollToBottom != null && ViewBag.ScrollToBottom == true)
-{
+    @if (ViewBag.ScrollToBottom != null && ViewBag.ScrollToBottom == true)
+    {
+        <script>
+            window.onload = function () {
+                var anchor = document.createElement("a");
+                anchor.name = "bottom";
+                document.body.appendChild(anchor);
+
+                window.scrollTo({
+                    top: anchor.offsetTop,
+                    behavior: "smooth"
+                });
+            };
+        </script>
+    }
     <script>
-        window.onload = function () {
-            var anchor = document.createElement("a");
-            anchor.name = "bottom";
-            document.body.appendChild(anchor);
+        document.addEventListener("DOMContentLoaded", () => {
+            const emailInput = document.getElementById("Email");
+            const form = document.getElementById("contact-form");
+            const invalidEmailMessage = document.getElementById("invalid-email");
+            const nullEmailMessage = document.getElementById("null-email");
+            const emailRegexPattern = "^(\\w[\\w.-]*@@[\\w-]+\\.[\\w.-]{2,4})$";
+            const emailRegex = new RegExp(emailRegexPattern);
 
-            window.scrollTo({
-                top: anchor.offsetTop,
-                behavior: "smooth"
-            });
-        };
-    </script>
-}
+            const removeAllErrors = () => {
+                const errorElements = document.getElementsByClassName("error");
+                const successMessage = document.querySelector(".success-message");
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const emailInput = document.getElementById("Email");
-        const form = document.getElementById("contact-form");
-        const invalidEmailMessage = document.getElementById("invalid-email");
-        const nullEmailMessage = document.getElementById("null-email");
-        const emailRegexPattern = "^(\\w[\\w.-]*@@[\\w-]+\\.[\\w.-]{2,4})$";
-        const emailRegex = new RegExp(emailRegexPattern);
+                if (successMessage) {
+                    successMessage.style.display = "none";
+                }
 
-        const removeAllErrors = () => {
-            const errorElements = document.getElementsByClassName("error");
-
-            for (let i = 0; i < errorElements.length; i++) {
-                errorElements[i].style.display = "none";
+                for (let i = 0; i < errorElements.length; i++) {
+                    errorElements[i].style.display = "none";
+                }
             }
-        }
 
-        emailInput.addEventListener("input", () => {
-            removeAllErrors();
-        });
-
-        form.addEventListener("submit", (e) => {
-            removeAllErrors();
-            e.preventDefault();
-
-            const inputValue = emailInput.value;
-
-            if (inputValue == null || inputValue == "") {
-                nullEmailMessage.style.display = "block";
-            }
-            else if (!emailRegex.test(inputValue) || inputValue.length > 320) {
-                invalidEmailMessage.style.display = "block";
-            }
-            else {
+            emailInput.addEventListener("input", () => {
                 removeAllErrors();
-                form.submit();
-            }
+            });
+
+            form.addEventListener("submit", (e) => {
+                removeAllErrors();
+                e.preventDefault();
+
+                const inputValue = emailInput.value;
+
+                if (inputValue == null || inputValue == "") {
+                    nullEmailMessage.style.display = "block";
+                }
+                else if (!emailRegex.test(inputValue) || inputValue.length > 320) {
+                    invalidEmailMessage.style.display = "block";
+                }
+                else {
+                    removeAllErrors();
+                    form.submit();
+                }
+            });
         });
-    });
-</script>
+    </script>
+</div>

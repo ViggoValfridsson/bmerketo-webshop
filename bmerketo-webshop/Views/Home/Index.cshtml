@@ -4,18 +4,14 @@
     ViewData["Title"] = "Home";
 
     var bestCollectionViewModel = new CollectionViewmodel
-            {
-                CollectionName = "Best Collection",
-                Products = await _productService.GetAllAsync(p => p.Tags.Any(t => t.Tag.TagName == "Best Collection"))
-            };
+    {
+        CollectionName = "Best Collection",
+        Products = await _productService.GetAllAsync(p => p.Tags.Any(t => t.Tag.TagName == "Best Collection"))
+    };
 }
 
 <partial name="/Views/Partials/_WelcomeJumbotron.cshtml" />
-
-
 <partial name="/Views/Partials/_ProductCollection.cshtml" model=@bestCollectionViewModel />
 <partial name="/Views/Partials/_OnSale.cshtml" />
 <partial name="/Views/Partials/_TopSellers.cshtml" />
-
-
 <partial name="/Views/Partials/_NewsletterForm.cshtml" model=@Model />

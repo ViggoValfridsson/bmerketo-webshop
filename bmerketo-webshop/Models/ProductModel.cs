@@ -1,9 +1,4 @@
-﻿using bmerketo_webshop.Models.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace bmerketo_webshop.Models;
+﻿namespace bmerketo_webshop.Models;
 
 public class ProductModel
 {
@@ -15,6 +10,6 @@ public class ProductModel
     public int SalePercentage { get; set; }
     public string ImageUrl { get; set; } = null!;
     public string CategoryName { get; set; } = null!;
-    public ICollection<string> Tags { get; set; } = new HashSet<string>();
+    public List<string> Tags { get; set; } = new List<string>();
 
 }

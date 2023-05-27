@@ -72,10 +72,10 @@ public class UpdateUserViewModel
         return new AppUser
         {
             Id = model.Id,
-            UserName = model.Email,
+            UserName = model.Email.ToLower(),
             FirstName = model.FirstName,
             LastName = model.LastName,
-            Email = model.Email,
+            Email = model.Email.ToLower(),
             CompanyName = model.CompanyName
         };
     }

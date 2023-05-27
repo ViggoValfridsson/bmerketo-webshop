@@ -72,18 +72,36 @@
         }
     }
 
+    .menu-links.open-menu {
+        transform: scaleY(1);
+        pointer-events: auto;
+
+        @include lg {
+            display: block;
+        }
+    }
+
+
     .menu-links {
+        pointer-events: none;
+        display: grid;
+        transform-origin: top;
+        transform: scaleY(0);
+        transition: transform 100ms ease-in-out;
         background: $color-dark-2;
         position: absolute;
         bottom: -7.5em;
         z-index: 999;
         width: 100%;
         margin-left: -32px;
-        display: grid;
         border-top: 1px solid $color-dark-3;
         border-top: 1px solid $color-dark-3;
 
         @include lg {
+            pointer-events: auto;
+            transform: none;
+            transition: none;
+            display: grid;
             background-color: transparent;
             border: none;
             position: relative;
@@ -150,15 +168,6 @@
             bottom: -10em;
         }
     }
-
-    .mobile-closed-menu {
-        display: none;
-
-        @include lg {
-            display: block;
-        }
-    }
-
 
     .menu-icons {
         position: fixed;
@@ -232,8 +241,7 @@
             background-color: transparent;
 
             &:hover {
-                background-color: $color-light;
-                color: $color-dark-0;
+                background-color: $color-dark-3;
             }
         }
 
