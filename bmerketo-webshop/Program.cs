@@ -4,10 +4,7 @@ using bmerketo_webshop.Helpers.Seed;
 using bmerketo_webshop.Helpers.Services;
 using bmerketo_webshop.Models.Identity;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
-using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
