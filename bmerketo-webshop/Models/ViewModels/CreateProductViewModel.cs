@@ -1,6 +1,4 @@
 ﻿using bmerketo_webshop.Models.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace bmerketo_webshop.Models.ViewModels;

@@ -18,7 +18,8 @@ public class ProductEntity
     [Column(TypeName = "money")]
     public decimal CurrentPrice { get; set; }
     public int SalePercentage { get; set; }
-    // 2048 is the de facto url lenght limit
+
+    // 2048 because it is the de facto url lenght limit
     [Column(TypeName = "nvarchar(2048)")]
     public string ImageUrl { get; set; } = null!;
     public int CategoryId { get; set; }
