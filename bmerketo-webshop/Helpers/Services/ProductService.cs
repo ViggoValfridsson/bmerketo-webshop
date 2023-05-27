@@ -65,7 +65,7 @@ public class ProductService
     {
         var products = await GetAllAsync(x => x.Tags.Any(t => t.Tag.TagName == tagName));
 
-        if (products.Count < 1)
+        if (products == null || products.Count < 1)
             return null;
 
         var random = new Random();

@@ -43,9 +43,13 @@ public class ProductRepo : GenericRepo<ProductEntity>
 
     public async Task<int> GetRowCountAsync(Expression<Func<ProductEntity, bool>> predicate = null!)
     {
-        if (predicate == null)
-            return await _context.Products.CountAsync();
-        else
-            return await _context.Products.CountAsync(predicate);
+        try
+        {
+            if (predicate == null)
+                return await _context.Products.CountAsync();
+            else
+                return await _context.Products.CountAsync(predicate);
+        }
+        catch { return -1; }
     }
 }

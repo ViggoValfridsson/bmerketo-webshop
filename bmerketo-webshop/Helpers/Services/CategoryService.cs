@@ -31,8 +31,11 @@ public class CategoryService
         else
             entities = await _repo.GetAllAsync(predicate);
 
-        foreach (var entity in entities)
-            products.Add(entity!);
+        if (entities != null)
+        {
+            foreach (var entity in entities)
+                products.Add(entity!);
+        }
 
         return products;
     }

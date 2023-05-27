@@ -27,8 +27,11 @@ public class TagService
         var entityList = await _tagRepo.GetAllAsync();
         var models = new List<TagModel>();
 
-        foreach (var entity in entityList)
-            models.Add(entity!);
+        if (entityList != null)
+        {
+            foreach (var entity in entityList)
+                models.Add(entity!);
+        }
 
         return models;
     }
