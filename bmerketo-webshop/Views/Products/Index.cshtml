@@ -67,12 +67,11 @@
                 @if (startPage > 1)
                 {
                     <a asp-route-page="1">1</a>
-                    // If there is pages between 1 and start page we want to show ...
+                    // If there is pages between 1 and start page we want to show "..."
                     @if (startPage > 2)
                     {
                         <span class="dots">...</span>
                     }
-
                 }
 
                 @for (int i = startPage; i <= endPage; i++)

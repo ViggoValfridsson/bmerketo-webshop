@@ -3,20 +3,18 @@
 @if (Model.Products != null && Model.Products.Count > 0)
 {
     <div class="container product-collection">
-
-    @if (!string.IsNullOrWhiteSpace(Model.CollectionName))
-    {
-        <div class="header-container">
-            <h2>@Model.CollectionName</h2>
-        </div>
-    }
-   <div class="product-container">
-        @for (int i = 0; i < Model.Products.Count; i++)
+        @if (!string.IsNullOrWhiteSpace(Model.CollectionName))
         {
-                    <partial name="/Views/Partials/_CollectionItem.cshtml" model=@Model.Products[i] />
+            <div class="header-container">
+                <h2>@Model.CollectionName</h2>
+            </div>
         }
+        <div class="product-container">
+            @for (int i = 0; i < Model.Products.Count; i++)
+            {
+                <partial name="/Views/Partials/_CollectionItem.cshtml" model=@Model.Products[i] />
+            }
         </div>
-
         <div class="button-container">
             <button type="button" id="load-more-button" class="hidden">
                 LOAD MORE
@@ -24,7 +22,6 @@
             </button>
         </div>
     </div>
-
     <script>
         let productAmount = @Model.AmountOfVisibleProducts;
         let currentIndex = productAmount;
@@ -62,6 +59,6 @@
                 loadMoreButton.style.display = 'block';
 
             }
-        } 
+        }
     </script>
 }
