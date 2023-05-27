@@ -1,7 +1,6 @@
 ﻿using bmerketo_webshop.Data;
 using bmerketo_webshop.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq.Expressions;
 
 namespace bmerketo_webshop.Helpers.Repositories;

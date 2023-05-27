@@ -1,7 +1,5 @@
-﻿using bmerketo_webshop.Helpers.Seed;
-using bmerketo_webshop.Models.Entities;
+﻿using bmerketo_webshop.Models.Entities;
 using bmerketo_webshop.Models.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

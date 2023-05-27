@@ -8,7 +8,6 @@ using bmerketo_webshop.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Security.Claims;
 
 namespace bmerketo_webshop.Helpers.Services;
 

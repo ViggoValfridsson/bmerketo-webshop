@@ -23,9 +23,7 @@ public class ProductsTagsService
         var entity = await _repo.CreateAsync(productTag);
 
         if (entity == null)
-        {
             return false;
-        }
 
         return true;
     }

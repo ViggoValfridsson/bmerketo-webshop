@@ -1,10 +1,6 @@
 ﻿using bmerketo_webshop.Data;
 using bmerketo_webshop.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Identity.Client;
-using System.ComponentModel.DataAnnotations.Schema;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace bmerketo_webshop.Helpers.Seed;
 
@@ -49,6 +45,7 @@ public class Seed
         if (await _context.Products.AnyAsync())
             return;
 
+        // This list ended up longer than expected. It would probably have been better store this data in JSON!
         var products = new List<ProductEntity>
         {
             new ProductEntity
