@@ -13,7 +13,6 @@
             margin: 2em 0;
         }
 
-
         .fields {
             @include lg {
                 display: grid;
@@ -52,7 +51,7 @@
             border-radius: 2px;
             margin: 3.2px 0 3.2px 0.25em;
             height: 2.2em;
-            width:100%;
+            width: 100%;
 
             @include lg {
                 margin-left: 0;
