@@ -15,10 +15,13 @@ public class Seed
 
     public async Task SeedAll()
     {
-        await SeedCategories();
-        await SeedProducts();
-        await SeedTags();
-        await SeedProductTags();
+        try
+        {
+            await SeedCategories();
+            await SeedProducts();
+            await SeedTags();
+            await SeedProductTags();
+        } catch { }
     }
 
     private async Task SeedCategories()
