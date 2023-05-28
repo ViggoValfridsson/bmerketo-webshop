@@ -5,6 +5,7 @@ namespace bmerketo_webshop.Models.ViewModels;
 public class SignInViewModel
 {
     [Required(ErrorMessage = "You need to enter an email.")]
+    [DataType(DataType.EmailAddress)]
     public string Email { get; set; } = null!;
 
     [Required(ErrorMessage = "You need to enter a password.")]

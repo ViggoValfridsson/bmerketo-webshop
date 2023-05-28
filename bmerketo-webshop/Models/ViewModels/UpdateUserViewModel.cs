@@ -36,6 +36,7 @@ public class UpdateUserViewModel
     [MinLength(6, ErrorMessage = "Invalid email. Enter a valid email and try again.")]
     [MaxLength(320, ErrorMessage = "Email is too long. Please enter less than 320 characters.")]
     [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$", ErrorMessage = "Invalid email. Enter a valid email and try again.")]
+    [DataType(DataType.EmailAddress)]
     public string Email { get; set; } = null!;
 
     [Required(ErrorMessage = "You must enter your current password to update your account.")]
