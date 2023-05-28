@@ -16,9 +16,9 @@ The home page consists of five partials. A jumbotron showing a random product wi
 
 ### Products Page
 
-![home page screenshot](Screenshots/products_page.PNG) 
+![home page screenshot](Screenshots/products_desktop.PNG) 
 
 The products page is where you can view all products. There is a menu where you can choose to filter by both tags (featured, on sale etc) and categories (computers, software etc). When a product is clicked you will be taken
-to the individual products page.
+to the individual products page. The page also includes pagination both in the URL and with buttons at the bottom of the page.
 
 ### Individual Product Page 
